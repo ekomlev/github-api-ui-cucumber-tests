@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke test suite" verbose="1">
+    <listeners>
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
+        <listener class-name="com.github.utils.ScreenshotExecutor" />
+    </listeners>
+    <test name="Change profile settings">
+        <classes>
+            <class name="com.github.testcases.ProfileSettingsTests.ChangeProfileSettingsTest"/>
+        </classes>
+    </test>
+    <test name="Create new repository">
+        <classes>
+            <class name="com.github.testcases.RepositoryTests.CreateNewRepositoryTest"/>
+        </classes>
+    </test>
+    <test name="Create new organization">
+        <classes>
+            <class name="com.github.testcases.OrganizationTests.CreateNewOrganizationTest"/>
+        </classes>
+    </test><test name="Create new gist">
+        <classes>
+            <class name="com.github.testcases.GistTests.CreateNewGistTest"/>
+        </classes>
+    </test>
+    <test name="Create new comment">
+        <classes>
+            <class name="com.github.testcases.CommentTests.CreateNewCommentTests"/>
+        </classes>
+    </test>
+</suite>

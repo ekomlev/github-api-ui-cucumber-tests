@@ -1,0 +1,36 @@
+{
+  "configuration": {
+    "properties": {
+      "property": {
+        "name": "pattern",
+        "value": "%d{HH:mm:ss.SSS} [%t] %-5level - %msg%n"
+      }
+    },
+    "appenders": {
+      "ReportPortalLog4j2Appender": {
+        "name": "ReportPortalAppender",
+        "PatternLayout": {
+          "pattern": "${pattern}"
+        }
+      },
+      "Console": {
+        "name": "STDOUT",
+        "PatternLayout": {
+          "pattern": "${pattern}"
+        }
+      }
+    },
+    "loggers": {
+      "root": {
+        "level": "all",
+        "AppenderRef": [
+          {
+            "ref": "ReportPortalAppender"
+          },
+          {
+          "ref": "STDOUT"
+        }]
+      }
+    }
+  }
+}

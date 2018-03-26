@@ -1,0 +1,31 @@
+{
+   "userName":"Eduard-test",
+   "userEmail":"uplink.qq@gmail.com",
+   "userPassword":"5v6b%V^B",
+   "userPublicProfile": {
+		"publicProfileName": "Eduard-profile-name",
+		"publicProfileBio": "Some necessary information about user",
+		"publicProfileUrl": "profileurl.com",
+		"publicProfileCompany": "Company 1",
+		"publicProfileLocation": "Belarus"
+		},
+	"userRepository": {
+		"repositoryName": "test_repository",
+		"repositoryDescription": "Some necessary information about repository",
+		"repositoryPublicAccess": "true"
+		},
+	"userOrganization": {
+		"organizationName": "Organization-xq",
+		"organizationBillingEmail": "organization-xq@mail.org",
+		"organizationFreePlan": "true"
+		},
+	"userGist": {
+		"gistFile": "filegist.txt",
+		"gistDescription": "Some description about this file",
+		"gistContent": "some text in this gist",
+		"gistPublicAccess": "true"
+		},
+	"userComment": {
+		"commentText": "test comment"
+		}
+}
