@@ -59,16 +59,21 @@ dependencies {
 
     // Cucumber
     compile ("io.cucumber:cucumber-testng:${cucumberVersion}")
-    compile ("io.cucumber:cucumber-java:${cucumberVersion}")
+    compile ("io.cucumber:cucumber-java8:${cucumberVersion}")
     compile ("io.cucumber:cucumber-jvm:${cucumberVersion}")
+
+//    compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
+//    compile group: 'info.cukes', name: 'cucumber-testng', version: '1.2.5'
 
 
 }
+
 
 test {
     useTestNG {
         options.suites 'src/test/resources/testng.xml'
     }
+
 
     systemProperty 'tst.pr', System.getProperty("tst.pr")?:"test.properties"
     systemProperty 'chrdr.ps', System.getProperty("chrdr.ps")?:"./webdrivers/chromedriver.exe"

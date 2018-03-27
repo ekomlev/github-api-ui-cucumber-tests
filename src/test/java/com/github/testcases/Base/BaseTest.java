@@ -8,7 +8,7 @@ import com.github.website.GithubSite;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class BaseTest {
+public class BaseTest  {
     protected WebDriver webDriver;
     protected GithubSite website;
     protected WebDriverWait wait;
@@ -17,26 +17,14 @@ public abstract class BaseTest {
     protected TestLogger testLogger = TestLogger.getInstance();
 
 
-    public void setUp() {
+    public GithubSite setUp() {
         webDriver = browserFactory.getInstance();
         webDriver.get(PropertyProvider.getProperty("environment.variables.base_url"));
         website = new GithubSite(webDriver);
-
-        website.initialPage().clickSignInLink();
-
-        website.loginPage().waitForAuthorizationForm();
-
-        user = website.loginPage().createUserFromJson();
-
-        String userName = user.getUserName();
-        String userPassword = user.getUserPassword();
-
-        website.loginPage().fillInAuthorizationForm(userName, userPassword);
-        
-        website.loginPage().clickSignInButton();
+        return website;
     }
 
-    
+
     public void tearDown() {
         if (webDriver != null) {
             browserFactory.closeDriver();

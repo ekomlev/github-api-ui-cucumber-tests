@@ -25,7 +25,7 @@ public class ProfileSettingsPage extends BasePage {
     WebElement inputPublicProfileLocationField;
 
     @FindBy(xpath = "//button[@type='submit' and text()='Update profile']")
-    WebElement submitUpdateProfileButton;
+    WebElement updateProfileButton;
 
     @FindBy(linkText = "view your profile.")
     WebElement viewProfileLink;
@@ -38,20 +38,33 @@ public class ProfileSettingsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='profile_36765220']")));
     }
 
-    public void saveNewPublicProfileSettings(String publicProfileName, String publicProfileBio, String publicProfileUrl,
-                                             String publicProfileCompany, String publicProfileLocation) {
+    public void savePublicProfileSettings() {
+        updateProfileButton.click();
+    }
+
+    public void changeProfileName(String publicProfileName) {
         inputPublicProfileNameField.clear();
         inputPublicProfileNameField.sendKeys(publicProfileName);
+    }
+
+    public void changeProfilebBio(String publicProfileBio) {
         inputPublicProfileBioField.clear();
         inputPublicProfileBioField.sendKeys(publicProfileBio);
+    }
+
+    public void changeProfileUrl(String publicProfileUrl) {
         inputPublicProfileUrlField.clear();
         inputPublicProfileUrlField.sendKeys(publicProfileUrl);
+    }
+
+    public void changeProfileCompany(String publicProfileCompany) {
         inputPublicProfileCompanyField.clear();
         inputPublicProfileCompanyField.sendKeys(publicProfileCompany);
+    }
+
+    public void changeProfileLocation(String publicProfileLocation) {
         inputPublicProfileLocationField.clear();
         inputPublicProfileLocationField.sendKeys(publicProfileLocation);
-
-        submitUpdateProfileButton.click();
     }
 
     public void waitForValidationMessage() {
