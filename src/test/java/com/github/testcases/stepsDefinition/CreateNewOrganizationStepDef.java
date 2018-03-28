@@ -14,14 +14,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-@CucumberOptions(features = {"src/test/resources/features/create_new_organization.feature"} )
-public class CreateNewOrganizationStepDefinitions extends BaseTest {
+@CucumberOptions(features = "features/create_new_organization.feature")
+public class CreateNewOrganizationStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
     private GithubSite website = GithubSite.getInstance(webDriver);
     private String organizationName = user.getUserOrganization().getOrganizationName();
     private String organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
-    boolean organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
+    private boolean organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
 
     @Given("^organization with required name is not created$")
     public void checkNewOrganizationIsNotCreated() {
@@ -66,7 +66,7 @@ public class CreateNewOrganizationStepDefinitions extends BaseTest {
     }
 
     @Then("^user can see opened page of created organization$")
-    public void checkCreatedNewRepositoryPage() {
+    public void checkCreatedNewOrganizationPage() {
         check("Check if  page of new created organization is opened");
         website.organizationsPage().waitForOrganizationContent();
 

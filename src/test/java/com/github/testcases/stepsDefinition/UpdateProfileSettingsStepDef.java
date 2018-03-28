@@ -14,8 +14,8 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-@CucumberOptions(features = {"src/test/resources/features/update_profile_settings.feature"} )
-public class UpdateProfileSettingsStepDefinitions extends BaseTest {
+@CucumberOptions(features = "features/update_profile_settings.feature")
+public class UpdateProfileSettingsStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
     private GithubSite website = GithubSite.getInstance(webDriver);

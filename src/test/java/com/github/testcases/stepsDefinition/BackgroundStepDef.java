@@ -7,13 +7,13 @@ import com.github.website.GithubSite;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
 
-@CucumberOptions(features = {"src/test/resources/features/"} )
-public class BackgroundSteps extends BaseTest {
+@CucumberOptions(features = "features/")
+public class BackgroundStepDef extends BaseTest {
 
     GithubSite website = GithubSite.getInstance(webDriver);
     User user = UserCreator.getInstance(); //TODO: Check singleton of User entity
 
-    @Given("^user is signed to github home page$")
+    @Given("^user is signed in to github home page$")
     public void sign_in() {
         website.initialPage().clickSignInLink();
         website.loginPage().waitForAuthorizationForm();

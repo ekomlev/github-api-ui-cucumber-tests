@@ -1,8 +1,8 @@
 @smokeTest
-Feature: Create new gist
+Feature: Create new comment
 
   As user signed in to github site
-  I want to be able to create new gist
+  I want to be able to create new comment for gist
 
   Background:
     Given user is signed in to github home page

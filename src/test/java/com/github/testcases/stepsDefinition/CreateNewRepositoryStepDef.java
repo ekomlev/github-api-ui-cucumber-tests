@@ -14,8 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-@CucumberOptions(features = {"src/test/resources/features/create_new_repository.feature"} )
-public class CreateNewRepositoryStepDefinitions extends BaseTest {
+@CucumberOptions(features = "features/create_new_repository.feature")
+public class CreateNewRepositoryStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
     private GithubSite website = GithubSite.getInstance(webDriver);

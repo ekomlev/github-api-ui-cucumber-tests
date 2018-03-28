@@ -37,6 +37,10 @@ public class GistPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='timeline-comment-wrapper js-comment-container' and position()=last()-2]")));
     }
 
+    public void waitForGistContent() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='']");
+    }
+
     public String getNameOfOpenedGist() {
         String gistName = gistNameLink.getText();
         return gistName;
