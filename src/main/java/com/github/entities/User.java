@@ -10,7 +10,7 @@ public class User {
     private Gist userGist;
     private Comment userComment;
 
-    public User(String userName, String userEmail, String userPassword, PublicProfile userPublicProfile,
+    private User(String userName, String userEmail, String userPassword, PublicProfile userPublicProfile,
                 Repository userRepository, Organization userOrganization, Gist userGist, Comment userComment) {
         this.userName = userName;
         this.userEmail = userEmail;

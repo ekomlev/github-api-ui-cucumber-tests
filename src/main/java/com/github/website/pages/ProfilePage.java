@@ -1,9 +1,11 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProfilePage extends BasePage {
 
@@ -24,6 +26,10 @@ public class ProfilePage extends BasePage {
 
     public ProfilePage(WebDriver driver) {
         super(driver);
+    }
+
+    public void waitForUserProfileDataColumn() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='h-card col-3 float-left pr-3']")));
     }
 
 

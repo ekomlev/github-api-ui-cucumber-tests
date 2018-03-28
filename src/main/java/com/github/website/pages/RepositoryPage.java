@@ -34,6 +34,10 @@ public class RepositoryPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("options_bucket")));
     }
 
+    public void waitForRepositoryContent() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='repository-content ']")));
+    }
+
     public void deleteExistingRepository(String repositoryName) {
         JavascriptExecutor jse = (JavascriptExecutor)webDriver;
         jse.executeScript("window.scrollBy(0,250)", "");

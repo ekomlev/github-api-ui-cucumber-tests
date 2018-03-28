@@ -47,7 +47,7 @@ public class ProfileSettingsPage extends BasePage {
         inputPublicProfileNameField.sendKeys(publicProfileName);
     }
 
-    public void changeProfilebBio(String publicProfileBio) {
+    public void changeProfileBio(String publicProfileBio) {
         inputPublicProfileBioField.clear();
         inputPublicProfileBioField.sendKeys(publicProfileBio);
     }

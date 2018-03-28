@@ -43,6 +43,10 @@ public class OrganizationsPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("orgnav")));
     }
 
+    public void waitForOrganizationContent() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='org-profile container js-pinned-repos-reorder-container']")));
+    }
+
     public WebElement createdOrganizationAlreadyExists(String organizationName) {
         for (WebElement organization : organisationItem) {
             if (organization.getText().contains(organizationName)){

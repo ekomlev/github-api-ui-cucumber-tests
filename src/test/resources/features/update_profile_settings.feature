@@ -1,5 +1,5 @@
 @smokeTest
-Feature: Update Profile Settings
+Feature: Update profile settings
 
   As signed in user of github site
   I want to be able to update my profile settings
@@ -7,22 +7,17 @@ Feature: Update Profile Settings
   Background:
     Given user is signed to github home page
 
-  Scenario: #User update profile settings.
+  Scenario: User updates profile settings (happy pass)
     Given profile settings page is opened
-    When user change Name
-    And user change Bio
-    And user change Url
-    And user change Company
-    And user change Location
-    And user save profile settings
+    When user changes Name
+    And user changes Bio
+    And user changes Url
+    And user changes Company
+    And user changes Location
+    And user saves profile settings
     Then user can see new Name on the Profile page
     And user can see new Bio on the Profile page
     And user can see new Url on the Profile page
     And user can see new Company on the Profile page
     And user can see new Location on the Profile page
 
-     #   - go to profile settings page
-     #   - change user's data: name, bio, url, company, location
-     #   - save profile settings page
-     #   - go to profile page
-     #   - check new user's data: name, bio, url, company, location

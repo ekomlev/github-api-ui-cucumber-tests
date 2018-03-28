@@ -6,10 +6,22 @@ import com.github.website.pages.*;
 import org.openqa.selenium.WebDriver;
 
 public class GithubSite {
-    WebDriver webDriver;
+    private static GithubSite instance;
+    private WebDriver webDriver;
 
-    public GithubSite(WebDriver driver) {
+    private GithubSite(WebDriver driver) {
         webDriver = driver;
+    }
+
+    public static GithubSite getInstance(WebDriver driver) {
+        if (instance == null) {
+            instance = new GithubSite(driver);
+        }
+        return instance;
+    }
+
+    public static void reset() {
+        instance = null;
     }
 
     public InitialPage initialPage() {

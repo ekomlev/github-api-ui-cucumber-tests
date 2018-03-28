@@ -55,7 +55,7 @@ public class BrowserFactory {
         return driver;
     }
 
-    public  void closeDriver(){
+    public static void closeDriver(){
         driver.quit();
         driver = null;
     }

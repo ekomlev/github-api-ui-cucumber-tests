@@ -1,34 +1,26 @@
-package com.github.testcases.Base;
+package com.github.testcases.base;
 
 import com.github.base.browser.BrowserFactory;
-import com.github.entities.User;
 import com.github.logging.TestLogger;
 import com.github.utils.PropertyProvider;
 import com.github.website.GithubSite;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseTest  {
     protected WebDriver webDriver;
-    protected GithubSite website;
-    protected WebDriverWait wait;
-    private static BrowserFactory browserFactory = new BrowserFactory();
-    protected User user;
+    private GithubSite website; //TODO: Check "Field can be converted to local variable"
     protected TestLogger testLogger = TestLogger.getInstance();
 
-
     public GithubSite setUp() {
-        webDriver = browserFactory.getInstance();
+        webDriver = BrowserFactory.getInstance(); //TODO: To realise BrowserFactory.getInstance() via GithubSite.getInstance(webDriver)
         webDriver.get(PropertyProvider.getProperty("environment.variables.base_url"));
-        website = new GithubSite(webDriver);
+        website = GithubSite.getInstance(webDriver);
         return website;
     }
 
-
     public void tearDown() {
-        if (webDriver != null) {
-            browserFactory.closeDriver();
-        }
+        BrowserFactory.closeDriver(); //TODO: To realise BrowserFactory.closeDriver() via GithubSite.reset
+        GithubSite.reset();
     }
 
     protected void step(int i, String msg) {

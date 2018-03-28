@@ -8,7 +8,7 @@
     </listeners>
     <test name="Update profile settings">
         <classes>
-            <class name="com.github.testcases.stepsDefinition.TestRunner"/>
+            <class name="com.github.testcases.runners.SmokeTestRunner"/>
         </classes>
     </test>
 
