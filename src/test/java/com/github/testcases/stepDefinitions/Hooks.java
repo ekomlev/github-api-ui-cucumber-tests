@@ -1,5 +1,5 @@
 
-package com.github.testcases.stepsDefinition;
+package com.github.testcases.stepDefinitions;
 
 import com.github.testcases.base.BaseTest;
 import cucumber.api.Scenario;

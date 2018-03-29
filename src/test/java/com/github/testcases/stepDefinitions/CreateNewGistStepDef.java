@@ -1,4 +1,4 @@
-package com.github.testcases.stepsDefinition;
+package com.github.testcases.stepDefinitions;
 
 import com.github.entities.User;
 import com.github.testcases.base.BaseTest;
@@ -10,7 +10,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
 
-@CucumberOptions(features = "features/create_new_gist.feature")
+@CucumberOptions(features = "features/CreateNewGist.feature")
 public class CreateNewGistStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private GithubSite website = GithubSite.getInstance();

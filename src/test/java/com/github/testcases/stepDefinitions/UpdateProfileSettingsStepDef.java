@@ -1,4 +1,4 @@
-package com.github.testcases.stepsDefinition;
+package com.github.testcases.stepDefinitions;
 
 import com.github.base.browser.BrowserFactory;
 import com.github.entities.User;
@@ -14,7 +14,7 @@ import cucumber.api.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
-@CucumberOptions(features = "features/update_profile_settings.feature")
+@CucumberOptions(features = "features/UpdateProfileSettings.feature")
 public class UpdateProfileSettingsStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();

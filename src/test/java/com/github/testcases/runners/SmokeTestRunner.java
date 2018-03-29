@@ -7,8 +7,8 @@ import org.testng.annotations.Test;
 
 @CucumberOptions(
        // plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
-        features = "src/test/resources",
-        glue = "com.github.testcases/stepsDefinition/",
+        features = "src/test/resources/features",
+        glue = "com.github.testcases/stepDefinitions",
         tags = {"@smokeTest"}
 )
 @Test

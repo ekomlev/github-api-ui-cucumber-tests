@@ -1,4 +1,4 @@
-package com.github.testcases.stepsDefinition;
+package com.github.testcases.stepDefinitions;
 
 import com.github.base.browser.BrowserFactory;
 import com.github.entities.User;
@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-@CucumberOptions(features = "features/create_new_organization.feature")
+@CucumberOptions(features = "features/CreateNewOrganization.feature")
 public class CreateNewOrganizationStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
