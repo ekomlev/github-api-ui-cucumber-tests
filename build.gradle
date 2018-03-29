@@ -76,7 +76,7 @@ test {
 
 
     systemProperty 'tst.pr', System.getProperty("tst.pr")?:"test.properties"
-    systemProperty 'chrdr.ps', System.getProperty("chrdr.ps")?:"./webdrivers/chromedriver.exe"
+    systemProperty 'wdr.ps', System.getProperty("wdr.ps")?:"./webdrivers/chromedriver.exe"
 }
 
 

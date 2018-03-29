@@ -6,6 +6,7 @@
 This is an automation test framework for [github.com][github_com] using:
 ```
  Java
+ Cucumber
  TestNG
  Selenium Webdriver
  Gradle
@@ -20,7 +21,7 @@ This is an automation test framework for [github.com][github_com] using:
 
 ## Getting started
 * Git clone the project
-* Install browser driver: e.g. **[ChromeDriver]** or **[FirefoxDriver]** and put execute file to the folder `/github_test/webdrivers/`.
+* Install browser driver: e.g. **[ChromeDriver]** or **[FirefoxDriver]** and put execute file to the folder `/github_test_testng_cuc/webdrivers/`.
 
 *NOTE*: framework expects `.exe` file. If you are using *MacOs* than you should edit `CHROMEDRIVER_PATH` or `GECKODRIVER_PATH` variables at **`BrowserFactory.class`**.
 * Install **[Gradle]**
@@ -47,12 +48,12 @@ Set `environment.variables.browser=firefox` to use **FirefoxDriver** while execu
 ## Execution
 * To run tests from the command line using standard `.property` file type:
  ```
- gradle clean test
+ gradle test
  ```
 
-* To run tests from the command line using **custom** `.property` file type:
+* To run tests from the command line using **custom** `.property` file type and specifying your own path to exec file of web driver:
  ```
- gradle clean test -Dtst.pr=your_file.properties
+ gradle test -Dtst.pr=your_file.properties -Dwdr.ps=./your_path
  ```
 
 [github_com]: https://www.github.com

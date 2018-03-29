@@ -16,7 +16,7 @@ public class BrowserFactory {
     private static BrowserType browserType;
     private static WebDriver driver;
     private static final String CHROMEDRIVER = "webdriver.chrome.driver";
-    private static final String CHROMEDRIVER_PATH = System.getProperty("chrdr.ps");
+    private static final String CHROMEDRIVER_PATH = System.getProperty("wdr.ps");
     private static final String GECKODRIVER = "webdriver.gecko.driver";
     private static final String GECKODRIVER_PATH = "./webdrivers/geckodriver.exe";
     private static PropertyProvider props;
