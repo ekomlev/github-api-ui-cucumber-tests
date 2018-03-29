@@ -1,23 +1,23 @@
-plugins {
-    id 'net.researchgate.release' version '2.4.1'
-    id "com.jfrog.bintray" version "1.7"
-}
-
 apply plugin: 'java'
 
 repositories {
-    jcenter()
-    maven { url "http://dl.bintray.com/epam/reportportal" }
+    mavenCentral()
+    maven { setUrl ('http://dl.bintray.com/epam/reportportal/') }
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-ext.testngVersion       = '6.14.2'
-ext.seleniumVersion     = '3.11.0'
-ext.reportPortalVersion = '4.0.1'
-ext.lo4jVersion         = '2.8.1'
-ext.cucumberVersion     = '2.4.0'
+ext {
+    testngVersion = '6.14.2'
+    seleniumVersion = '3.11.0'
+    reportPortalVersion = '4.0.1'
+    lo4jVersion = '2.8.1'
+    slf4jVersion = '1.8.0-beta1'
+    apachVersion = '1.3.2'
+    jodatimeVersion = '2.9.9'
+    cucumberVersion = '2.4.0'
+}
 
 jar {
     baseName = 'github_test_testng'
@@ -27,53 +27,42 @@ jar {
 defaultTasks 'clean', 'test'
 
 dependencies {
-    // TestNG
-    compile("org.testng:testng:${testngVersion}")
+            // TestNG
+            compile "org.testng:testng:${testngVersion}",
 
-    // Drivers
-    compile ("org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}")
-    compile ("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
-    compile ("org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}")
+            // Drivers
+            "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}",
+            "org.seleniumhq.selenium:selenium-java:${seleniumVersion}",
+            "org.seleniumhq.selenium:selenium-firefox-driver:${seleniumVersion}",
 
-    // Selenium support
-    compile ("org.seleniumhq.selenium:selenium-support:${seleniumVersion}")
+            // Selenium support
+            "org.seleniumhq.selenium:selenium-support:${seleniumVersion}",
 
-    // Report Portal
-    //compile 'com.epam.reportportal:client-java-core:2.7.1'
-    //compile 'com.epam.reportportal:client-java:4.0.4'
-    //compile 'com.epam.reportportal:commons-model:4.0.3'
+            // Report Portal
+            "com.epam.reportportal:agent-java-testng:${reportPortalVersion}",
+            "com.epam.reportportal:logger-java-log4j:${reportPortalVersion}",
 
-    compile ("com.epam.reportportal:agent-java-testng:${reportPortalVersion}")
-    compile ("com.epam.reportportal:logger-java-log4j:${reportPortalVersion}")
+            // Logging Log4j2
+            "org.apache.logging.log4j:log4j-core:${lo4jVersion}",
+            "org.apache.logging.log4j:log4j-api:${lo4jVersion}",
 
-    // Logging Log4j2
-    compile ("org.apache.logging.log4j:log4j-core:${lo4jVersion}")
-    compile ("org.apache.logging.log4j:log4j-api:${lo4jVersion}")
+            // For logging
+            "org.slf4j:slf4j-simple:${slf4jVersion}",
 
-    // For logging
-    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.8.0-beta1'
+            // For screenshots
+            "org.apache.commons:commons-io:${apachVersion}",
+            "joda-time:joda-time:${jodatimeVersion}",
 
-    // For screenshots
-    compile group: 'org.apache.commons', name: 'commons-io', version: '1.3.2'
-    compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
-
-    // Cucumber
-    compile ("io.cucumber:cucumber-testng:${cucumberVersion}")
-    compile ("io.cucumber:cucumber-java8:${cucumberVersion}")
-    compile ("io.cucumber:cucumber-jvm:${cucumberVersion}")
-
-//    compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
-//    compile group: 'info.cukes', name: 'cucumber-testng', version: '1.2.5'
-
-
+            // Cucumber
+            "io.cucumber:cucumber-testng:${cucumberVersion}",
+            "io.cucumber:cucumber-java8:${cucumberVersion}",
+            "io.cucumber:cucumber-jvm:${cucumberVersion}"
 }
-
 
 test {
     useTestNG {
         options.suites 'src/test/resources/testng.xml'
     }
-
 
     systemProperty 'tst.pr', System.getProperty("tst.pr")?:"test.properties"
     systemProperty 'wdr.ps', System.getProperty("wdr.ps")?:"./webdrivers/chromedriver.exe"
