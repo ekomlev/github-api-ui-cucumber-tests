@@ -12,6 +12,6 @@ import org.testng.annotations.Test;
         tags = {"@smokeTest"}
 )
 @Test
-public class SmokeTestRunner extends AbstractTestNGCucumberTests {
+public class SmokeRunnerTest extends AbstractTestNGCucumberTests {
 }
 
