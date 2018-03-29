@@ -16,6 +16,9 @@ build
 settings.gradle
 !gradle-wrapper.jar
 
+# Screenshots
+/output
+
 
 
 

@@ -11,6 +11,7 @@ public class GithubSite {
     private static GithubSite instance;
     private static WebDriver webDriver;
 
+
     private GithubSite(WebDriver driver) {
         webDriver = driver;
     }
