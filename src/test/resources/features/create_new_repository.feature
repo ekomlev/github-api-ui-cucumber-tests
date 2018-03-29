@@ -1,11 +1,11 @@
 @smokeTest
 Feature: Create new repository
 
-  As user signed in to github site
+  As user signed into github site
   I want to be able to create new repository
 
   Background:
-    Given user is signed in to github home page
+    Given user is signed into github home page
 
   Scenario: User creates new repository (happy pass)
     Given repository with required name is not created

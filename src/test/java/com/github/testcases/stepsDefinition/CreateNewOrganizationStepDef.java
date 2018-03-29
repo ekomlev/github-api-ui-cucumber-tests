@@ -18,7 +18,7 @@ import org.testng.Assert;
 public class CreateNewOrganizationStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
-    private GithubSite website = GithubSite.getInstance(webDriver);
+    private GithubSite website = GithubSite.getInstance();
     private String organizationName = user.getUserOrganization().getOrganizationName();
     private String organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
     private boolean organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();

@@ -18,7 +18,7 @@ import org.testng.Assert;
 public class CreateNewRepositoryStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
-    private GithubSite website = GithubSite.getInstance(webDriver);
+    private GithubSite website = GithubSite.getInstance();
     private String repositoryName = user.getUserRepository().getRepositoryName();
     private String repositoryDescription = user.getUserRepository().getRepositoryName();
     private boolean repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();

@@ -1,11 +1,11 @@
 @smokeTest
 Feature: Create new gist
 
-  As user signed in to github site
+  As user signed into github site
   I want to be able to create new gist
 
   Background:
-    Given user is signed in to github home page
+    Given user is signed into github home page
 
   Scenario: User creates new gist (happy pass)
     When user create new gist via menu "Create new"

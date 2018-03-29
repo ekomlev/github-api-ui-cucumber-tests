@@ -1,6 +1,5 @@
 package com.github.testcases.stepsDefinition;
 
-import com.github.base.browser.BrowserFactory;
 import com.github.entities.User;
 import com.github.testcases.base.BaseTest;
 import com.github.utils.UserCreator;
@@ -9,14 +8,12 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/create_new_gist.feature")
 public class CreateNewGistStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
-    private WebDriver webDriver = BrowserFactory.getInstance();
-    private GithubSite website = GithubSite.getInstance(webDriver);
+    private GithubSite website = GithubSite.getInstance();
     private String gistFile = user.getUserGist().getGistFile();
     private String gistDescription = user.getUserGist().getGistDescription();
     private String gistContent = user.getUserGist().getGistContent();
@@ -40,7 +37,7 @@ public class CreateNewGistStepDef extends BaseTest {
     @Then("^user can see opened page of created gist$")
     public void checkCreatedNewGist() {
         check("Check if  page of new created gist is opened");
-        website.gistPage().waitForGistContent(); //TODO complete method!
+        website.gistPage().waitForGistContent();
 
     }
 

@@ -18,12 +18,12 @@ import org.testng.Assert;
 public class UpdateProfileSettingsStepDef extends BaseTest {
     private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
-    private GithubSite website = GithubSite.getInstance(webDriver);
+    private GithubSite website = GithubSite.getInstance();
     private String expectedUrl = PropertyProvider.getProperty("environment.variables.base_url") + "/" + user.getUserName();
 
     @Given("^profile settings page is opened$")
     public void openUserProfileMenu(){
-        step(1, "Open User menu");
+        step(1, "Open user profile menu");
         website.userProfileMenu().waitForUserProfileMenuLink();
         website.userProfileMenu().openUserProfileMenu();
         website.userProfileMenu().waitForUserProfileMenu();

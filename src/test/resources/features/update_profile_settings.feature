@@ -1,11 +1,11 @@
 @smokeTest
 Feature: Update profile settings
 
-  As user signed in to github site
+  As user signed into github site
   I want to be able to update my profile settings
 
   Background:
-    Given user is signed in to github home page
+    Given user is signed into github home page
 
   Scenario: User updates profile settings (happy pass)
     Given profile settings page is opened

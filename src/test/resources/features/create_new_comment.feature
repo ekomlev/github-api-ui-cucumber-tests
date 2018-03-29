@@ -1,13 +1,14 @@
 @smokeTest
 Feature: Create new comment
 
-  As user signed in to github site
+  As user signed into github site
   I want to be able to create new comment for gist
 
   Background:
-    Given user is signed in to github home page
+    Given user is signed into github home page
 
-  Scenario: User creates new gist (happy pass)
-    When user create new gist via menu "Create new"
-    Then user can see opened page of created gist
-    And header path contains the name of created gist
+  Scenario: User creates new comment (happy pass)
+    Given "All your gists" page is opened
+    When user enters to existing gist
+    And user creates new comment
+    Then user can see attached comment to gist

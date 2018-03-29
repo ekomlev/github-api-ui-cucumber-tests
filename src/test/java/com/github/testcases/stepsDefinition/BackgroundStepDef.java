@@ -10,10 +10,10 @@ import cucumber.api.java.en.Given;
 @CucumberOptions(features = "features/")
 public class BackgroundStepDef extends BaseTest {
 
-    GithubSite website = GithubSite.getInstance(webDriver);
+    GithubSite website = GithubSite.getInstance();
     User user = UserCreator.getInstance(); //TODO: Check singleton of User entity
 
-    @Given("^user is signed in to github home page$")
+    @Given("^user is signed into github home page$")
     public void sign_in() {
         website.initialPage().clickSignInLink();
         website.loginPage().waitForAuthorizationForm();

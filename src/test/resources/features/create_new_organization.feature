@@ -1,11 +1,11 @@
 @smokeTest
 Feature: Create new organization
 
-  As user signed in to github site
+  As user signed into github site
   I want to be able to create new organization
 
   Background:
-    Given user is signed in to github home page
+    Given user is signed into github home page
 
   Scenario: User creates new organization (happy pass)
     Given organization with required name is not created

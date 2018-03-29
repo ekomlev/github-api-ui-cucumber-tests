@@ -38,7 +38,7 @@ public class GistPage extends BasePage {
     }
 
     public void waitForGistContent() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='container new-discussion-timeline experiment-repo-nav']")));
     }
 
     public String getNameOfOpenedGist() {
