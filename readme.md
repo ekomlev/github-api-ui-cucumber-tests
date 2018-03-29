@@ -53,7 +53,7 @@ Set `environment.variables.browser=firefox` to use **FirefoxDriver** while execu
 
 * To run tests from the command line using **custom** `.property` file type and specifying your own path to exec file of web driver:
  ```
- gradle test -Dtst.pr=your_file.properties -Dwdr.ps=./your_path
+ gradle test -Dtst.pr=your_file.properties -Dwdr.pr=./your_path
  ```
 
 [github_com]: https://www.github.com
