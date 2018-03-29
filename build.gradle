@@ -1,8 +1,15 @@
+plugins {
+    id 'net.researchgate.release' version '2.4.1'
+    id "com.jfrog.bintray" version "1.7"
+}
+
 apply plugin: 'java'
 
 repositories {
-    mavenCentral()
-    maven { setUrl ('http://dl.bintray.com/epam/reportportal/') }
+    jcenter()
+    mavenLocal()
+    maven { setUrl ("http://dl.bintray.com/epam/reportportal") }
+
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -20,7 +27,7 @@ ext {
 }
 
 jar {
-    baseName = 'github_test_testng'
+    baseName = 'github_test_testng_cuc'
     version = '1.0.0-SNAPSHOT'
 }
 

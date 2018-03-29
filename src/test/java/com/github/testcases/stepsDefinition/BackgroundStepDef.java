@@ -7,7 +7,7 @@ import com.github.website.GithubSite;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
 
-@CucumberOptions(features = "features/")
+@CucumberOptions(features = "features")
 public class BackgroundStepDef extends BaseTest {
 
     GithubSite website = GithubSite.getInstance();

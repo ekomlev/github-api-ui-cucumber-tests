@@ -6,9 +6,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.Test;
 
 @CucumberOptions(
-        plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
-        features = "features",
-        glue = "com/github/testcases/stepsDefinition",
+       // plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
+        features = "src/test/resources",
+        glue = "com.github.testcases/stepsDefinition/",
         tags = {"@smokeTest"}
 )
 @Test
