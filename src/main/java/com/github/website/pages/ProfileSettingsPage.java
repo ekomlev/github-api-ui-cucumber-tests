@@ -10,25 +10,25 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProfileSettingsPage extends BasePage {
 
     @FindBy(id = "user_profile_name")
-    WebElement inputPublicProfileNameField;
+    private WebElement inputPublicProfileNameField;
 
     @FindBy(id = "user_profile_bio")
-    WebElement inputPublicProfileBioField;
+    private WebElement inputPublicProfileBioField;
 
     @FindBy(id = "user_profile_blog")
-    WebElement inputPublicProfileUrlField;
+    private WebElement inputPublicProfileUrlField;
 
     @FindBy(id = "user_profile_company")
-    WebElement inputPublicProfileCompanyField;
+    private WebElement inputPublicProfileCompanyField;
 
     @FindBy(id = "user_profile_location")
-    WebElement inputPublicProfileLocationField;
+    private WebElement inputPublicProfileLocationField;
 
     @FindBy(xpath = "//button[@type='submit' and text()='Update profile']")
-    WebElement updateProfileButton;
+    private WebElement updateProfileButton;
 
     @FindBy(linkText = "view your profile.")
-    WebElement viewProfileLink;
+    private WebElement viewProfileLink;
 
     public ProfileSettingsPage(WebDriver driver) {
         super(driver);

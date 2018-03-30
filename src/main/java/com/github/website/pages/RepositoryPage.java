@@ -11,16 +11,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class RepositoryPage extends BasePage {
 
     @FindBy (xpath = "//a[@class='js-selected-navigation-item reponav-item' and position()='4']")
-    WebElement settingsMenuItemLink;
+    private WebElement settingsMenuItemLink;
 
     @FindBy (xpath = "//button[contains(text(), 'Delete this repository')]")
-    WebElement deleteThisRepositoryButton;
+    private WebElement deleteThisRepositoryButton;
 
     @FindBy (xpath = "//input[@aria-label='Type in the name of the repository to confirm that you want to delete this repository.']")
-    WebElement deleteConfirmationRepositoryInputField;
+    private WebElement deleteConfirmationRepositoryInputField;
 
     @FindBy (xpath = "//button[@type='submit' and contains(., 'I understand the consequences, delete this repository')]")
-    WebElement confirmationOfDeletingButton;
+    private WebElement confirmationOfDeletingButton;
 
     public RepositoryPage(WebDriver driver) {
         super(driver);

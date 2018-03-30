@@ -13,19 +13,19 @@ import java.util.List;
 public class OrganizationsPage extends BasePage {
 
     @FindBy (xpath = "//div[@class='Box']/div[@class='Box-row d-flex flex-items-center']//a")
-    List<WebElement> organisationItem;
+    private List<WebElement> organisationItem;
 
     @FindBy (xpath = "//a[@class='pagehead-tabs-item ' and position()='5']")
-    WebElement settingsMenuItemLink;
+    private WebElement settingsMenuItemLink;
 
     @FindBy (xpath = "//a[contains(text(), 'Delete this organization')]")
-    WebElement deleteThisOrganizationButton;
+    private WebElement deleteThisOrganizationButton;
 
     @FindBy (xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/p/label/input")
-    WebElement deleteConfirmationOrganizationInputField;
+    private WebElement deleteConfirmationOrganizationInputField;
 
     @FindBy (xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/button[@type='submit']")
-    WebElement confirmationOfDeletingButton;
+    private WebElement confirmationOfDeletingButton;
 
     public OrganizationsPage(WebDriver driver) {
         super(driver);

@@ -12,7 +12,7 @@ import java.util.List;
 public class AllYourGistsPage extends BasePage {
 
     @FindBy(css = "span.creator > a > strong.css-truncate-target")
-    List<WebElement> gistItem;
+    private List<WebElement> gistItem;
 
     public AllYourGistsPage(WebDriver driver) {
         super(driver);

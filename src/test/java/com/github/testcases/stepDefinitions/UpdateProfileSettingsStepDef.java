@@ -10,64 +10,62 @@ import org.testng.Assert;
 
 @CucumberOptions(features = "features/UpdateProfileSettings.feature")
 public class UpdateProfileSettingsStepDef extends BaseTest {
-    public UpdateProfileSettingsStepDef(World world) {
-        super(world);
+    private World world;
+
+    public UpdateProfileSettingsStepDef (World world) {
+        this.world = world;
     }
-    /*private User user = UserCreator.getInstance();
-    private WebDriver webDriver = BrowserFactory.getInstance();
-    private GithubSite website = GithubSite.getInstance();
-    private String expectedGithubUrl = PropertyProvider.getProperty("environment.variables.base_url") + "/" + user.getUserName();*/
 
     @Given("^profile settings page is opened$")
     public void openUserProfileMenu(){
-        step(1, "Open user profile menu");
+        world.step(1, "Open user profile menu");
         world.website.userProfileMenu().waitForUserProfileMenuLink();
         world.website.userProfileMenu().openUserProfileMenu();
         world.website.userProfileMenu().waitForUserProfileMenu();
 
-        step(2, "Open settings page");
+        world.step(2, "Open settings page");
         world.website.userProfileMenu().openProfileSettingsPage();
         world.website.profileSettingsPage().waitForPublicProfileForm();
     }
 
     @When("^user changes Name$")
     public void changeUserNameField() {
-        step(3, "Change user Name");
+        world.step(3, "Change user Name");
         String publicProfileName = world.user.getUserPublicProfile().getPublicProfileName();
         world.website.profileSettingsPage().changeProfileName(publicProfileName);
     }
 
     @And("^user changes Bio$")
     public void changeUserBioField() {
-        step(4, "Change user Bio");
+        world.step(4, "Change user Bio");
         String publicProfileBio = world.user.getUserPublicProfile().getPublicProfileBio();
         world.website.profileSettingsPage().changeProfileBio(publicProfileBio);
     }
 
     @And("^user changes Url$")
     public void changeUserUrlField() {
-        step(5, "Change user Url");
+        world.step(5, "Change user Url");
         String publicProfileUrl = world.user.getUserPublicProfile().getPublicProfileUrl();
         world.website.profileSettingsPage().changeProfileUrl(publicProfileUrl);
     }
 
     @When("^user changes Company$")
     public void changeUserCompanyField() {
-        step(6, "Change user Company");
+        world.step(6, "Change user Company");
         String publicProfileCompany = world.user.getUserPublicProfile().getPublicProfileCompany();
         world.website.profileSettingsPage().changeProfileCompany(publicProfileCompany);
     }
 
     @And("^user changes Location$")
     public void changeUserLocationField() {
-        step(7, "Change user Location");
+        world.step(7, "Change user Location");
         String publicProfileLocation = world.user.getUserPublicProfile().getPublicProfileLocation();
         world.website.profileSettingsPage().changeProfileLocation(publicProfileLocation);
     }
 
     @And("^user saves profile settings$")
     public void saveProfileSettings() {
-        step(8, "Save user settings");
+        world.step(8, "Save user settings");
         world.website.profileSettingsPage().savePublicProfileSettings();
         world.website.profileSettingsPage().waitForValidationMessage();
     }
@@ -81,7 +79,7 @@ public class UpdateProfileSettingsStepDef extends BaseTest {
             world.website.profilePage().waitForUserProfileDataColumn();
         }
 
-        check("Check new User Name on the Profile page");
+        world.check("Check new User Name on the Profile page");
         Assert.assertEquals(world.user.getUserPublicProfile().getPublicProfileName(), world.website.profilePage().readActualPublicProfileNameField());
     }
 
@@ -94,7 +92,7 @@ public class UpdateProfileSettingsStepDef extends BaseTest {
             world.website.profilePage().waitForUserProfileDataColumn();
         }
 
-        check("Check new User Bio on the Profile page");
+        world.check("Check new User Bio on the Profile page");
         Assert.assertEquals(world.user.getUserPublicProfile().getPublicProfileBio(), world.website.profilePage().readActualPublicProfileBioField());
     }
 
@@ -107,7 +105,7 @@ public class UpdateProfileSettingsStepDef extends BaseTest {
             world.website.profilePage().waitForUserProfileDataColumn();
         }
 
-        check("Check new User Url on the Profile page");
+        world.check("Check new User Url on the Profile page");
         Assert.assertEquals("http://" + world.user.getUserPublicProfile().getPublicProfileUrl(), world.website.profilePage().readActualPublicProfileUrlField());
     }
 
@@ -120,7 +118,7 @@ public class UpdateProfileSettingsStepDef extends BaseTest {
             world.website.profilePage().waitForUserProfileDataColumn();
         }
 
-        check("Check new User Company on the Profile page");
+        world.check("Check new User Company on the Profile page");
         Assert.assertEquals(world.user.getUserPublicProfile().getPublicProfileCompany(), world.website.profilePage().readActualPublicProfileCompanyField());
     }
 
@@ -133,7 +131,7 @@ public class UpdateProfileSettingsStepDef extends BaseTest {
             world.website.profilePage().waitForUserProfileDataColumn();
         }
 
-        check("Check new User Location on the Profile page");
+        world.check("Check new User Location on the Profile page");
         Assert.assertEquals (world.user.getUserPublicProfile().getPublicProfileLocation(), world.website.profilePage().readActualPublicProfileLocationField());
     }
 }

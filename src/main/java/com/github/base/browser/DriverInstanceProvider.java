@@ -12,15 +12,15 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-public class BrowserFactory {
+public class DriverInstanceProvider {
     private static BrowserType browserType;
-    private static WebDriver driver;
-    private static final String CHROMEDRIVER = "webdriver.chrome.driver";
+    private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
+    private static final String CHROMEDRIVER = "webdriver.chrome.DRIVER";
     private static final String CHROMEDRIVER_PATH = System.getProperty("wdr.pr");
-    private static final String GECKODRIVER = "webdriver.gecko.driver";
+    private static final String GECKODRIVER = "webdriver.gecko.DRIVER";
     private static final String GECKODRIVER_PATH = "./webdrivers/geckodriver.exe";
     private static PropertyProvider props;
-    private static String PROPERTIES_FILE = System.getProperty("tst.pr");
+    private static final String PROPERTIES_FILE = System.getProperty("tst.pr");
     private static final String BROWSER_PROP = "environment.variables.browser";
     private static final String DEFAULT_CONDITION_TIMEOUT = "defaultConditionTimeout"; //TODO: decide if this field necessary
     private static final String DEFAULT_LOAD_TIMEOUT = "test.variables.default.pageLoadTimeout";
@@ -29,42 +29,39 @@ public class BrowserFactory {
     private static String timeoutForCondition; //TODO: decide if this field necessary
     private static String timeoutForNotDisplayed; //TODO: decide if this field necessary
 
-    private static WebDriver getDriver(final BrowserType browserType) {
-
-        switch (browserType) {
-            case CHROME:
-                driver = createChromeDriver();
-                break;
-            case FIREFOX:
-                driver = createFirefoxDriver();
-                break;
-            default:
-                driver = createChromeDriver();
+    private static void getDriver(final BrowserType browserType) {
+        if (DRIVER.get() == null) {
+            switch (browserType) {
+                case CHROME:
+                    DRIVER.set(createChromeDriver());
+                    break;
+                case FIREFOX:
+                    DRIVER.set(createFirefoxDriver());
+                    break;
+                default:
+                    DRIVER.set(createChromeDriver());
+            }
         }
-
-        driver.manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS); //TODO: specify time of implicitly wait in .property file
-        driver.manage().timeouts().pageLoadTimeout(Long.parseLong(timeoutForLoad), TimeUnit.SECONDS);
-        return driver;
+        DRIVER.get().manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS); //TODO: specify time of implicitly wait in .property file
+        DRIVER.get().manage().timeouts().pageLoadTimeout(Long.parseLong(timeoutForLoad), TimeUnit.SECONDS);
     }
 
-    public static WebDriver getInstance() {
-        if(driver == null){
-            initProperties();
-            getDriver(browserType);
-        }
-        return driver;
+    public static WebDriver getDriver() {
+        initProperties();
+        getDriver(browserType);
+        return DRIVER.get();
     }
 
     public static void closeDriver(){
-        driver.quit();
-        driver = null;
+        DRIVER.get().close();
+        DRIVER.remove();
     }
 
-    public static void initProperties() {
+    private static void initProperties() {
         props = new PropertyProvider(PROPERTIES_FILE);
-        timeoutForLoad = props.getProperty(DEFAULT_LOAD_TIMEOUT);
-        timeoutForCondition = props.getProperty(DEFAULT_CONDITION_TIMEOUT);
-        timeoutForNotDisplayed = props.getProperty(DEFAULT_ELEMENT_LOAD_TIMEOUT);
+        timeoutForLoad = PropertyProvider.getProperty(DEFAULT_LOAD_TIMEOUT);
+        timeoutForCondition = PropertyProvider.getProperty(DEFAULT_CONDITION_TIMEOUT);
+        timeoutForNotDisplayed = PropertyProvider.getProperty(DEFAULT_ELEMENT_LOAD_TIMEOUT);
         browserType = BrowserType.valueOf(PropertyProvider.getProperty(BROWSER_PROP).toUpperCase());
     }
 
@@ -85,27 +82,29 @@ public class BrowserFactory {
 
         System.setProperty(CHROMEDRIVER, CHROMEDRIVER_PATH);
 
+
+
         return new ChromeDriver(options);
     }
 
     private static WebDriver createFirefoxDriver(){
 
-        FirefoxOptions ffoptions = new FirefoxOptions();
+        FirefoxOptions ffOptions = new FirefoxOptions();
 
-        ffoptions.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+        ffOptions.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
                 .addPreference("browser.download.folderList", 2)
                 .addPreference("browser.privatebrowsing.autostart", true);
 
         System.setProperty(GECKODRIVER,GECKODRIVER_PATH);
-        return new FirefoxDriver(ffoptions);
+        return new FirefoxDriver(ffOptions);
     }
 
     private void highlightElement (By locator) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='5px solid green'", driver.findElement(locator));
+        ((JavascriptExecutor) DRIVER).executeScript("arguments[0].style.border='5px solid green'", DRIVER.get().findElement(locator));
     }
 
     private void unHighlightElement (By locator) {
-        ((JavascriptExecutor) driver).executeScript("arguments[0].style.border='0px'", driver.findElement(locator));
+        ((JavascriptExecutor) DRIVER).executeScript("arguments[0].style.border='0px'", DRIVER.get().findElement(locator));
     }
 
 }

@@ -10,19 +10,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class ProfilePage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='vcard-names']/span[1]")
-    WebElement actualPublicProfileNameField;
+    private WebElement actualPublicProfileNameField;
 
     @FindBy(xpath = "//div[@class='p-note user-profile-bio']/div")
-    WebElement actualPublicProfileBioField;
+    private WebElement actualPublicProfileBioField;
 
     @FindBy(xpath = "//li[@itemprop='url']/a")
-    WebElement actualPublicProfileUrlField;
+    private WebElement actualPublicProfileUrlField;
 
     @FindBy(xpath = "//li[@itemprop='worksFor']/span[@class='p-org']/div")
-    WebElement actualPublicProfileCompanyField;
+    private WebElement actualPublicProfileCompanyField;
 
     @FindBy(xpath = "//li[@itemprop='homeLocation']/span[@class='p-label']")
-    WebElement actualPublicProfileLocationField;
+    private WebElement actualPublicProfileLocationField;
 
     public ProfilePage(WebDriver driver) {
         super(driver);

@@ -1,27 +1,37 @@
 
 package com.github.testcases.stepDefinitions;
 
-import com.github.testcases.base.BaseTest;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
-public class Hooks extends BaseTest{
+public class Hooks {
+    private World world;
+
     public Hooks(World world) {
-        super(world);
+        this.world = world;
     }
 
     @Before(order=0)
     public void beforeScenarioStart(Scenario scenario){
-        setUp();
-        testLogger.info(scenario.getName(),"started"); //TODO: Define var testName
+        world.setUp();
+        world.test(scenario.getName(),"started");
     }
 
     @After(order=0)
     public void afterScenarioFinish(Scenario scenario){
-        testLogger.info(scenario.getName(),"completed");
-        tearDown();
+        world.tearDown();
+        world.test(scenario.getName(),"completed");
     }
+
+    @After(order = 1)
+    public void afterScenario(Scenario scenario) throws InterruptedException {
+        if (scenario.isFailed()) {
+            String screenshotName = scenario.getName().replaceAll(" ", "_");
+            world.error(screenshotName + " screenshot saved : " +  world.takeScreenshot(screenshotName));
+        }
+    }
+
 }
 
 

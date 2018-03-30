@@ -9,7 +9,7 @@ import java.util.Properties;
 public class PropertyProvider {
     private static Properties properties = new Properties();
 
-    public  PropertyProvider (final String resourceName) {
+    public PropertyProvider(final String resourceName) {
         properties = appendFromResource(properties, resourceName);
     }
 

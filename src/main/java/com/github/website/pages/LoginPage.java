@@ -9,15 +9,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
-
     @FindBy(css = "#login_field")
-    WebElement inputLoginField;
+    private WebElement inputLoginField;
 
     @FindBy(css = "#password")
-    WebElement inputPasswordField;
+    private WebElement inputPasswordField;
 
     @FindBy(css = "input[value='Sign in']")
-    WebElement signInButton;
+    private WebElement signInButton;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -32,12 +31,12 @@ public class LoginPage extends BasePage {
         inputLoginField.sendKeys(userName);
         inputPasswordField.clear();
         inputPasswordField.sendKeys(userPassword);
-        pagelogger.info("Authorization form was filled in. " + "User name: " + userName + ", password: " + userPassword);
+        pageInfo("Authorization form was filled in. " + "User name: " + userName + ", password: " + userPassword);
     }
 
     public void clickSignInButton() {
         signInButton.click();
-        pagelogger.info("Open Home page");
+        pageInfo("Open Home page");
     }
 
 }

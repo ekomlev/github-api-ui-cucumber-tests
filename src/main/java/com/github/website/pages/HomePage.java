@@ -12,13 +12,13 @@ import java.util.List;
 public class HomePage extends BasePage {
 
     @FindBy (css = "ul.mini-repo-list li > a > span > span.repo")
-    List<WebElement> repositoryItem;
+    private List<WebElement> repositoryItem;
 
     @FindBy(xpath = "//summary[@class='btn select-menu-button with-gravatar' and @aria-label='Switch account context']")
-    WebElement expandAccountSwitcherButton;
+    private WebElement expandAccountSwitcherButton;
 
     @FindBy(xpath = "//div[@class='select-menu-list']/a[@href='/account/organizations' and contains(., 'Manage organizations')]")
-    WebElement manageOrganizationsMenuItemLink;
+    private WebElement manageOrganizationsMenuItemLink;
 
     public HomePage(WebDriver driver) {
         super(driver);

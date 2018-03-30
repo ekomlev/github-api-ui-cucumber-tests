@@ -1,18 +1,15 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.testcases.base.BaseTest;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
 
 @CucumberOptions(features = "features")
-public class BackgroundStepDef extends BaseTest {
-    // GithubSite website = GithubSite.getInstance();
-    // User user = UserCreator.getInstance(); //TODO: Check singleton of User entity
+public class BackgroundStepDef {
+    private World world;
 
     public BackgroundStepDef(World world) {
-        super(world);
+        this.world = world;
     }
-
 
     @Given("^user is signed into github home page$")
     public void sign_in() {

@@ -4,12 +4,10 @@
 <suite name="Smoke test suite" verbose="1">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
-        <listener class-name="com.github.utils.ScreenshotExecutor" />
     </listeners>
-    <test name="Update profile settings">
+    <test name="Smoke test scenarios runner">
         <classes>
             <class name="com.github.testcases.runners.SmokeRunnerTest"/>
         </classes>
     </test>
-
 </suite>

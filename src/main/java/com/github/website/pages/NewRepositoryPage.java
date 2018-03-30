@@ -10,16 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class NewRepositoryPage extends BasePage {
 
     @FindBy(id = "repository_name")
-    WebElement inputRepositoryNameField;
+    private WebElement inputRepositoryNameField;
 
     @FindBy(id = "repository_description")
-    WebElement inputRepositoryDescriptionField;
+    private WebElement inputRepositoryDescriptionField;
 
     @FindBy(id = "repository_public_true")
-    WebElement repositoryPublicAccessRadioButton;
+    private WebElement repositoryPublicAccessRadioButton;
 
     @FindBy (xpath = "//button[@type='submit' and contains(text(), 'Create repository')]")
-    WebElement submitCreatingNewRepositoryButton;
+    private WebElement submitCreatingNewRepositoryButton;
 
     public NewRepositoryPage(WebDriver driver) {
         super(driver);

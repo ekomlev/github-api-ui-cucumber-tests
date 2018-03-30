@@ -1,50 +1,41 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.base.browser.BrowserFactory;
-import com.github.entities.User;
 import com.github.testcases.base.BaseTest;
-import com.github.utils.UserCreator;
-import com.github.website.GithubSite;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewOrganization.feature")
 public class CreateNewOrganizationStepDef extends BaseTest {
-    public CreateNewOrganizationStepDef(World world) {
-        super(world);
+    private World world;
+
+    public CreateNewOrganizationStepDef (World world) {
+        this.world = world;
     }
-    /*private User user = UserCreator.getInstance();
-    private WebDriver webDriver = BrowserFactory.getInstance();
-    private GithubSite website = GithubSite.getInstance();
-    private String organizationName = user.getUserOrganization().getOrganizationName();
-    private String organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
-    private boolean organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();*/
 
     @Given("^organization with required name is not created$")
     public void checkNewOrganizationIsNotCreated() {
-        step(1, "Open organization menu");
+        world.step(1, "Open organization menu");
         world.website.homePage().expandAccountSwitcher();
         world.website.homePage().waitForExpandedAccountSwitcher();
 
-        step(2, "Open organizations manage page");
+        world.step(2, "Open organizations manage page");
         world.website.homePage().openOrganizations();
         world.website.organizationsPage().waitForOrganizationsList();
 
-        step(3, "Check if organization is exist with required name");
+        world.step(3, "Check if organization is exist with required name");
         WebElement checkOrganization = world.website.organizationsPage().createdOrganizationAlreadyExists(world.organizationName);
         if (checkOrganization != null) {
-            step("3.1", "Enter existing organization");
+            world.subStep("3.1", "Enter existing organization");
             world.website.organizationsPage().enterExistingOrganization(checkOrganization);
             world.website.organizationsPage().waitForOrganizationNavigationMenu();
             world.website.organizationsPage().openOrganizationSettings();
             world.website.organizationsPage().waitForOrganizationSettings();
-            step("3.2", "Delete existing organization");
+            world.subStep("3.2", "Delete existing organization");
             world.website.organizationsPage().deleteExistingOrganization(world.organizationName);
         }
         Assert.assertTrue(world.website.homePage().createdRepositoryAlreadyExists(world.organizationName) == null);
@@ -52,15 +43,15 @@ public class CreateNewOrganizationStepDef extends BaseTest {
 
     @When("^user create new organization via menu \"Create new\"$")
     public void createNewOrganization() {
-        step(4, "Open menu for creation new entity");
+        world.step(4, "Open menu for creation new entity");
         world.website.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
         world.website.creationNewEntityMenu().openCreationNewEntityMenu();
 
-        step(5, "Open new organization page");
+        world.step(5, "Open new organization page");
         world.website.creationNewEntityMenu().waitForCreationNewEntityMenu();
         world.website.creationNewEntityMenu().openNewOrganizationPage();
 
-        step(6, "Save new organization");
+        world.step(6, "Save new organization");
         world.website.newOrganizationPage().waitForNewOrganizationForm();
         world.website.newOrganizationPage().saveNewOrganization(world.organizationName, world.organizationBillingEmail, world.organizationFreePlan);
 
@@ -70,14 +61,14 @@ public class CreateNewOrganizationStepDef extends BaseTest {
 
     @Then("^user can see opened page of created organization$")
     public void checkCreatedNewOrganizationPage() {
-        check("Check if  page of new created organization is opened");
+        world.check("Check if  page of new created organization is opened");
         world.website.organizationsPage().waitForOrganizationContent();
 
     }
 
     @And("^url contains the name of created organization$")
     public void checkRepositoryPageUrl() {
-        check("Check if url contains the name of created organization");
+        world.check("Check if url contains the name of created organization");
         Assert.assertTrue(world.webDriver.getCurrentUrl().contains(world.organizationName));
     }
 }

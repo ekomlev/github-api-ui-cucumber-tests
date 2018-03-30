@@ -10,19 +10,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class NewOrganizationPage extends BasePage {
 
     @FindBy(id = "organization_login")
-    WebElement inputOrganizationNameField;
+    private WebElement inputOrganizationNameField;
 
     @FindBy(id = "organization_billing_email")
-    WebElement inputOrganizationBillingEmailField;
+    private WebElement inputOrganizationBillingEmailField;
 
     @FindBy(xpath = "//input[@type='radio' and @value='free']")
-    WebElement organizationFreePlanRadioButton;
+    private WebElement organizationFreePlanRadioButton;
 
     @FindBy (xpath = "//button[@type='submit' and contains(text(), 'Create organization')]")
-    WebElement submitCreatingNewOrganizationButton;
+    private WebElement submitCreatingNewOrganizationButton;
 
     @FindBy (xpath = "//a[contains(text(), 'Finish')]")
-    WebElement finishButton;
+    private WebElement finishButton;
 
     public NewOrganizationPage(WebDriver driver) {
         super(driver);

@@ -10,16 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class GistPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='public css-truncate']/strong[@itemprop='name']/a")
-    WebElement gistNameLink;
+    private WebElement gistNameLink;
 
     @FindBy(xpath = "//textarea[@id='new_comment_field']")
-    WebElement gistCommentInputfield;
+    private WebElement gistCommentInputfield;
 
     @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Comment')]")
-    WebElement gistCommentButton;
+    private WebElement gistCommentButton;
 
     @FindBy(xpath = "//div[@class='timeline-comment-wrapper js-comment-container' and position()=last()-2]")
-    WebElement lastGistComment;
+    private WebElement lastGistComment;
 
     public GistPage(WebDriver driver) {
         super(driver);

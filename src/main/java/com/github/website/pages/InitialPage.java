@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 public class InitialPage extends BasePage {
 
     @FindBy(linkText = "Sign in")
-    WebElement signInLink;
+    private WebElement signInLink;
 
     public InitialPage(WebDriver driver) {
         super(driver);
@@ -16,7 +16,7 @@ public class InitialPage extends BasePage {
 
     public void clickSignInLink() {
         signInLink.click();
-        pagelogger.info("Open SignIn page");
+        pageInfo("Open SignIn page");
     }
 
 }

@@ -1,6 +1,6 @@
 package com.github.website;
 
-import com.github.base.browser.BrowserFactory;
+import com.github.base.browser.DriverInstanceProvider;
 import com.github.utils.PropertyProvider;
 import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
@@ -18,7 +18,7 @@ public class GithubSite {
 
     public static GithubSite getInstance() {
         if (instance == null) {
-            webDriver = BrowserFactory.getInstance();
+            webDriver = DriverInstanceProvider.getDriver();
             webDriver.get(PropertyProvider.getProperty("environment.variables.base_url"));
             instance = new GithubSite(webDriver);
         }
@@ -26,7 +26,7 @@ public class GithubSite {
     }
 
     public static void reset() {
-        BrowserFactory.closeDriver();
+        DriverInstanceProvider.closeDriver();
         instance = null;
     }
 
