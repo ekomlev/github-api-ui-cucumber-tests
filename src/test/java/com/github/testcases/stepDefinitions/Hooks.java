@@ -7,7 +7,9 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class Hooks extends BaseTest{
-
+    public Hooks(World world) {
+        super(world);
+    }
 
     @Before(order=0)
     public void beforeScenarioStart(Scenario scenario){

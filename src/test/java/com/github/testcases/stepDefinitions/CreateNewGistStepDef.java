@@ -12,39 +12,42 @@ import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewGist.feature")
 public class CreateNewGistStepDef extends BaseTest {
-    private User user = UserCreator.getInstance();
+    public CreateNewGistStepDef(World world) {
+        super(world);
+    }
+    /*private User user = UserCreator.getInstance();
     private GithubSite website = GithubSite.getInstance();
     private String gistFile = user.getUserGist().getGistFile();
     private String gistDescription = user.getUserGist().getGistDescription();
     private String gistContent = user.getUserGist().getGistContent();
-    private boolean gistPublicAccess = user.getUserGist().getGistPublicAccess();
+    private boolean gistPublicAccess = user.getUserGist().getGistPublicAccess();*/
 
     @When("^user create new gist via menu \"Create new\"$")
     public void createNewGist() {
         step(1, "Open menu for creation new entity");
-        website.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
-        website.creationNewEntityMenu().openCreationNewEntityMenu();
+        world.website.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        world.website.creationNewEntityMenu().openCreationNewEntityMenu();
 
         step(2, "Create new gist");
-        website.creationNewEntityMenu().waitForCreationNewEntityMenu();
-        website.creationNewEntityMenu().openNewGistPage();
+        world.website.creationNewEntityMenu().waitForCreationNewEntityMenu();
+        world.website.creationNewEntityMenu().openNewGistPage();
 
         step(3, "Save new gist");
-        website.newGistPage().waitForNewGistForm();
-        website.newGistPage().saveNewGist(gistFile, gistDescription, gistContent, gistPublicAccess);
+        world.website.newGistPage().waitForNewGistForm();
+        world.website.newGistPage().saveNewGist(world.gistFile, world.gistDescription, world.gistContent, world.gistPublicAccess);
     }
 
     @Then("^user can see opened page of created gist$")
     public void checkCreatedNewGist() {
         check("Check if  page of new created gist is opened");
-        website.gistPage().waitForGistContent();
+        world.website.gistPage().waitForGistContent();
 
     }
 
     @And("^header path contains the name of created gist$")
     public void checkGistHeaderPath() {
         check("Check if header path contains the name of created gist");
-        website.gistPage().waitForGistHeadOfGistPage();
-        Assert.assertTrue(website.gistPage().getNameOfOpenedGist().contains(gistFile));
+        world.website.gistPage().waitForGistHeadOfGistPage();
+        Assert.assertTrue(world.website.gistPage().getNameOfOpenedGist().contains(world.gistFile));
     }
 }

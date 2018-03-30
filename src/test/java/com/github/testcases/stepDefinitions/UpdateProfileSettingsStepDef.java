@@ -1,142 +1,139 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.base.browser.BrowserFactory;
-import com.github.entities.User;
 import com.github.testcases.base.BaseTest;
-import com.github.utils.PropertyProvider;
-import com.github.utils.UserCreator;
-import com.github.website.GithubSite;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/UpdateProfileSettings.feature")
 public class UpdateProfileSettingsStepDef extends BaseTest {
-    private User user = UserCreator.getInstance();
+    public UpdateProfileSettingsStepDef(World world) {
+        super(world);
+    }
+    /*private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
     private GithubSite website = GithubSite.getInstance();
-    private String expectedUrl = PropertyProvider.getProperty("environment.variables.base_url") + "/" + user.getUserName();
+    private String expectedGithubUrl = PropertyProvider.getProperty("environment.variables.base_url") + "/" + user.getUserName();*/
 
     @Given("^profile settings page is opened$")
     public void openUserProfileMenu(){
         step(1, "Open user profile menu");
-        website.userProfileMenu().waitForUserProfileMenuLink();
-        website.userProfileMenu().openUserProfileMenu();
-        website.userProfileMenu().waitForUserProfileMenu();
+        world.website.userProfileMenu().waitForUserProfileMenuLink();
+        world.website.userProfileMenu().openUserProfileMenu();
+        world.website.userProfileMenu().waitForUserProfileMenu();
 
         step(2, "Open settings page");
-        website.userProfileMenu().openProfileSettingsPage();
-        website.profileSettingsPage().waitForPublicProfileForm();
+        world.website.userProfileMenu().openProfileSettingsPage();
+        world.website.profileSettingsPage().waitForPublicProfileForm();
     }
 
     @When("^user changes Name$")
     public void changeUserNameField() {
         step(3, "Change user Name");
-        String publicProfileName = user.getUserPublicProfile().getPublicProfileName();
-        website.profileSettingsPage().changeProfileName(publicProfileName);
+        String publicProfileName = world.user.getUserPublicProfile().getPublicProfileName();
+        world.website.profileSettingsPage().changeProfileName(publicProfileName);
     }
 
     @And("^user changes Bio$")
     public void changeUserBioField() {
         step(4, "Change user Bio");
-        String publicProfileBio = user.getUserPublicProfile().getPublicProfileBio();
-        website.profileSettingsPage().changeProfileBio(publicProfileBio);
+        String publicProfileBio = world.user.getUserPublicProfile().getPublicProfileBio();
+        world.website.profileSettingsPage().changeProfileBio(publicProfileBio);
     }
 
     @And("^user changes Url$")
     public void changeUserUrlField() {
         step(5, "Change user Url");
-        String publicProfileUrl = user.getUserPublicProfile().getPublicProfileUrl();
-        website.profileSettingsPage().changeProfileUrl(publicProfileUrl);
+        String publicProfileUrl = world.user.getUserPublicProfile().getPublicProfileUrl();
+        world.website.profileSettingsPage().changeProfileUrl(publicProfileUrl);
     }
 
     @When("^user changes Company$")
     public void changeUserCompanyField() {
         step(6, "Change user Company");
-        String publicProfileCompany = user.getUserPublicProfile().getPublicProfileCompany();
-        website.profileSettingsPage().changeProfileCompany(publicProfileCompany);
+        String publicProfileCompany = world.user.getUserPublicProfile().getPublicProfileCompany();
+        world.website.profileSettingsPage().changeProfileCompany(publicProfileCompany);
     }
 
     @And("^user changes Location$")
     public void changeUserLocationField() {
         step(7, "Change user Location");
-        String publicProfileLocation = user.getUserPublicProfile().getPublicProfileLocation();
-        website.profileSettingsPage().changeProfileLocation(publicProfileLocation);
+        String publicProfileLocation = world.user.getUserPublicProfile().getPublicProfileLocation();
+        world.website.profileSettingsPage().changeProfileLocation(publicProfileLocation);
     }
 
     @And("^user saves profile settings$")
     public void saveProfileSettings() {
         step(8, "Save user settings");
-        website.profileSettingsPage().savePublicProfileSettings();
-        website.profileSettingsPage().waitForValidationMessage();
+        world.website.profileSettingsPage().savePublicProfileSettings();
+        world.website.profileSettingsPage().waitForValidationMessage();
     }
 
     @Then("^user can see new Name on the Profile page$")
     public void checkProfileUserName() {
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.getCurrentUrl();
 
-        if(!(currentUrl.equals(expectedUrl)))  {
-            website.profileSettingsPage().openProfilePage();
-            website.profilePage().waitForUserProfileDataColumn();
+        if(!(currentUrl.equals(world.expectedGithubUrl)))  {
+            world.website.profileSettingsPage().openProfilePage();
+            world.website.profilePage().waitForUserProfileDataColumn();
         }
 
         check("Check new User Name on the Profile page");
-        Assert.assertEquals(user.getUserPublicProfile().getPublicProfileName(), website.profilePage().readActualPublicProfileNameField());
+        Assert.assertEquals(world.user.getUserPublicProfile().getPublicProfileName(), world.website.profilePage().readActualPublicProfileNameField());
     }
 
     @And("^user can see new Bio on the Profile page$")
     public void checkProfileUserBio() {
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.getCurrentUrl();
 
-        if(!(currentUrl.equals(expectedUrl))) {
-            website.profileSettingsPage().openProfilePage();
-            website.profilePage().waitForUserProfileDataColumn();
+        if(!(currentUrl.equals(world.expectedGithubUrl))) {
+            world.website.profileSettingsPage().openProfilePage();
+            world.website.profilePage().waitForUserProfileDataColumn();
         }
 
         check("Check new User Bio on the Profile page");
-        Assert.assertEquals(user.getUserPublicProfile().getPublicProfileBio(), website.profilePage().readActualPublicProfileBioField());
+        Assert.assertEquals(world.user.getUserPublicProfile().getPublicProfileBio(), world.website.profilePage().readActualPublicProfileBioField());
     }
 
     @And("^user can see new Url on the Profile page$")
     public void checkProfileUserUrl() {
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.getCurrentUrl();
 
-        if(!(currentUrl.equals(expectedUrl))) {
-            website.profileSettingsPage().openProfilePage();
-            website.profilePage().waitForUserProfileDataColumn();
+        if(!(currentUrl.equals(world.expectedGithubUrl))) {
+            world.website.profileSettingsPage().openProfilePage();
+            world.website.profilePage().waitForUserProfileDataColumn();
         }
 
         check("Check new User Url on the Profile page");
-        Assert.assertEquals("http://" + user.getUserPublicProfile().getPublicProfileUrl(), website.profilePage().readActualPublicProfileUrlField());
+        Assert.assertEquals("http://" + world.user.getUserPublicProfile().getPublicProfileUrl(), world.website.profilePage().readActualPublicProfileUrlField());
     }
 
     @And("^user can see new Company on the Profile page$")
     public void checkProfileUserCompany() {
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.getCurrentUrl();
 
-        if(!(currentUrl.equals(expectedUrl)))  {
-            website.profileSettingsPage().openProfilePage();
-            website.profilePage().waitForUserProfileDataColumn();
+        if(!(currentUrl.equals(world.expectedGithubUrl)))  {
+            world.website.profileSettingsPage().openProfilePage();
+            world.website.profilePage().waitForUserProfileDataColumn();
         }
 
         check("Check new User Company on the Profile page");
-        Assert.assertEquals(user.getUserPublicProfile().getPublicProfileCompany(), website.profilePage().readActualPublicProfileCompanyField());
+        Assert.assertEquals(world.user.getUserPublicProfile().getPublicProfileCompany(), world.website.profilePage().readActualPublicProfileCompanyField());
     }
 
     @And("^user can see new Location on the Profile page$")
     public void checkProfileUserLocation() {
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.getCurrentUrl();
 
-        if(!(currentUrl.equals(expectedUrl)))  {
-            website.profileSettingsPage().openProfilePage();
-            website.profilePage().waitForUserProfileDataColumn();
+        if(!(currentUrl.equals(world.expectedGithubUrl)))  {
+            world.website.profileSettingsPage().openProfilePage();
+            world.website.profilePage().waitForUserProfileDataColumn();
         }
 
         check("Check new User Location on the Profile page");
-        Assert.assertEquals (user.getUserPublicProfile().getPublicProfileLocation(), website.profilePage().readActualPublicProfileLocationField());
+        Assert.assertEquals (world.user.getUserPublicProfile().getPublicProfileLocation(), world.website.profilePage().readActualPublicProfileLocationField());
     }
 }

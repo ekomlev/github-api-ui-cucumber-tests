@@ -16,54 +16,58 @@ import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewRepository.feature")
 public class CreateNewRepositoryStepDef extends BaseTest {
-    private User user = UserCreator.getInstance();
+    /*private User user = UserCreator.getInstance();
     private WebDriver webDriver = BrowserFactory.getInstance();
     private GithubSite website = GithubSite.getInstance();
     private String repositoryName = user.getUserRepository().getRepositoryName();
     private String repositoryDescription = user.getUserRepository().getRepositoryName();
-    private boolean repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
+    private boolean repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();*/
+
+    public CreateNewRepositoryStepDef(World world) {
+        super(world);
+    }
 
     @Given("^repository with required name is not created$")
     public void checkNewRepositoryIsNotCreated() {
         step(1, "Check if repository is exist with required name");
-        WebElement checkRepository = website.homePage().createdRepositoryAlreadyExists(repositoryName);
+        WebElement checkRepository = world.website.homePage().createdRepositoryAlreadyExists(world.repositoryName);
         if (checkRepository != null) {
             step("1.1", "Enter existing repository");
-            website.homePage().enterExistingRepository(checkRepository);
-            website.repositoryPage().openRepositorySettings();
-            website.repositoryPage().waitForRepositorySettings();
+            world.website.homePage().enterExistingRepository(checkRepository);
+            world.website.repositoryPage().openRepositorySettings();
+            world.website.repositoryPage().waitForRepositorySettings();
             step("1.2", "Delete existing repository");
-            website.repositoryPage().deleteExistingRepository(repositoryName);
+            world.website.repositoryPage().deleteExistingRepository(world.repositoryName);
         }
-        Assert.assertTrue(website.homePage().createdRepositoryAlreadyExists(repositoryName) == null);
+        Assert.assertTrue(world.website.homePage().createdRepositoryAlreadyExists(world.repositoryName) == null);
     }
 
     @When("^user create new repository via menu \"Create new\"$")
     public void createNewRepository() {
         step(2, "Open menu for creation new entity");
-        website.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
-        website.creationNewEntityMenu().openCreationNewEntityMenu();
+        world.website.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        world.website.creationNewEntityMenu().openCreationNewEntityMenu();
 
         step(3, "Open new repository page");
-        website.creationNewEntityMenu().waitForCreationNewEntityMenu();
-        website.creationNewEntityMenu().openNewRepositoryPage();
+        world.website.creationNewEntityMenu().waitForCreationNewEntityMenu();
+        world.website.creationNewEntityMenu().openNewRepositoryPage();
 
-        website.newRepositoryPage().waitForNewRepositoryForm();
+        world.website.newRepositoryPage().waitForNewRepositoryForm();
 
         step(4, "Save new repository");
-        website.newRepositoryPage().saveNewRepository(repositoryName, repositoryDescription, repositoryPublicAccess);
+        world.website.newRepositoryPage().saveNewRepository(world.repositoryName, world.repositoryDescription, world.repositoryPublicAccess);
     }
 
     @Then("^user can see the opened page of created repository$")
     public void checkCreatedNewRepositoryPage() {
         check("Check if page of new created repository is opened");
-        website.repositoryPage().waitForRepositoryContent();
+        world.website.repositoryPage().waitForRepositoryContent();
 
     }
 
     @And("^url contains the name of created repository$")
     public void checkRepositoryPageUrl() {
         check("Check if url contains the name of created repository");
-        Assert.assertTrue(webDriver.getCurrentUrl().contains(repositoryName));
+        Assert.assertTrue(world.webDriver.getCurrentUrl().contains(world.repositoryName));
     }
 }

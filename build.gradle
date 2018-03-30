@@ -57,7 +57,8 @@ dependencies {
             // Cucumber
             "io.cucumber:cucumber-testng:${cucumberVersion}",
             "io.cucumber:cucumber-java8:${cucumberVersion}",
-            "io.cucumber:cucumber-jvm:${cucumberVersion}"
+            "io.cucumber:cucumber-jvm:${cucumberVersion}",
+            "io.cucumber:cucumber-picocontainer:${cucumberVersion}"
 }
 
 test {
