@@ -1,89 +1,124 @@
 package com.github.website;
 
-import com.github.base.browser.DriverInstanceProvider;
+import com.github.base.browser.Browser;
 import com.github.utils.PropertyProvider;
 import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
+import com.google.inject.Inject;
 import org.openqa.selenium.WebDriver;
 
 public class GithubSite {
-    private static GithubSite instance;
-    private static WebDriver webDriver;
 
+    private Browser browser;
+    private WebDriver webDriver;
 
-    private GithubSite(WebDriver driver) {
-        webDriver = driver;
+    @Inject
+    private CreationNewEntityMenu creationNewEntityMenu;
+
+    @Inject
+    private UserProfileMenu userProfileMenu;
+
+    @Inject
+    private InitialPage initialPage;
+
+    @Inject
+    private LoginPage loginPage;
+
+    @Inject
+    private HomePage homePage;
+
+    @Inject
+    private ProfilePage profilePage;
+
+    @Inject
+    private NewRepositoryPage newRepositoryPage;
+
+    @Inject
+    private RepositoryPage repositoryPage;
+
+    @Inject
+    private NewOrganizationPage newOrganizationPage;
+
+    @Inject
+    private OrganizationsPage organizationsPage;
+
+    @Inject
+    private NewGistPage newGistPage;
+
+    @Inject
+    private AllYourGistsPage allYourGistsPage;
+
+    @Inject
+    private GistPage gistPage;
+
+    @Inject
+    private ProfileSettingsPage profileSettingsPage;
+
+    @Inject
+    public GithubSite (Browser browser) {
+        this.browser = browser;
+        browser.getDriver().navigate().to(PropertyProvider.getProperty("environment.variables.base_url"));
     }
 
-    public static GithubSite getInstance() {
-        if (instance == null) {
-            webDriver = DriverInstanceProvider.getDriver();
-            webDriver.get(PropertyProvider.getProperty("environment.variables.base_url"));
-            instance = new GithubSite(webDriver);
-        }
-        return instance;
-    }
-
-    public static void reset() {
-        DriverInstanceProvider.closeDriver();
-        instance = null;
+    public void reset() {
+        browser.closeDriver();
     }
 
     public InitialPage initialPage() {
-        return new InitialPage(webDriver);
+        return initialPage;
     }
 
     public LoginPage loginPage() {
-        return new LoginPage(webDriver);
+        return loginPage;
     }
 
     public CreationNewEntityMenu creationNewEntityMenu() {
-        return new CreationNewEntityMenu(webDriver);
+        return creationNewEntityMenu;
     }
 
     public UserProfileMenu userProfileMenu() {
-        return new UserProfileMenu(webDriver);
+        return userProfileMenu;
     }
 
     public HomePage homePage() {
-        return new HomePage(webDriver);
+        return homePage;
     }
 
     public ProfilePage profilePage() {
-        return new ProfilePage(webDriver);
+        return profilePage;
     }
 
     public NewRepositoryPage newRepositoryPage() {
-        return new NewRepositoryPage(webDriver);
+        return newRepositoryPage;
     }
 
     public RepositoryPage repositoryPage() {
-        return new RepositoryPage(webDriver);
+        return repositoryPage;
     }
 
     public NewOrganizationPage newOrganizationPage() {
-        return new NewOrganizationPage(webDriver);
+        return newOrganizationPage;
     }
 
     public OrganizationsPage organizationsPage() {
-        return new OrganizationsPage(webDriver);
+        return organizationsPage;
     }
 
     public NewGistPage newGistPage() {
-        return new NewGistPage(webDriver);
+        return newGistPage;
     }
 
     public AllYourGistsPage allYourGistsPage() {
-        return new AllYourGistsPage(webDriver);
+        return allYourGistsPage;
     }
 
     public GistPage gistPage() {
-        return new GistPage(webDriver);
+        return gistPage;
     }
 
     public ProfileSettingsPage profileSettingsPage() {
-        return new ProfileSettingsPage(webDriver);
+        return profileSettingsPage;
     }
 
 }
