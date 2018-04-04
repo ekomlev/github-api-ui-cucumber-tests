@@ -4,12 +4,12 @@ package com.github.testcases.stepDefinitions;
 import com.github.base.browser.DriverModule;
 import com.github.entities.User;
 import com.github.logging.LoggerInstanceProvider;
-import com.github.utils.PropertyProvider;
 import com.github.utils.UserCreator;
 import com.github.website.GithubSite;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.google.inject.name.Named;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
@@ -21,22 +21,35 @@ import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
+
+@org.testng.annotations.Guice(modules = {
+        DriverModule.class
+})
 public class World {
+    @Inject
+    GithubSite website;
+
     User user = UserCreator.getInstance();
     String commentText = user.getUserComment().getCommentText();
     String gistFile = user.getUserGist().getGistFile();
     String gistDescription = user.getUserGist().getGistDescription();
     String gistContent = user.getUserGist().getGistContent();
     boolean gistPublicAccess = user.getUserGist().getGistPublicAccess();
-    GithubSite website;
+
     String organizationName = user.getUserOrganization().getOrganizationName();
     String organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
     boolean organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
     String repositoryName = user.getUserRepository().getRepositoryName();
     String repositoryDescription = user.getUserRepository().getRepositoryName();
     boolean repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
-    String expectedGithubUrl = PropertyProvider.getProperty("environment.variables.base_url") + "/" + user.getUserName();
+
+    @Inject
+    @Named("environment.variables.base_url")
+    private URL githubUrl;
+
+    String expectedGithubUrl = githubUrl + "/" + user.getUserName();
 
     @Inject
     WebDriver webDriver;
