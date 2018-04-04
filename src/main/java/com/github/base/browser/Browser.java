@@ -29,16 +29,7 @@ public class Browser {
     private String timeoutForCondition; //TODO: decide if this field necessary
     private String timeoutForNotDisplayed; //TODO: decide if this field necessary
 
-    public WebDriver getDriver() {
-        initProperties();
-        createDriver(browserType);
-        return DRIVER.get();
-    }
 
-    public void closeDriver(){
-        DRIVER.get().close();
-        DRIVER.remove();
-    }
 
     private void createDriver(final BrowserType browserType) {
         if (DRIVER.get() == null) {
