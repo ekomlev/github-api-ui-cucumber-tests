@@ -1,6 +1,5 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.testcases.base.BaseTest;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -10,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewRepository.feature")
-public class CreateNewRepositoryStepDef extends BaseTest {
+public class CreateNewRepositoryStepDef {
     private World world;
 
     public CreateNewRepositoryStepDef (World world) {

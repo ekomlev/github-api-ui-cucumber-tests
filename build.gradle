@@ -63,7 +63,7 @@ dependencies {
 
             // Guice
             "com.google.inject:guice:${guiceVersion}",
-            "com.google.inject:guice-multibindings:${guiceVersion}"
+            "com.google.inject.extensions:guice-multibindings:${guiceVersion}"
 
 }
 

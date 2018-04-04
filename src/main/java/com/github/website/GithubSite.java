@@ -1,17 +1,18 @@
 package com.github.website;
 
-import com.github.base.browser.Browser;
-import com.github.utils.PropertyProvider;
+import com.github.base.browser.DriverManager;
 import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
+import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 
+import java.net.URL;
+
+@Singleton
 public class GithubSite {
-
-    private Browser browser;
-    private WebDriver webDriver;
+    private DriverManager driverManager;
 
     @Inject
     private CreationNewEntityMenu creationNewEntityMenu;
@@ -56,13 +57,17 @@ public class GithubSite {
     private ProfileSettingsPage profileSettingsPage;
 
     @Inject
-    public GithubSite (Browser browser) {
-        this.browser = browser;
-        browser.getDriver().navigate().to(PropertyProvider.getProperty("environment.variables.base_url"));
+    @Named("environment.variables.base_url")
+    private URL githubUrl;
+
+    @Inject
+    public GithubSite (DriverManager driverManager) {
+        this.driverManager = driverManager;
+        driverManager.getDriver().navigate().to(githubUrl);
     }
 
     public void reset() {
-        browser.closeDriver();
+        driverManager.closeDriver();
     }
 
     public InitialPage initialPage() {

@@ -23,13 +23,11 @@ public class DriverProvider {
             case CHROME:
                 return driverManagerBinder.get(BrowserType.CHROME);
             case FIREFOX:
-                return driverManagerBinder.get(BrowserType.CHROME);
+                return driverManagerBinder.get(BrowserType.FIREFOX);
             default:
                 return driverManagerBinder.get(BrowserType.CHROME);
         }
     }
-
-
 
 
     /*private void highlightElement (By locator) {

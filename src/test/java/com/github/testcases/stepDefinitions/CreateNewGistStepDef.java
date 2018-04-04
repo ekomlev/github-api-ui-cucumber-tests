@@ -1,6 +1,5 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.testcases.base.BaseTest;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -8,7 +7,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewGist.feature")
-public class CreateNewGistStepDef extends BaseTest {
+public class CreateNewGistStepDef {
     private World world;
 
     public CreateNewGistStepDef (World world) {

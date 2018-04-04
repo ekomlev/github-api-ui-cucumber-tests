@@ -1,6 +1,5 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.testcases.base.BaseTest;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -10,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewOrganization.feature")
-public class CreateNewOrganizationStepDef extends BaseTest {
+public class CreateNewOrganizationStepDef {
     private World world;
 
     public CreateNewOrganizationStepDef (World world) {

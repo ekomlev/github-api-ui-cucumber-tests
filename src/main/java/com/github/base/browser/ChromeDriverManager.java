@@ -1,5 +1,6 @@
 package com.github.base.browser;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -10,7 +11,7 @@ public class ChromeDriverManager extends DriverManager {
     private final String CHROMEDRIVER_PATH = System.getProperty("wdr.pr");
 
     @Override
-    protected void createDriver() {
+    protected WebDriver createDriver() {
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 
         chromePrefs.put("download.directory_upgrade", true);
@@ -26,6 +27,6 @@ public class ChromeDriverManager extends DriverManager {
 
         System.setProperty(CHROMEDRIVER, CHROMEDRIVER_PATH);
 
-        new ChromeDriver(options);
+        return new ChromeDriver(options);
     }
 }

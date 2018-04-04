@@ -8,7 +8,7 @@ public class FirefoxDriverManager extends DriverManager {
     private final String GECKODRIVER_PATH = System.getProperty("wdr.pr");
 
     @Override
-    protected void createDriver() {
+    protected FirefoxDriver createDriver() {
         FirefoxOptions ffOptions = new FirefoxOptions();
 
         ffOptions.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
@@ -16,6 +16,6 @@ public class FirefoxDriverManager extends DriverManager {
                 .addPreference("browser.privatebrowsing.autostart", true);
 
         System.setProperty(GECKODRIVER,GECKODRIVER_PATH);
-        new FirefoxDriver(ffOptions);
+        return new FirefoxDriver(ffOptions);
     }
 }

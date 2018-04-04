@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DriverModule extends AbstractModule {
+    private final String PROPERTIES_FILE = System.getProperty("tst.pr");
 
     @Override
     protected void configure() {
@@ -22,7 +23,7 @@ public class DriverModule extends AbstractModule {
 
         try {
             Properties props = new Properties();
-            props.load(new FileInputStream("test.properties"));
+            props.load(new FileInputStream(PROPERTIES_FILE));
             Names.bindProperties(binder(), props);
         } catch (IOException e) {
             e.printStackTrace();

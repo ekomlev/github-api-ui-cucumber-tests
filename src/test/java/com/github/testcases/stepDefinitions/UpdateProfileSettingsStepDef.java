@@ -1,6 +1,5 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.testcases.base.BaseTest;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -9,7 +8,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/UpdateProfileSettings.feature")
-public class UpdateProfileSettingsStepDef extends BaseTest {
+public class UpdateProfileSettingsStepDef {
     private World world;
 
     public UpdateProfileSettingsStepDef (World world) {
