@@ -19,8 +19,6 @@ public class DriverProvider implements Provider<WebDriver> {
     private final String GECKODRIVER = "webdriver.gecko.DRIVER";
     private final String DRIVER_PATH = System.getProperty("wdr.pr");
 
-
-
     @Inject
     @javax.inject.Named("test.variables.default.pageLoadTimeout")
     private String pageLoadTimeout;
@@ -29,19 +27,13 @@ public class DriverProvider implements Provider<WebDriver> {
     private String implicitlyWaitTime;
 
     @Inject
-    @Named("environment.variables.browser")
-    private BrowserType browserType;
-
-
-    @Inject
     public DriverProvider(BrowserType browserType) {
-        this.browserType = browserType;
+        DRIVER.set(createDriver(browserType));
+        setTimeProperties();
     }
 
     @Override
     public WebDriver get() {
-        DRIVER.set(createDriver(browserType));
-        setTimeProperties();
         return DRIVER.get();
     }
 

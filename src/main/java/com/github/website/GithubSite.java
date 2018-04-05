@@ -1,18 +1,18 @@
 package com.github.website;
 
-import com.github.base.browser.DriverManager;
 import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
+import org.openqa.selenium.WebDriver;
 
 import java.net.URL;
 
 @Singleton
 public class GithubSite {
-    private DriverManager driverManager;
+    private WebDriver webDriver;
 
     @Inject
     private CreationNewEntityMenu creationNewEntityMenu;
@@ -61,13 +61,13 @@ public class GithubSite {
     private URL githubUrl;
 
     @Inject
-    public GithubSite (DriverManager driverManager) {
-        this.driverManager = driverManager;
-        driverManager.getDriver().navigate().to(githubUrl);
+    public GithubSite (WebDriver webDriver) {
+        this.webDriver = webDriver;
+        webDriver.navigate().to(githubUrl);
     }
 
     public void reset() {
-        driverManager.closeDriver();
+        webDriver.close();
     }
 
     public InitialPage initialPage() {
