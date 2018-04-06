@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -27,6 +28,7 @@ public class OrganizationsPage extends BasePage {
     @FindBy (xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/button[@type='submit']")
     private WebElement confirmationOfDeletingButton;
 
+    @Inject
     public OrganizationsPage(WebDriver driver) {
         super(driver);
     }

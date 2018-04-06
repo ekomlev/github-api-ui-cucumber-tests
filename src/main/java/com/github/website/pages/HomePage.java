@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//div[@class='select-menu-list']/a[@href='/account/organizations' and contains(., 'Manage organizations')]")
     private WebElement manageOrganizationsMenuItemLink;
 
+    @Inject
     public HomePage(WebDriver driver) {
         super(driver);
     }

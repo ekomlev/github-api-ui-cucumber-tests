@@ -1,6 +1,7 @@
 package com.github.website.components;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +19,7 @@ public class UserProfileMenu extends BasePage{
     @FindBy(linkText = "Your gists")
     WebElement yourGistsMenuItemLink;
 
+    @Inject
     public UserProfileMenu(WebDriver driver) {
         super(driver);
     }

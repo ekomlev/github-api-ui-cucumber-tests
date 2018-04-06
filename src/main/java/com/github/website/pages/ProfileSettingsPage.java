@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,6 +31,7 @@ public class ProfileSettingsPage extends BasePage {
     @FindBy(linkText = "view your profile.")
     private WebElement viewProfileLink;
 
+    @Inject
     public ProfileSettingsPage(WebDriver driver) {
         super(driver);
     }

@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,7 @@ public class RepositoryPage extends BasePage {
     @FindBy (xpath = "//button[@type='submit' and contains(., 'I understand the consequences, delete this repository')]")
     private WebElement confirmationOfDeletingButton;
 
+    @Inject
     public RepositoryPage(WebDriver driver) {
         super(driver);
     }

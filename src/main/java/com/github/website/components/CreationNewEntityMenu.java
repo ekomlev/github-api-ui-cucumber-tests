@@ -1,6 +1,7 @@
 package com.github.website.components;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class CreationNewEntityMenu extends BasePage {
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New gist')]")
     WebElement newGistMenuItemLink;
 
+    @Inject
     public CreationNewEntityMenu(WebDriver driver) {
         super(driver);
     }

@@ -1,5 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
+import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 public class CreateNewCommentStepDef {
     private World world;
 
+    @Inject
     public CreateNewCommentStepDef (World world) {
         this.world = world;
     }

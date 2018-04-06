@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +29,7 @@ public class NewGistPage extends BasePage {
     @FindBy (xpath = "//li[@class='flex-auto py-3 text-bold text-right f6 lh-condensed']/a[contains(text(), 'See all of your gists')]")
     private WebElement allYourGistsPageLink;
 
+    @Inject
     public NewGistPage(WebDriver driver) {
         super(driver);
     }

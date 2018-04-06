@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +25,7 @@ public class ProfilePage extends BasePage {
     @FindBy(xpath = "//li[@itemprop='homeLocation']/span[@class='p-label']")
     private WebElement actualPublicProfileLocationField;
 
+    @Inject
     public ProfilePage(WebDriver driver) {
         super(driver);
     }

@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,6 +25,7 @@ public class NewOrganizationPage extends BasePage {
     @FindBy (xpath = "//a[contains(text(), 'Finish')]")
     private WebElement finishButton;
 
+    @Inject
     public NewOrganizationPage(WebDriver driver) {
         super(driver);
     }

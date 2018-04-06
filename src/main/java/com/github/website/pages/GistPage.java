@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class GistPage extends BasePage {
     @FindBy(xpath = "//div[@class='timeline-comment-wrapper js-comment-container' and position()=last()-2]")
     private WebElement lastGistComment;
 
+    @Inject
     public GistPage(WebDriver driver) {
         super(driver);
     }

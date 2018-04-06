@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyProvider {
-    private Properties properties;
+    private Properties properties  = new Properties();
 
     public PropertyProvider(final String resourceName) {
         properties = appendFromResource(properties, resourceName);
@@ -25,7 +25,6 @@ public class PropertyProvider {
             } catch (IOException e) {
                 System.out.println("==========================================================================");
                 e.printStackTrace();
-                System.out.println("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
             }
         }
         else

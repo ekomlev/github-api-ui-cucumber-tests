@@ -1,5 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
+import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
 
@@ -7,6 +8,7 @@ import cucumber.api.java.en.Given;
 public class BackgroundStepDef {
     private World world;
 
+    @Inject
     public BackgroundStepDef(World world) {
         this.world = world;
     }

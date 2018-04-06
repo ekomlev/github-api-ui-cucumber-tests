@@ -5,7 +5,6 @@ import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.google.inject.name.Named;
 import org.openqa.selenium.WebDriver;
 
 import java.net.URL;
@@ -57,12 +56,12 @@ public class GithubSite {
     private ProfileSettingsPage profileSettingsPage;
 
     @Inject
-    @Named("environment.variables.base_url")
-    private URL githubUrl;
-
-    @Inject
     public GithubSite (WebDriver webDriver) {
         this.webDriver = webDriver;
+    }
+
+
+    public void open(URL githubUrl) {
         webDriver.navigate().to(githubUrl);
     }
 

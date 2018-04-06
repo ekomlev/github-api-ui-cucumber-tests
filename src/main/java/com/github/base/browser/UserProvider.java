@@ -1,34 +1,21 @@
-/*
-package com.github.utils;
+package com.github.base.browser;
 
 import com.github.entities.User;
 import com.github.logging.LoggerInstanceProvider;
 import com.google.gson.Gson;
+import com.google.inject.Provider;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
-
-public class UserCreator {
+public class UserProvider implements Provider<User> {
     private static final String USER_FILENAME = "src/test/resources/user_data.json";
-    private static User instance;
-    private User user;
-    private static Logger systemInfo = LoggerInstanceProvider.getLogger(UserCreator.class);
+    private static Logger systemInfo = LoggerInstanceProvider.getLogger(UserProvider.class);
 
-    private UserCreator() {
-        this.user = createUserFromJson();
-    }
-
-    public static User getInstance() {
-        if (instance == null) {
-            instance = createUserFromJson();
-        }
-        return instance;
-    }
-
-    private static User createUserFromJson() {
+    @Override
+    public User get() {
         Gson gson = new Gson();
         BufferedReader reader = null;
         try {
@@ -41,4 +28,3 @@ public class UserCreator {
         return user;
     }
 }
-*/

@@ -1,5 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
+import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -10,6 +11,7 @@ import org.testng.Assert;
 public class CreateNewGistStepDef {
     private World world;
 
+    @Inject
     public CreateNewGistStepDef (World world) {
         this.world = world;
     }

@@ -1,5 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
+import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -11,6 +12,7 @@ import org.testng.Assert;
 public class UpdateProfileSettingsStepDef {
     private World world;
 
+    @Inject
     public UpdateProfileSettingsStepDef (World world) {
         this.world = world;
     }
@@ -71,7 +73,7 @@ public class UpdateProfileSettingsStepDef {
 
     @Then("^user can see new Name on the Profile page$")
     public void checkProfileUserName() {
-        String currentUrl = world.webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.get().getCurrentUrl();
 
         if(!(currentUrl.equals(world.expectedGithubUrl)))  {
             world.website.profileSettingsPage().openProfilePage();
@@ -84,7 +86,7 @@ public class UpdateProfileSettingsStepDef {
 
     @And("^user can see new Bio on the Profile page$")
     public void checkProfileUserBio() {
-        String currentUrl = world.webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.get().getCurrentUrl();
 
         if(!(currentUrl.equals(world.expectedGithubUrl))) {
             world.website.profileSettingsPage().openProfilePage();
@@ -97,7 +99,7 @@ public class UpdateProfileSettingsStepDef {
 
     @And("^user can see new Url on the Profile page$")
     public void checkProfileUserUrl() {
-        String currentUrl = world.webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.get().getCurrentUrl();
 
         if(!(currentUrl.equals(world.expectedGithubUrl))) {
             world.website.profileSettingsPage().openProfilePage();
@@ -110,7 +112,7 @@ public class UpdateProfileSettingsStepDef {
 
     @And("^user can see new Company on the Profile page$")
     public void checkProfileUserCompany() {
-        String currentUrl = world.webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.get().getCurrentUrl();
 
         if(!(currentUrl.equals(world.expectedGithubUrl)))  {
             world.website.profileSettingsPage().openProfilePage();
@@ -123,7 +125,7 @@ public class UpdateProfileSettingsStepDef {
 
     @And("^user can see new Location on the Profile page$")
     public void checkProfileUserLocation() {
-        String currentUrl = world.webDriver.getCurrentUrl();
+        String currentUrl = world.webDriver.get().getCurrentUrl();
 
         if(!(currentUrl.equals(world.expectedGithubUrl)))  {
             world.website.profileSettingsPage().openProfilePage();

@@ -1,6 +1,7 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,6 +15,7 @@ public class AllYourGistsPage extends BasePage {
     @FindBy(css = "span.creator > a > strong.css-truncate-target")
     private List<WebElement> gistItem;
 
+    @Inject
     public AllYourGistsPage(WebDriver driver) {
         super(driver);
     }

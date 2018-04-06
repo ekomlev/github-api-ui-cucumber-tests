@@ -1,5 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
+import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 public class CreateNewRepositoryStepDef {
     private World world;
 
+    @Inject
     public CreateNewRepositoryStepDef (World world) {
         this.world = world;
     }
@@ -58,6 +60,6 @@ public class CreateNewRepositoryStepDef {
     @And("^url contains the name of created repository$")
     public void checkRepositoryPageUrl() {
         world.check("Check if url contains the name of created repository");
-        Assert.assertTrue(world.webDriver.getCurrentUrl().contains(world.repositoryName));
+        Assert.assertTrue(world.webDriver.get().getCurrentUrl().contains(world.repositoryName));
     }
 }

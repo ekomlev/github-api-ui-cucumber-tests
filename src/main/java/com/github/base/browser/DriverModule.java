@@ -1,31 +1,37 @@
 package com.github.base.browser;
 
+import com.github.entities.User;
 import com.github.utils.PropertyProvider;
-import com.google.inject.AbstractModule;
-import com.google.inject.Inject;
-import com.google.inject.Scopes;
-import com.google.inject.name.Named;
+import com.google.inject.*;
 import com.google.inject.name.Names;
+import cucumber.api.guice.CucumberModules;
+import cucumber.runtime.java.guice.InjectorSource;
 import org.openqa.selenium.WebDriver;
 
 import java.util.Properties;
 
-public class DriverModule extends AbstractModule {
+public class DriverModule extends AbstractModule implements InjectorSource {
     private final String PROPERTIES_FILE = System.getProperty("tst.pr");
-    @Inject
-    @Named("environment.variables.browser")
-    private BrowserType browserType;
+
+    //Properties props = new Properties();
 
     @Override
     protected void configure() {
+        /*try {
+            props.load(new FileInputStream(PROPERTIES_FILE));
+            Names.bindProperties(binder(), props);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
         Properties props = new PropertyProvider(PROPERTIES_FILE).getProperties();
         Names.bindProperties(binder(), props);
-        bind(WebDriver.class).toInstance((WebDriver) new DriverProvider(browserType)); //.in(Scopes.SINGLETON);
 
+        bind(WebDriver.class).toProvider(new WebProvider(props)).in(Scopes.SINGLETON);
+        bind(User.class).toProvider(UserProvider.class).in(Scopes.SINGLETON);
     }
 
-    /*@Provides
-    public WebDriver getDriver(DriverManager driverManager) {
-        return driverManager.getDriver();
-    }*/
+    @Override
+    public Injector getInjector() {
+        return Guice.createInjector(Stage.PRODUCTION, CucumberModules.SCENARIO, new DriverModule());
+    }
 }

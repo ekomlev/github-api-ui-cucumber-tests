@@ -5,15 +5,11 @@ import com.google.inject.Inject;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import org.openqa.selenium.WebDriver;
 
 public class Hooks {
-    @Inject
-    private WebDriver driver;
-
-
     private World world;
 
+    @Inject
     public Hooks(World world) {
         this.world = world;
     }
