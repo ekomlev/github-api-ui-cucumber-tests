@@ -24,7 +24,7 @@ public class WebProvider implements Provider<WebDriver> {
     private final String KEY_PAGE_LOAD_TIMEOUT = "test.variables.default.pageLoadTimeout";
     private final String KEY_IMPLICITLY_WAIT_TIME = "test.variables.default.implicitlyWaitTime";
 
-    @Inject
+
     WebProvider(Properties props) {
        this.browserType = BrowserType.valueOf(props.getProperty(KEY_BROWSER_TYPE).toUpperCase());
        this.pageLoadTimeout = props.getProperty(KEY_PAGE_LOAD_TIMEOUT);

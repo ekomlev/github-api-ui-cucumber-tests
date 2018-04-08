@@ -16,6 +16,7 @@ import org.openqa.selenium.TakesScreenshot;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 
@@ -24,29 +25,42 @@ public class World {
     WebProvider webDriver;
     User user;
 
-    String commentText = user.getUserComment().getCommentText();
-    String gistFile = user.getUserGist().getGistFile();
-    String gistDescription = user.getUserGist().getGistDescription();
-    String gistContent = user.getUserGist().getGistContent();
-    boolean gistPublicAccess = user.getUserGist().getGistPublicAccess();
+    String commentText;
+    String gistFile;
+    String gistDescription;
+    String gistContent;
+    boolean gistPublicAccess;
 
-    String organizationName = user.getUserOrganization().getOrganizationName();
-    String organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
-    boolean organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
-    String repositoryName = user.getUserRepository().getRepositoryName();
-    String repositoryDescription = user.getUserRepository().getRepositoryName();
-    boolean repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
+    String organizationName;
+    String organizationBillingEmail;
+    boolean organizationFreePlan;
+    String repositoryName;
+    String repositoryDescription;
+    boolean repositoryPublicAccess;
+
+    //@Inject
+  //  @Named("environment.variables.base_url")
+    private URL githubUrl = new URL ("https://github.com");
+    String expectedGithubUrl;
 
     @Inject
-    @Named("environment.variables.base_url")
-    private URL githubUrl;
-    String expectedGithubUrl = githubUrl + "/" + user.getUserName();
-
-    @Inject
-    public World (User user, GithubSite website, WebProvider webDriver) {
+    public World (User user, GithubSite website, WebProvider webDriver) throws MalformedURLException {
         this.user = user;
         this.website = website;
         this.webDriver = webDriver;
+        this.commentText = user.getUserComment().getCommentText();
+        this.gistFile = user.getUserGist().getGistFile();
+        this.gistDescription = user.getUserGist().getGistDescription();
+        this.gistContent = user.getUserGist().getGistContent();
+        this.gistPublicAccess = user.getUserGist().getGistPublicAccess();
+
+        this.organizationName = user.getUserOrganization().getOrganizationName();
+        this.organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
+        this.organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
+        this.repositoryName = user.getUserRepository().getRepositoryName();
+        this.repositoryDescription = user.getUserRepository().getRepositoryName();
+        this.repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
+        this.expectedGithubUrl = githubUrl + "/" + user.getUserName();
     }
 
     private Logger logger = LoggerInstanceProvider.getLogger(World.class);
