@@ -70,6 +70,6 @@ public class CreateNewOrganizationStepDef {
     @And("^url contains the name of created organization$")
     public void checkRepositoryPageUrl() {
         world.check("Check if url contains the name of created organization");
-        Assert.assertTrue(world.webDriver.get().getCurrentUrl().contains(world.organizationName));
+        Assert.assertTrue(world.webDriver.getCurrentUrl().contains(world.organizationName));
     }
 }

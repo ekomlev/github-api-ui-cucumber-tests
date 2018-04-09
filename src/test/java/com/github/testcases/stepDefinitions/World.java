@@ -1,6 +1,5 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.base.browser.WebProvider;
 import com.github.entities.User;
 import com.github.logging.LoggerInstanceProvider;
 import com.github.website.GithubSite;
@@ -13,16 +12,17 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
+//@ScenarioScoped
 public class World {
     GithubSite website;
-    WebProvider webDriver;
+    WebDriver webDriver;
     User user;
 
     String commentText;
@@ -30,21 +30,18 @@ public class World {
     String gistDescription;
     String gistContent;
     boolean gistPublicAccess;
-
     String organizationName;
     String organizationBillingEmail;
     boolean organizationFreePlan;
     String repositoryName;
     String repositoryDescription;
     boolean repositoryPublicAccess;
+    URL githubUrl;
 
-    //@Inject
-  //  @Named("environment.variables.base_url")
-    private URL githubUrl = new URL ("https://github.com");
     String expectedGithubUrl;
 
     @Inject
-    public World (User user, GithubSite website, WebProvider webDriver) throws MalformedURLException {
+    public World (User user, GithubSite website, WebDriver webDriver, @Named("environment.variables.base_url") String githubUrl) throws MalformedURLException {
         this.user = user;
         this.website = website;
         this.webDriver = webDriver;
@@ -60,6 +57,7 @@ public class World {
         this.repositoryName = user.getUserRepository().getRepositoryName();
         this.repositoryDescription = user.getUserRepository().getRepositoryName();
         this.repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
+        this.githubUrl = new URL (githubUrl);
         this.expectedGithubUrl = githubUrl + "/" + user.getUserName();
     }
 

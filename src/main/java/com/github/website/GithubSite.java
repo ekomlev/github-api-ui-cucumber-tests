@@ -4,12 +4,11 @@ import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
 import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import org.openqa.selenium.WebDriver;
 
 import java.net.URL;
 
-@Singleton
+
 public class GithubSite {
     private WebDriver webDriver;
 
@@ -56,7 +55,7 @@ public class GithubSite {
     private ProfileSettingsPage profileSettingsPage;
 
     @Inject
-    public GithubSite (WebDriver webDriver) {
+    public GithubSite(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
@@ -66,7 +65,8 @@ public class GithubSite {
     }
 
     public void reset() {
-        webDriver.close();
+        webDriver.quit();
+        
     }
 
     public InitialPage initialPage() {

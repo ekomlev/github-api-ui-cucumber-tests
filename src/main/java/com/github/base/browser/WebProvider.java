@@ -13,7 +13,6 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class WebProvider implements Provider<WebDriver> {
-    private WebDriver webDriver;
     private BrowserType browserType;
     private String pageLoadTimeout;
     private String implicitlyWaitTime;
@@ -24,32 +23,23 @@ public class WebProvider implements Provider<WebDriver> {
     private final String KEY_PAGE_LOAD_TIMEOUT = "test.variables.default.pageLoadTimeout";
     private final String KEY_IMPLICITLY_WAIT_TIME = "test.variables.default.implicitlyWaitTime";
 
-
+    @Inject
     WebProvider(Properties props) {
-       this.browserType = BrowserType.valueOf(props.getProperty(KEY_BROWSER_TYPE).toUpperCase());
-       this.pageLoadTimeout = props.getProperty(KEY_PAGE_LOAD_TIMEOUT);
-       this.implicitlyWaitTime = props.getProperty(KEY_IMPLICITLY_WAIT_TIME);
-       createDriver(browserType);
+        this.browserType = BrowserType.valueOf(props.getProperty(KEY_BROWSER_TYPE).toUpperCase());
+        this.pageLoadTimeout = props.getProperty(KEY_PAGE_LOAD_TIMEOUT);
+        this.implicitlyWaitTime = props.getProperty(KEY_IMPLICITLY_WAIT_TIME);
     }
 
     @Override
     public WebDriver get() {
-        return webDriver;
-    }
-
-    private WebDriver createDriver(BrowserType browserType) {
         switch (browserType) {
             case CHROME:
-                webDriver = createChromeDriver();
-                break;
+                return createChromeDriver();
             case FIREFOX:
-                webDriver = createFirefoxDriver();
-                break;
+                return createFirefoxDriver();
             default:
-                webDriver = createChromeDriver();
+                return createChromeDriver();
         }
-        setTimeProperties();
-        return webDriver;
     }
 
     private WebDriver createChromeDriver() {
@@ -67,11 +57,12 @@ public class WebProvider implements Provider<WebDriver> {
         options.addArguments("start-maximized", "--incognito");
 
         System.setProperty(CHROMEDRIVER, KEY_DRIVER_PATH);
-
-        return new ChromeDriver(options);
+        WebDriver webDriver = new ChromeDriver(options);
+        setTimeProperties(webDriver);
+        return webDriver;
     }
 
-    private FirefoxDriver createFirefoxDriver() {
+    private WebDriver createFirefoxDriver() {
         FirefoxOptions ffOptions = new FirefoxOptions();
 
         ffOptions.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
@@ -79,17 +70,16 @@ public class WebProvider implements Provider<WebDriver> {
                 .addPreference("browser.privatebrowsing.autostart", true);
 
         System.setProperty(GECKODRIVER, KEY_DRIVER_PATH);
-        return new FirefoxDriver(ffOptions);
+        WebDriver webDriver = new FirefoxDriver(ffOptions);
+        setTimeProperties(webDriver);
+        return webDriver;
     }
 
-    private void setTimeProperties() {
+    private void setTimeProperties(WebDriver webDriver) {
         webDriver.manage().timeouts().implicitlyWait(Long.parseLong(implicitlyWaitTime), TimeUnit.SECONDS);
         webDriver.manage().timeouts().pageLoadTimeout(Long.parseLong(pageLoadTimeout), TimeUnit.SECONDS);
     }
 
-    public void closeDriver() {
-        webDriver.close();
-    }
 
     /*private void highlightElement (By locator) {
         ((JavascriptExecutor) DRIVER).executeScript("arguments[0].style.border='5px solid green'", DRIVER.get().findElement(locator));

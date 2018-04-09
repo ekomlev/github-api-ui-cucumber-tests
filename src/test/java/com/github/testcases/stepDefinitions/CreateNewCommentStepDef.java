@@ -54,6 +54,6 @@ public class CreateNewCommentStepDef {
     @Then("^user can see attached comment to gist$")
     public void checkRepositoryPageUrl() {
         world. check("Check if new comment is appeared");
-        Assert.assertTrue(world.website.gistPage().getLastCommentText().contains(world.commentText+"12123"));
+        Assert.assertTrue(world.website.gistPage().getLastCommentText().contains(world.commentText));
     }
 }
