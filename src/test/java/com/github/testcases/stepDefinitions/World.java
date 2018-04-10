@@ -1,10 +1,10 @@
 package com.github.testcases.stepDefinitions;
 
+import com.github.base.browser.DriverManager;
 import com.github.entities.User;
 import com.github.logging.LoggerInstanceProvider;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.DateTime;
@@ -12,19 +12,14 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 
-//@ScenarioScoped
 public class World {
-    GithubSite website;
-    WebDriver webDriver;
+    GithubSite github;
     User user;
-
+    DriverManager driverManager;
     String commentText;
     String gistFile;
     String gistDescription;
@@ -36,39 +31,35 @@ public class World {
     String repositoryName;
     String repositoryDescription;
     boolean repositoryPublicAccess;
-    URL githubUrl;
-
     String expectedGithubUrl;
 
     @Inject
-    public World (User user, GithubSite website, WebDriver webDriver, @Named("environment.variables.base_url") String githubUrl) throws MalformedURLException {
+    public World (User user, DriverManager driverManager) {
         this.user = user;
-        this.website = website;
-        this.webDriver = webDriver;
+        this.github = driverManager.getGithub();
+        this.driverManager = driverManager;
         this.commentText = user.getUserComment().getCommentText();
         this.gistFile = user.getUserGist().getGistFile();
         this.gistDescription = user.getUserGist().getGistDescription();
         this.gistContent = user.getUserGist().getGistContent();
         this.gistPublicAccess = user.getUserGist().getGistPublicAccess();
-
         this.organizationName = user.getUserOrganization().getOrganizationName();
         this.organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
         this.organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
         this.repositoryName = user.getUserRepository().getRepositoryName();
         this.repositoryDescription = user.getUserRepository().getRepositoryName();
         this.repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
-        this.githubUrl = new URL (githubUrl);
-        this.expectedGithubUrl = githubUrl + "/" + user.getUserName();
+        this.expectedGithubUrl = driverManager.getGithubUrl() + "/" + user.getUserName();
     }
 
     private Logger logger = LoggerInstanceProvider.getLogger(World.class);
 
     void setUp() {
-        website.open(githubUrl);
+        driverManager.open();
     }
 
     void tearDown() {
-        website.reset();
+        driverManager.reset();
     }
 
     void step(int i, String msg) {
@@ -97,7 +88,7 @@ public class World {
     String takeScreenshot(String screenshotName) {
         String path;
         try {
-            File source = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+            File source = ((TakesScreenshot) driverManager.getDriver()).getScreenshotAs(OutputType.FILE);
             path = "./output/screenshots/" + getTimeMark() + ".png";
             FileUtils.copyFile(source, new File(path));
             info("RP_MESSAGE#FILE#{}#{}", path, "screenshot on error");

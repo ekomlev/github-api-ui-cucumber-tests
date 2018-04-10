@@ -15,14 +15,14 @@ public class BackgroundStepDef {
 
     @Given("^user is signed into github home page$")
     public void sign_in() {
-        world.website.initialPage().clickSignInLink();
-        world.website.loginPage().waitForAuthorizationForm();
+        world.github.initialPage().clickSignInLink();
+        world.github.loginPage().waitForAuthorizationForm();
 
         String userName = world.user.getUserName();
         String userPassword = world.user.getUserPassword();
 
-        world.website.loginPage().fillInAuthorizationForm(userName, userPassword);
+        world.github.loginPage().fillInAuthorizationForm(userName, userPassword);
 
-        world.website.loginPage().clickSignInButton();
+        world.github.loginPage().clickSignInButton();
     }
 }

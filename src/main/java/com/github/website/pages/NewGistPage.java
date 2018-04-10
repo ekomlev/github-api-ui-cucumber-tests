@@ -1,9 +1,9 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.github.base.browser.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -30,8 +30,8 @@ public class NewGistPage extends BasePage {
     private WebElement allYourGistsPageLink;
 
     @Inject
-    public NewGistPage(WebDriver driver) {
-        super(driver);
+    public NewGistPage(DriverManager driverManager) {
+        super(driverManager);
     }
 
     public void waitForNewGistForm() {
@@ -46,7 +46,7 @@ public class NewGistPage extends BasePage {
         gistDescriptionInputfield.sendKeys(gistDescription);
         gistFileNameInputfield.sendKeys(gistFile);
 
-        Actions actions = new Actions(webDriver);
+        Actions actions = new Actions(driverManager.getDriver());
         actions.moveToElement(gistContentInputfield);
         actions.click();
         actions.sendKeys(gistContent);

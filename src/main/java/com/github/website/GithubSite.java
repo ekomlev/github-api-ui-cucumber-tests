@@ -1,73 +1,18 @@
+/*
 package com.github.website;
 
 import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
 import com.google.inject.Inject;
-import org.openqa.selenium.WebDriver;
-
-import java.net.URL;
 
 
 public class GithubSite {
-    private WebDriver webDriver;
 
-    @Inject
-    private CreationNewEntityMenu creationNewEntityMenu;
-
-    @Inject
-    private UserProfileMenu userProfileMenu;
-
-    @Inject
-    private InitialPage initialPage;
-
-    @Inject
-    private LoginPage loginPage;
-
-    @Inject
-    private HomePage homePage;
-
-    @Inject
-    private ProfilePage profilePage;
-
-    @Inject
-    private NewRepositoryPage newRepositoryPage;
-
-    @Inject
-    private RepositoryPage repositoryPage;
-
-    @Inject
-    private NewOrganizationPage newOrganizationPage;
-
-    @Inject
-    private OrganizationsPage organizationsPage;
-
-    @Inject
-    private NewGistPage newGistPage;
-
-    @Inject
-    private AllYourGistsPage allYourGistsPage;
-
-    @Inject
-    private GistPage gistPage;
-
-    @Inject
-    private ProfileSettingsPage profileSettingsPage;
-
-    @Inject
-    public GithubSite(WebDriver webDriver) {
-        this.webDriver = webDriver;
+    public GithubSite() {
     }
 
 
-    public void open(URL githubUrl) {
-        webDriver.navigate().to(githubUrl);
-    }
-
-    public void reset() {
-        webDriver.quit();
-        
-    }
 
     public InitialPage initialPage() {
         return initialPage;
@@ -86,7 +31,7 @@ public class GithubSite {
     }
 
     public HomePage homePage() {
-        return homePage;
+        return pageFactory.init(Homepage.class);
     }
 
     public ProfilePage profilePage() {
@@ -126,3 +71,4 @@ public class GithubSite {
     }
 
 }
+*/

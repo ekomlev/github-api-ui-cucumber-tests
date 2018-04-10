@@ -1,9 +1,9 @@
 package com.github.website.components;
 
 import com.github.base.BasePage;
+import com.github.base.browser.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,8 +23,8 @@ public class CreationNewEntityMenu extends BasePage {
     WebElement newGistMenuItemLink;
 
     @Inject
-    public CreationNewEntityMenu(WebDriver driver) {
-        super(driver);
+    public CreationNewEntityMenu(DriverManager driverManager) {
+        super(driverManager);
     }
 
     public void waitForCreationNewEntityMenuLink() {

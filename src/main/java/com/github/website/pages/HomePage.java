@@ -1,9 +1,9 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.github.base.browser.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,8 +22,8 @@ public class HomePage extends BasePage {
     private WebElement manageOrganizationsMenuItemLink;
 
     @Inject
-    public HomePage(WebDriver driver) {
-        super(driver);
+    public HomePage(DriverManager driverManager) {
+        super(driverManager);
     }
 
     public WebElement createdRepositoryAlreadyExists(String repositoryName) {

@@ -1,10 +1,10 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.github.base.browser.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,8 +29,8 @@ public class OrganizationsPage extends BasePage {
     private WebElement confirmationOfDeletingButton;
 
     @Inject
-    public OrganizationsPage(WebDriver driver) {
-        super(driver);
+    public OrganizationsPage(DriverManager driverManager) {
+        super(driverManager);
     }
 
     public void waitForOrganizationsList() {
@@ -67,7 +67,7 @@ public class OrganizationsPage extends BasePage {
     }
 
     public void deleteExistingOrganization(String organizationName) {
-        JavascriptExecutor jse = (JavascriptExecutor)webDriver;
+        JavascriptExecutor jse = (JavascriptExecutor)driverManager.getDriver();
         jse.executeScript("window.scrollBy(0,250)", "");
         deleteThisOrganizationButton.click();
         deleteConfirmationOrganizationInputField.sendKeys(organizationName);

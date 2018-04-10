@@ -20,10 +20,10 @@ public class DriverModule extends AbstractModule implements InjectorSource {
         bind(Properties.class).toInstance(props);
         Names.bindProperties(binder(), props);
 
-
         bind(WebDriver.class).toProvider(WebProvider.class).in(Scopes.SINGLETON);
         bind(User.class).toProvider(UserProvider.class).in(Scopes.SINGLETON);
         bind(GithubSite.class).in(Scopes.SINGLETON);
+        bind(DriverManager.class).in(Scopes.SINGLETON);
     }
 
     @Override

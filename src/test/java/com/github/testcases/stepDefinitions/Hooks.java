@@ -8,7 +8,6 @@ import cucumber.api.java.Before;
 
 public class Hooks {
     private World world;
-    private static boolean dunit = false;
 
     @Inject
     public Hooks(World world) {
@@ -23,16 +22,8 @@ public class Hooks {
 
     @After(order=0)
     public void afterScenarioFinish(Scenario scenario){
-
         world.test(scenario.getName(),"completed");
-        if(!dunit) {
-            Runtime.getRuntime().addShutdownHook(new Thread() {
-                public void run() {
-                    world.tearDown();
-                }
-                });
-            dunit = true;
-        }
+        world.tearDown();
     }
 
     @After(order = 1)

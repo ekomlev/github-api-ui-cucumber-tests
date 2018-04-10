@@ -21,39 +21,39 @@ public class CreateNewCommentStepDef {
     @Given("^\"All your gists\" page is opened$")
     public void openAllYourGistsPage() {
         world.step(1, "Open user profile menu");
-        world.website.userProfileMenu().waitForUserProfileMenuLink();
-        world.website.userProfileMenu().openUserProfileMenu();
-        world.website.userProfileMenu().waitForUserProfileMenu();
+        world.github.userProfileMenu().waitForUserProfileMenuLink();
+        world.github.userProfileMenu().openUserProfileMenu();
+        world.github.userProfileMenu().waitForUserProfileMenu();
 
         world.step(2, "Open gist page");
-        world.website.userProfileMenu().openYourGistPage();
-        world.website.newGistPage().waitForGistHeadOfNewGistPage();
+        world.github.userProfileMenu().openYourGistPage();
+        world.github.newGistPage().waitForGistHeadOfNewGistPage();
 
         world.step(3, "Open all gists");
-        world.website.newGistPage().openAllYourGistsPage();
-        world.website.allYourGistsPage().waitForAllYourGistsList();
+        world.github.newGistPage().openAllYourGistsPage();
+        world.github.allYourGistsPage().waitForAllYourGistsList();
     }
 
     @When("^user enters to existing gist$")
     public void createNewComment() {
         world.step(4, "Enter to gist if it exists");
-        WebElement checkGist = world.website.allYourGistsPage().gistIsExist(world.gistFile);
+        WebElement checkGist = world.github.allYourGistsPage().gistIsExist(world.gistFile);
         if (checkGist != null) {
-            world.website.allYourGistsPage().openGist(checkGist);
+            world.github.allYourGistsPage().openGist(checkGist);
         }
     }
 
     @And("^user creates new comment$")
     public void checkCreatedNewComment() {
         world.step(5, "Create new comment if gist file is exist");
-        world.website.gistPage().waitForGistCommentForm();
-        world.website.gistPage().saveNewGistComment(world.commentText);
-        world.website.gistPage().waitForGistComment();
+        world.github.gistPage().waitForGistCommentForm();
+        world.github.gistPage().saveNewGistComment(world.commentText);
+        world.github.gistPage().waitForGistComment();
     }
 
     @Then("^user can see attached comment to gist$")
     public void checkRepositoryPageUrl() {
         world. check("Check if new comment is appeared");
-        Assert.assertTrue(world.website.gistPage().getLastCommentText().contains(world.commentText));
+        Assert.assertTrue(world.github.gistPage().getLastCommentText().contains(world.commentText));
     }
 }

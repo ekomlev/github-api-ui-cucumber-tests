@@ -1,9 +1,9 @@
 package com.github.website.components;
 
 import com.github.base.BasePage;
+import com.github.base.browser.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,8 +20,8 @@ public class UserProfileMenu extends BasePage{
     WebElement yourGistsMenuItemLink;
 
     @Inject
-    public UserProfileMenu(WebDriver driver) {
-        super(driver);
+    public UserProfileMenu(DriverManager driverManager) {
+        super(driverManager);
     }
 
     public void waitForUserProfileMenuLink() {

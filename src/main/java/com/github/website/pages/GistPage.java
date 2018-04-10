@@ -1,9 +1,9 @@
 package com.github.website.pages;
 
 import com.github.base.BasePage;
+import com.github.base.browser.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,8 +23,8 @@ public class GistPage extends BasePage {
     private WebElement lastGistComment;
 
     @Inject
-    public GistPage(WebDriver driver) {
-        super(driver);
+    public GistPage(DriverManager driverManager) {
+        super(driverManager);
     }
 
     public void waitForGistHeadOfGistPage() {
