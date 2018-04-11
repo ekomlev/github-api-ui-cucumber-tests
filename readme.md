@@ -59,6 +59,7 @@ Set `environment.variables.browser=firefox` to use **FirefoxDriver** while execu
  ```
 
 [github_com]: https://www.github.com
+[reportportal_io]: https://reportportal.io
 [github_profile]: https://github.com/settings/profile
 [github_new_rep]: https://github.com/new
 [github_new_org]: https://github.com/organizations/new
