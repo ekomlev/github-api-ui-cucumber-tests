@@ -1,5 +1,6 @@
-package com.github.base.browser;
+package com.github.utils;
 
+import com.github.base.driver.BrowserType;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.openqa.selenium.WebDriver;
@@ -46,7 +47,7 @@ public class WebProvider implements Provider<WebDriver> {
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
 
         chromePrefs.put("download.directory_upgrade", true);
-        chromePrefs.put("browser.helperApps.alwaysAsk.force", false);
+        chromePrefs.put("driver.helperApps.alwaysAsk.force", false);
 
         chromePrefs.put("safebrowsing.enabled", true);
         chromePrefs.put("profile.default_content_settings.popups", 0);
@@ -65,9 +66,9 @@ public class WebProvider implements Provider<WebDriver> {
     private WebDriver createFirefoxDriver() {
         FirefoxOptions ffOptions = new FirefoxOptions();
 
-        ffOptions.addPreference("browser.helperApps.neverAsk.saveToDisk", "application/octet-stream")
-                .addPreference("browser.download.folderList", 2)
-                .addPreference("browser.privatebrowsing.autostart", true);
+        ffOptions.addPreference("driver.helperApps.neverAsk.saveToDisk", "application/octet-stream")
+                .addPreference("driver.download.folderList", 2)
+                .addPreference("driver.privatebrowsing.autostart", true);
 
         System.setProperty(GECKODRIVER, KEY_DRIVER_PATH);
         WebDriver webDriver = new FirefoxDriver(ffOptions);

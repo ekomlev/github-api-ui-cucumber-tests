@@ -1,6 +1,6 @@
-package com.github.base;
+package com.github.base.page;
 
-import com.github.base.browser.DriverManager;
+import com.github.base.driver.DriverManager;
 import com.github.logging.LoggerInstanceProvider;
 import com.google.inject.Inject;
 import org.apache.logging.log4j.Logger;

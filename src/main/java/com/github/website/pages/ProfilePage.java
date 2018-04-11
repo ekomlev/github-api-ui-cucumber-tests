@@ -1,7 +1,7 @@
 package com.github.website.pages;
 
-import com.github.base.BasePage;
-import com.github.base.browser.DriverManager;
+import com.github.base.page.BasePage;
+import com.github.base.driver.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,7 +13,7 @@ public class ProfilePage extends BasePage {
     @FindBy(xpath = "//h1[@class='vcard-names']/span[1]")
     private WebElement actualPublicProfileNameField;
 
-    @FindBy(xpath = "//div[@class='p-note user-profile-bio']/div")
+    @FindBy(xpath = "//div[@class='d-inline-block mb-3 js-user-profile-bio-contents']/div")
     private WebElement actualPublicProfileBioField;
 
     @FindBy(xpath = "//li[@itemprop='url']/a")

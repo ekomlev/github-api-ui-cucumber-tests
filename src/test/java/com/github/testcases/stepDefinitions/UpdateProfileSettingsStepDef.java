@@ -1,7 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.website.PageFactory;
-import com.github.website.components.UserProfileMenu;
+import com.github.base.page.PageFactory;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
@@ -23,9 +22,6 @@ public class UpdateProfileSettingsStepDef {
     @Given("^profile settings page is opened$")
     public void openUserProfileMenu(){
         world.step(1, "Open user profile menu");
-
-        UserProfileMenu userProfileMenu = pageFactory.initPage(UserProfileMenu.class);
-
         world.github.userProfileMenu().waitForUserProfileMenuLink();
         world.github.userProfileMenu().openUserProfileMenu();
         world.github.userProfileMenu().waitForUserProfileMenu();

@@ -1,7 +1,7 @@
 package com.github.website.pages;
 
-import com.github.base.BasePage;
-import com.github.base.browser.DriverManager;
+import com.github.base.page.BasePage;
+import com.github.base.driver.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,7 +15,7 @@ public class HomePage extends BasePage {
     @FindBy (css = "ul.mini-repo-list li > a > span > span.repo")
     private List<WebElement> repositoryItem;
 
-    @FindBy(xpath = "//summary[@class='btn select-menu-button with-gravatar' and @aria-label='Switch account context']")
+    @FindBy(xpath = "//summary[@class='btn select-menu-button with-gravatar ' and @aria-label='Switch account context']")
     private WebElement expandAccountSwitcherButton;
 
     @FindBy(xpath = "//div[@class='select-menu-list']/a[@href='/account/organizations' and contains(., 'Manage organizations')]")

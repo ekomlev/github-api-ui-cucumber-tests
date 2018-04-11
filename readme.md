@@ -8,9 +8,11 @@ This is an automation test framework for [github.com][github_com] using:
  Java
  Cucumber
  TestNG
+ Guice
  Selenium Webdriver
  Gradle
 ```
+Test case execution results are stored at [reportportal.io][reportportal_io]
 
 ## Test scenarios
 * User can change public profile settings on the following page: [github.com/settings/profile][github_profile]
@@ -23,7 +25,7 @@ This is an automation test framework for [github.com][github_com] using:
 * Git clone the project
 * Install browser driver: e.g. **[ChromeDriver]** or **[FirefoxDriver]** and put execute file to the folder `/github_test_testng_cuc/webdrivers/`.
 
-*NOTE*: framework expects `.exe` file. If you are using *MacOs* than you should edit `CHROMEDRIVER_PATH` or `GECKODRIVER_PATH` variables at **`BrowserFactory.class`**.
+*NOTE*: framework expects `.exe` file. If you are using *MacOs* than you should edit `wdr.pr` systemProperty at **`build.gradle`**.
 * Install **[Gradle]**
 * If it necessary put your custom `.properties` file (see below).
 * Run tests

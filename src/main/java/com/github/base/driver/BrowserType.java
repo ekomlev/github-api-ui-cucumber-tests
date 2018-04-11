@@ -1,4 +1,4 @@
-package com.github.base.browser;
+package com.github.base.driver;
 
 public enum BrowserType {
     CHROME,

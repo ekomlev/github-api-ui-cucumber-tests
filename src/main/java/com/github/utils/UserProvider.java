@@ -1,4 +1,4 @@
-package com.github.base.browser;
+package com.github.utils;
 
 import com.github.entities.User;
 import com.github.logging.LoggerInstanceProvider;

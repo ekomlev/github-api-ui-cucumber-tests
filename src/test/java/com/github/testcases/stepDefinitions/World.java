@@ -1,6 +1,6 @@
 package com.github.testcases.stepDefinitions;
 
-import com.github.base.browser.DriverManager;
+import com.github.base.driver.DriverManager;
 import com.github.entities.User;
 import com.github.logging.LoggerInstanceProvider;
 import com.github.website.GithubSite;

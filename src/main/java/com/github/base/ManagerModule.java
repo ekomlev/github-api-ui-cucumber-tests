@@ -1,8 +1,12 @@
-package com.github.base.browser;
+package com.github.base;
 
+import com.github.base.driver.DriverManager;
 import com.github.entities.User;
 import com.github.utils.PropertyProvider;
+import com.github.utils.UserProvider;
+import com.github.utils.WebProvider;
 import com.github.website.GithubSite;
+import com.github.base.page.PageFactory;
 import com.google.inject.*;
 import com.google.inject.name.Names;
 import cucumber.api.guice.CucumberModules;
@@ -11,7 +15,7 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.Properties;
 
-public class DriverModule extends AbstractModule implements InjectorSource {
+public class ManagerModule extends AbstractModule implements InjectorSource {
     private final String PROPERTIES_FILE = System.getProperty("tst.pr");
 
     @Override
@@ -24,10 +28,11 @@ public class DriverModule extends AbstractModule implements InjectorSource {
         bind(User.class).toProvider(UserProvider.class).in(Scopes.SINGLETON);
         bind(GithubSite.class).in(Scopes.SINGLETON);
         bind(DriverManager.class).in(Scopes.SINGLETON);
+        bind(PageFactory.class);
     }
 
     @Override
     public Injector getInjector() {
-        return Guice.createInjector(Stage.PRODUCTION, CucumberModules.SCENARIO, new DriverModule());
+        return Guice.createInjector(Stage.PRODUCTION, CucumberModules.SCENARIO, new ManagerModule());
     }
 }

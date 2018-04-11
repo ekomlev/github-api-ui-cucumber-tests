@@ -64,7 +64,6 @@ dependencies {
 
             // Guice
             "com.google.inject:guice:${guiceVersion}"
-            //"com.google.inject.extensions:guice-multibindings:${guiceVersion}"
 
 }
 
@@ -75,7 +74,6 @@ test {
 
     systemProperty 'tst.pr', System.getProperty("tst.pr")?:"test.properties"
     systemProperty 'wdr.pr', System.getProperty("wdr.pr")?:"./webdrivers/chromedriver.exe"
-   // systemProperty 'wdr.pr', System.getProperty("wdr.pr")?:"/Users/eduardkomlev/Projects/drivers/chromedriver"
 }
 
 
