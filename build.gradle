@@ -59,7 +59,6 @@ dependencies {
             "io.cucumber:cucumber-testng:${cucumberVersion}",
             "io.cucumber:cucumber-java8:${cucumberVersion}",
             "io.cucumber:cucumber-jvm:${cucumberVersion}",
-            // "io.cucumber:cucumber-picocontainer:${cucumberVersion}",
             "io.cucumber:cucumber-guice:2.4.0",
 
             // Guice
