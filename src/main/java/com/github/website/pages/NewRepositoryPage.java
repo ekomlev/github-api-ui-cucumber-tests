@@ -19,7 +19,7 @@ public class NewRepositoryPage extends BasePage {
     @FindBy(id = "repository_public_true")
     private WebElement repositoryPublicAccessRadioButton;
 
-    @FindBy (xpath = "//button[@type='submit' and contains(text(), 'Create repository')]")
+    @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Create repository')]")
     private WebElement submitCreatingNewRepositoryButton;
 
     @Inject

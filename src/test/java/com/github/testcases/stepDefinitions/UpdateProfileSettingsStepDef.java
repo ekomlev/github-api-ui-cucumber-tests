@@ -2,6 +2,7 @@ package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
+import com.github.testcases.reporter.TestReporter;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -12,40 +13,31 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/UpdateProfileSettings.feature")
-public class UpdateProfileSettingsStepDef extends BaseStepDef {
+public class UpdateProfileSettingsStepDef extends TestReporter {
     private GithubSite github;
     private String expectedPublicProfileName;
-    private String actualPublicProfileName;
     private String expectedGithubUrl;
     private String currentDriverUrl;
     private String expectedPublicProfileBio;
-    private String actualPublicProfileBio;
     private String expectedPublicProfileUrl;
-    private String actualPublicProfileUrl;
     private String expectedPublicProfileCompany;
-    private String actualPublicProfileCompany;
     private String expectedPublicProfileLocation;
-    private String actualPublicProfileLocation;
 
     @Inject
-    public UpdateProfileSettingsStepDef (User user, GithubSite github, DriverManager driverManager) {
+    public UpdateProfileSettingsStepDef(User user, GithubSite github, DriverManager driverManager) {
         this.github = github;
         this.expectedPublicProfileName = user.getUserPublicProfile().getPublicProfileName();
-        this.actualPublicProfileName = github.profilePage().readActualPublicProfileNameField();
         this.expectedGithubUrl = driverManager.getGithubUrl() + "/" + user.getUserName();
         this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
         this.expectedPublicProfileBio = user.getUserPublicProfile().getPublicProfileBio();
-        this.actualPublicProfileBio = github.profilePage().readActualPublicProfileBioField();
         this.expectedPublicProfileUrl = "http://" + user.getUserPublicProfile().getPublicProfileUrl();
-        this.actualPublicProfileUrl = github.profilePage().readActualPublicProfileUrlField();
         this.expectedPublicProfileCompany = user.getUserPublicProfile().getPublicProfileCompany();
-        this.actualPublicProfileCompany = github.profilePage().readActualPublicProfileCompanyField();
         this.expectedPublicProfileLocation = user.getUserPublicProfile().getPublicProfileLocation();
-        this.actualPublicProfileLocation = github.profilePage().readActualPublicProfileLocationField();
+
     }
 
     @Given("^profile settings page is opened$")
-    public void openUserProfileMenu(){
+    public void openUserProfileMenu() {
         step(1, "Open user profile menu");
         github.userProfileMenu().waitForUserProfileMenuLink();
         github.userProfileMenu().openUserProfileMenu();
@@ -95,10 +87,12 @@ public class UpdateProfileSettingsStepDef extends BaseStepDef {
 
     @Then("^user can see new Name on the Profile page$")
     public void checkProfileUserName() {
-        if(!(currentDriverUrl.equals(expectedGithubUrl)))  {
+        if (!(currentDriverUrl.equals(expectedGithubUrl))) {
             github.profileSettingsPage().openProfilePage();
             github.profilePage().waitForUserProfileDataColumn();
         }
+
+        String actualPublicProfileName = github.profilePage().readActualPublicProfileNameField();
 
         check("Check new User Name on the Profile page");
         Assert.assertEquals(actualPublicProfileName, expectedPublicProfileName);
@@ -106,10 +100,12 @@ public class UpdateProfileSettingsStepDef extends BaseStepDef {
 
     @And("^user can see new Bio on the Profile page$")
     public void checkProfileUserBio() {
-        if(!(currentDriverUrl.equals(expectedGithubUrl))) {
+        if (!(currentDriverUrl.equals(expectedGithubUrl))) {
             github.profileSettingsPage().openProfilePage();
             github.profilePage().waitForUserProfileDataColumn();
         }
+
+        String actualPublicProfileBio = github.profilePage().readActualPublicProfileBioField();
 
         check("Check new User Bio on the Profile page");
         Assert.assertEquals(actualPublicProfileBio, expectedPublicProfileBio);
@@ -117,10 +113,12 @@ public class UpdateProfileSettingsStepDef extends BaseStepDef {
 
     @And("^user can see new Url on the Profile page$")
     public void checkProfileUserUrl() {
-        if(!(currentDriverUrl.equals(expectedGithubUrl))) {
+        if (!(currentDriverUrl.equals(expectedGithubUrl))) {
             github.profileSettingsPage().openProfilePage();
             github.profilePage().waitForUserProfileDataColumn();
         }
+
+        String actualPublicProfileUrl = github.profilePage().readActualPublicProfileUrlField();
 
         check("Check new User Url on the Profile page");
         Assert.assertEquals(actualPublicProfileUrl, expectedPublicProfileUrl);
@@ -128,10 +126,12 @@ public class UpdateProfileSettingsStepDef extends BaseStepDef {
 
     @And("^user can see new Company on the Profile page$")
     public void checkProfileUserCompany() {
-        if(!(currentDriverUrl.equals(expectedGithubUrl)))  {
+        if (!(currentDriverUrl.equals(expectedGithubUrl))) {
             github.profileSettingsPage().openProfilePage();
             github.profilePage().waitForUserProfileDataColumn();
         }
+
+        String actualPublicProfileCompany = github.profilePage().readActualPublicProfileCompanyField();
 
         check("Check new User Company on the Profile page");
         Assert.assertEquals(actualPublicProfileCompany, expectedPublicProfileCompany);
@@ -139,12 +139,14 @@ public class UpdateProfileSettingsStepDef extends BaseStepDef {
 
     @And("^user can see new Location on the Profile page$")
     public void checkProfileUserLocation() {
-        if(!(currentDriverUrl.equals(expectedGithubUrl)))  {
+        if (!(currentDriverUrl.equals(expectedGithubUrl))) {
             github.profileSettingsPage().openProfilePage();
             github.profilePage().waitForUserProfileDataColumn();
         }
 
+        String actualPublicProfileLocation = github.profilePage().readActualPublicProfileLocationField();
+
         check("Check new User Location on the Profile page");
-        Assert.assertEquals (actualPublicProfileLocation, expectedPublicProfileLocation);
+        Assert.assertEquals(actualPublicProfileLocation, expectedPublicProfileLocation);
     }
 }

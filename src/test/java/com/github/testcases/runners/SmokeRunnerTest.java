@@ -6,8 +6,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.testng.annotations.Test;
 
 @CucumberOptions(
-       // plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
-        features = "classpath:features/UpdateProfileSettings.feature",
+//        plugin = {"html:target/cucumber-report/smoketest", "json:target/cucumber.json"},
+        features = "classpath:features",
         glue = "com.github.testcases.stepDefinitions",
         tags = {"@smokeTest"}
 )

@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyProvider {
-    private Properties properties  = new Properties();
+    private Properties properties = new Properties();
 
     public PropertyProvider(final String resourceName) {
         properties = appendFromResource(properties, resourceName);
@@ -23,11 +23,9 @@ public class PropertyProvider {
                 objProperties.load(inStream);
                 inStream.close();
             } catch (IOException e) {
-                System.out.println("==========================================================================");
                 e.printStackTrace();
             }
-        }
-        else
+        } else
             try {
                 FileInputStream fileInStream = new FileInputStream(file.getAbsolutePath());
                 objProperties.load(fileInStream);
@@ -35,16 +33,10 @@ public class PropertyProvider {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         return objProperties;
-
     }
 
     public Properties getProperties() {
         return properties;
     }
-
-    /* public static String getProperty(final String key) {
-        return properties.getProperty(key);
-    }*/
 }

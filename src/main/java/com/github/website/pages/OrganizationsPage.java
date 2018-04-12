@@ -13,19 +13,19 @@ import java.util.List;
 
 public class OrganizationsPage extends BasePage {
 
-    @FindBy (xpath = "//div[@class='Box']/div[@class='Box-row d-flex flex-items-center']//a")
+    @FindBy(xpath = "//div[@class='Box']/div[@class='Box-row d-flex flex-items-center']//a")
     private List<WebElement> organisationItem;
 
-    @FindBy (xpath = "//a[@class='pagehead-tabs-item ' and position()='5']")
+    @FindBy(xpath = "//a[@class='pagehead-tabs-item ' and position()='5']")
     private WebElement settingsMenuItemLink;
 
-    @FindBy (xpath = "//a[contains(text(), 'Delete this organization')]")
+    @FindBy(xpath = "//a[contains(text(), 'Delete this organization')]")
     private WebElement deleteThisOrganizationButton;
 
-    @FindBy (xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/p/label/input")
+    @FindBy(xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/p/label/input")
     private WebElement deleteConfirmationOrganizationInputField;
 
-    @FindBy (xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/button[@type='submit']")
+    @FindBy(xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/button[@type='submit']")
     private WebElement confirmationOfDeletingButton;
 
     @Inject
@@ -51,7 +51,7 @@ public class OrganizationsPage extends BasePage {
 
     public WebElement createdOrganizationAlreadyExists(String organizationName) {
         for (WebElement organization : organisationItem) {
-            if (organization.getText().contains(organizationName)){
+            if (organization.getText().contains(organizationName)) {
                 return organization;
             }
         }
@@ -67,7 +67,7 @@ public class OrganizationsPage extends BasePage {
     }
 
     public void deleteExistingOrganization(String organizationName) {
-        JavascriptExecutor jse = (JavascriptExecutor)driverManager.getDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) driverManager.getDriver();
         jse.executeScript("window.scrollBy(0,250)", "");
         deleteThisOrganizationButton.click();
         deleteConfirmationOrganizationInputField.sendKeys(organizationName);

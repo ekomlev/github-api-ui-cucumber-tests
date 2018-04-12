@@ -12,7 +12,7 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
-    @FindBy (css = "ul.mini-repo-list li > a > span > span.repo")
+    @FindBy(css = "ul.mini-repo-list li > a > span > span.repo")
     private List<WebElement> repositoryItem;
 
     @FindBy(xpath = "//summary[@class='btn select-menu-button with-gravatar ' and @aria-label='Switch account context']")
@@ -28,7 +28,7 @@ public class HomePage extends BasePage {
 
     public WebElement createdRepositoryAlreadyExists(String repositoryName) {
         for (WebElement repository : repositoryItem) {
-            if (repository.getText().contains(repositoryName)){
+            if (repository.getText().contains(repositoryName)) {
                 return repository;
             }
         }

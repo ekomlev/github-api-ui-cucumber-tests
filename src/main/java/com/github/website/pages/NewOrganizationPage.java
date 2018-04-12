@@ -19,10 +19,10 @@ public class NewOrganizationPage extends BasePage {
     @FindBy(xpath = "//input[@type='radio' and @value='free']")
     private WebElement organizationFreePlanRadioButton;
 
-    @FindBy (xpath = "//button[@type='submit' and contains(text(), 'Create organization')]")
+    @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Create organization')]")
     private WebElement submitCreatingNewOrganizationButton;
 
-    @FindBy (xpath = "//a[contains(text(), 'Finish')]")
+    @FindBy(xpath = "//a[contains(text(), 'Finish')]")
     private WebElement finishButton;
 
     @Inject

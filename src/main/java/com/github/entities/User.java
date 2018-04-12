@@ -11,7 +11,7 @@ public class User {
     private Comment userComment;
 
     private User(String userName, String userEmail, String userPassword, PublicProfile userPublicProfile,
-                Repository userRepository, Organization userOrganization, Gist userGist, Comment userComment) {
+                 Repository userRepository, Organization userOrganization, Gist userGist, Comment userComment) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;

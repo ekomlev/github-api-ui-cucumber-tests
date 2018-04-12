@@ -1,6 +1,7 @@
 package com.github.testcases.stepDefinitions;
 
 import com.github.entities.User;
+import com.github.testcases.reporter.TestReporter;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -12,13 +13,13 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewComment.feature")
-public class CreateNewCommentStepDef extends BaseStepDef{
+public class CreateNewCommentStepDef extends TestReporter {
     private GithubSite github;
     private String gistFile;
     private String commentText;
 
     @Inject
-    public CreateNewCommentStepDef (User user, GithubSite github) {
+    public CreateNewCommentStepDef(User user, GithubSite github) {
         this.github = github;
         this.gistFile = user.getUserGist().getGistFile();
         this.commentText = user.getUserComment().getCommentText();

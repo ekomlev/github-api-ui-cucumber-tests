@@ -2,6 +2,7 @@ package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
+import com.github.testcases.reporter.TestReporter;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -13,7 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewOrganization.feature")
-public class CreateNewOrganizationStepDef extends BaseStepDef{
+public class CreateNewOrganizationStepDef extends TestReporter {
     private GithubSite github;
     private String currentDriverUrl;
     private String organizationName;
@@ -22,7 +23,7 @@ public class CreateNewOrganizationStepDef extends BaseStepDef{
 
 
     @Inject
-    public CreateNewOrganizationStepDef (User user, GithubSite github, DriverManager driverManager) {
+    public CreateNewOrganizationStepDef(User user, GithubSite github, DriverManager driverManager) {
         this.github = github;
         this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
         this.organizationName = user.getUserOrganization().getOrganizationName();

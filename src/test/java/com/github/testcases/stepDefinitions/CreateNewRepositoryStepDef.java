@@ -2,6 +2,7 @@ package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
+import com.github.testcases.reporter.TestReporter;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -13,7 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewRepository.feature")
-public class CreateNewRepositoryStepDef extends BaseStepDef{
+public class CreateNewRepositoryStepDef extends TestReporter {
     private GithubSite github;
     private String currentDriverUrl;
     private String repositoryName;
@@ -21,7 +22,7 @@ public class CreateNewRepositoryStepDef extends BaseStepDef{
     private boolean repositoryPublicAccess;
 
     @Inject
-    public CreateNewRepositoryStepDef (User user, GithubSite github, DriverManager driverManager) {
+    public CreateNewRepositoryStepDef(User user, GithubSite github, DriverManager driverManager) {
         this.github = github;
         this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
         this.repositoryName = user.getUserRepository().getRepositoryName();

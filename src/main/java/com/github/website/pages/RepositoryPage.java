@@ -11,16 +11,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RepositoryPage extends BasePage {
 
-    @FindBy (xpath = "//a[@class='js-selected-navigation-item reponav-item' and position()='4']")
+    @FindBy(xpath = "//a[@class='js-selected-navigation-item reponav-item' and position()='4']")
     private WebElement settingsMenuItemLink;
 
-    @FindBy (xpath = "//button[contains(text(), 'Delete this repository')]")
+    @FindBy(xpath = "//button[contains(text(), 'Delete this repository')]")
     private WebElement deleteThisRepositoryButton;
 
-    @FindBy (xpath = "//input[@aria-label='Type in the name of the repository to confirm that you want to delete this repository.']")
+    @FindBy(xpath = "//input[@aria-label='Type in the name of the repository to confirm that you want to delete this repository.']")
     private WebElement deleteConfirmationRepositoryInputField;
 
-    @FindBy (xpath = "//button[@type='submit' and contains(., 'I understand the consequences, delete this repository')]")
+    @FindBy(xpath = "//button[@type='submit' and contains(., 'I understand the consequences, delete this repository')]")
     private WebElement confirmationOfDeletingButton;
 
     @Inject
@@ -41,7 +41,7 @@ public class RepositoryPage extends BasePage {
     }
 
     public void deleteExistingRepository(String repositoryName) {
-        JavascriptExecutor jse = (JavascriptExecutor)driverManager.getDriver();
+        JavascriptExecutor jse = (JavascriptExecutor) driverManager.getDriver();
         jse.executeScript("window.scrollBy(0,250)", "");
         deleteThisRepositoryButton.click();
         deleteConfirmationRepositoryInputField.sendKeys(repositoryName);

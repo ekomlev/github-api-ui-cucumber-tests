@@ -1,6 +1,7 @@
 package com.github.testcases.stepDefinitions;
 
 import com.github.entities.User;
+import com.github.testcases.reporter.TestReporter;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -10,7 +11,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewGist.feature")
-public class CreateNewGistStepDef extends BaseStepDef{
+public class CreateNewGistStepDef extends TestReporter {
     private GithubSite github;
     private String gistFile;
     private String gistDescription;
@@ -19,7 +20,7 @@ public class CreateNewGistStepDef extends BaseStepDef{
 
 
     @Inject
-    public CreateNewGistStepDef (User user, GithubSite github) {
+    public CreateNewGistStepDef(User user, GithubSite github) {
         this.github = github;
         this.gistFile = user.getUserGist().getGistFile();
         this.gistDescription = user.getUserGist().getGistDescription();

@@ -26,7 +26,7 @@ public class AllYourGistsPage extends BasePage {
 
     public WebElement gistIsExist(String gistFile) {
         for (WebElement gist : gistItem) {
-            if (gist.getText().contains(gistFile)){
+            if (gist.getText().contains(gistFile)) {
                 return gist;
             }
         }

@@ -1,11 +1,11 @@
 package com.github.entities;
 
 public class PublicProfile {
-    String publicProfileName;
-    String publicProfileBio;
-    String publicProfileCompany;
-    String publicProfileUrl;
-    String publicProfileLocation;
+    private String publicProfileName;
+    private String publicProfileBio;
+    private String publicProfileCompany;
+    private String publicProfileUrl;
+    private String publicProfileLocation;
 
     public PublicProfile(String publicProfileName, String publicProfileBio, String publicProfileCompany, String publicProfileUrl, String publicProfileLocation) {
         this.publicProfileName = publicProfileName;

@@ -1,10 +1,10 @@
 package com.github.entities;
 
 public class Gist {
-    String gistFile;
-    String gistDescription;
-    String gistContent;
-    boolean gistPublicAccess;
+    private String gistFile;
+    private String gistDescription;
+    private String gistContent;
+    private boolean gistPublicAccess;
 
     public Gist(String gistFile, String gistDescription, String gistContent, boolean gistPublicAccess) {
         this.gistFile = gistFile;

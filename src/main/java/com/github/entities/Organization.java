@@ -1,9 +1,9 @@
 package com.github.entities;
 
 public class Organization {
-    String organizationName;
-    String organizationBillingEmail;
-    boolean organizationFreePlan;
+    private String organizationName;
+    private String organizationBillingEmail;
+    private boolean organizationFreePlan;
 
     public Organization(String organizationName, String organizationBillingEmail, boolean organizationFreePlan) {
         this.organizationName = organizationName;

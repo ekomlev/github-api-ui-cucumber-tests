@@ -9,10 +9,7 @@ import com.google.inject.Inject;
 
 public class GithubSite {
     @Inject
-    PageFactory pageFactory;
-
-
-    public GithubSite() {}
+    private PageFactory pageFactory;
 
     public InitialPage initialPage() {
         return pageFactory.initPage(InitialPage.class);
@@ -69,6 +66,5 @@ public class GithubSite {
     public ProfileSettingsPage profileSettingsPage() {
         return pageFactory.initPage(ProfileSettingsPage.class);
     }
-
 }
 

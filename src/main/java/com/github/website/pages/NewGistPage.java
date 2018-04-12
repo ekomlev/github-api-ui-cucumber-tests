@@ -11,22 +11,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class NewGistPage extends BasePage {
 
-    @FindBy (xpath = "//div[@id='gists']/input[@name='gist[description]']")
+    @FindBy(xpath = "//div[@id='gists']/input[@name='gist[description]']")
     private WebElement gistDescriptionInputfield;
 
-    @FindBy (xpath = "//div[@id='gists']//input[@name='gist[contents][][name]']")
+    @FindBy(xpath = "//div[@id='gists']//input[@name='gist[contents][][name]']")
     private WebElement gistFileNameInputfield;
 
-    @FindBy (xpath = "//div[@class='CodeMirror-code']/div/pre[@class=' CodeMirror-line ']")
+    @FindBy(xpath = "//div[@class='CodeMirror-code']/div/pre[@class=' CodeMirror-line ']")
     private WebElement gistContentInputfield;
 
-    @FindBy (xpath = "//div[@class='form-actions']/button[@type='submit' and contains(text(), 'Create secret gist')]")
+    @FindBy(xpath = "//div[@class='form-actions']/button[@type='submit' and contains(text(), 'Create secret gist')]")
     private WebElement createSecretGistButton;
 
-    @FindBy (xpath = "//div[@class='form-actions']/button[@type='submit' and contains(text(), 'Create public gist')]")
+    @FindBy(xpath = "//div[@class='form-actions']/button[@type='submit' and contains(text(), 'Create public gist')]")
     private WebElement createPublicGistButton;
 
-    @FindBy (xpath = "//li[@class='flex-auto py-3 text-bold text-right f6 lh-condensed']/a[contains(text(), 'See all of your gists')]")
+    @FindBy(xpath = "//li[@class='flex-auto py-3 text-bold text-right f6 lh-condensed']/a[contains(text(), 'See all of your gists')]")
     private WebElement allYourGistsPageLink;
 
     @Inject
@@ -57,8 +57,7 @@ public class NewGistPage extends BasePage {
 
         if (gistPublicAccess) {
             createPublicGistButton.click();
-        }
-        else createSecretGistButton.click();
+        } else createSecretGistButton.click();
     }
 
     private void waitForCreateSecretGistButtonEnabled() {

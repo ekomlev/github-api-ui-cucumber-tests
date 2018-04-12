@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class UserProfileMenu extends BasePage{
+public class UserProfileMenu extends BasePage {
 
     @FindBy(css = "summary[aria-label='View profile and more']")
     WebElement userProfileMenu;

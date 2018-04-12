@@ -1,9 +1,9 @@
 package com.github.entities;
 
 public class Repository {
-    String repositoryName;
-    String repositoryDescription;
-    boolean repositoryPublicAccess;
+    private String repositoryName;
+    private String repositoryDescription;
+    private boolean repositoryPublicAccess;
 
     public Repository(String repositoryName, String repositoryDescription, boolean repositoryPublicAccess) {
         this.repositoryName = repositoryName;
