@@ -36,28 +36,23 @@ public class ProfilePage extends BasePage {
 
 
     public String readActualPublicProfileNameField() {
-       String actualPublicProfileName = actualPublicProfileNameField.getText();
-       return actualPublicProfileName;
+        return actualPublicProfileNameField.getText();
     }
 
     public String readActualPublicProfileBioField() {
-        String actualPublicProfileBio = actualPublicProfileBioField.getText();
-        return actualPublicProfileBio;
+        return actualPublicProfileBioField.getText();
     }
 
     public String readActualPublicProfileUrlField() {
-        String actualPublicProfileUrl = actualPublicProfileUrlField.getText();
-        return actualPublicProfileUrl;
+        return actualPublicProfileUrlField.getText();
     }
 
     public String readActualPublicProfileCompanyField() {
-        String actualPublicProfileCompany = actualPublicProfileCompanyField.getText();
-        return actualPublicProfileCompany;
+        return actualPublicProfileCompanyField.getText();
     }
 
     public String readActualPublicProfileLocationField() {
-        String actualPublicProfileLocation = actualPublicProfileLocationField.getText();
-        return actualPublicProfileLocation;
+        return actualPublicProfileLocationField.getText();
     }
 
 }

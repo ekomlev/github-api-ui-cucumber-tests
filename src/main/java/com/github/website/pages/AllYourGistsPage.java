@@ -30,7 +30,6 @@ public class AllYourGistsPage extends BasePage {
                 return gist;
             }
         }
-
         return null;
     }
 

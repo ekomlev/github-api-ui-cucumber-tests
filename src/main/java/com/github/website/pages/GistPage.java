@@ -44,8 +44,7 @@ public class GistPage extends BasePage {
     }
 
     public String getNameOfOpenedGist() {
-        String gistName = gistNameLink.getText();
-        return gistName;
+        return gistNameLink.getText();
     }
 
     public void saveNewGistComment(String commentText) {
@@ -54,8 +53,6 @@ public class GistPage extends BasePage {
     }
 
     public String getLastCommentText() {
-        String lastGistCommentText = lastGistComment.getText();
-        return lastGistCommentText;
+        return lastGistComment.getText();
     }
-
 }

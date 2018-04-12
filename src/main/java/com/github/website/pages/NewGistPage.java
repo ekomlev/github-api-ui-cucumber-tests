@@ -61,11 +61,11 @@ public class NewGistPage extends BasePage {
         else createSecretGistButton.click();
     }
 
-    public void waitForCreateSecretGistButtonEnabled() {
+    private void waitForCreateSecretGistButtonEnabled() {
         createSecretGistButton.isEnabled();
     }
 
-    public void waitForCreatePublicGistButtonEnabled() {
+    private void waitForCreatePublicGistButtonEnabled() {
         createPublicGistButton.isEnabled();
     }
 
