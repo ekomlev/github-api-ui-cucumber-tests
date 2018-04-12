@@ -1,36 +1,40 @@
 
 package com.github.testcases.stepDefinitions;
 
+import com.github.base.driver.DriverManager;
+import com.github.utils.ScreenshotExecutor;
 import com.google.inject.Inject;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
-public class Hooks {
-    private World world;
+public class Hooks extends BaseStepDef{
+    private DriverManager driverManager;
+    private ScreenshotExecutor screenshotExecutor;
 
     @Inject
-    public Hooks(World world) {
-        this.world = world;
+    public Hooks(DriverManager driverManager, ScreenshotExecutor screenshotExecutor) {
+        this.driverManager = driverManager;
+        this.screenshotExecutor = screenshotExecutor;
     }
 
     @Before(order=0)
     public void beforeScenarioStart(Scenario scenario){
-        world.setUp();
-        world.test(scenario.getName(),"started");
+        driverManager.open();
+        test(scenario.getName(),"started");
     }
 
     @After(order=0)
-    public void afterScenarioFinish(Scenario scenario){
-        world.test(scenario.getName(),"completed");
-        world.tearDown();
+    public void afterScenarioFinish(Scenario scenario) {
+        test(scenario.getName(), "completed");
+        driverManager.reset();
     }
 
     @After(order = 1)
     public void afterScenario(Scenario scenario) throws InterruptedException {
         if (scenario.isFailed()) {
             String screenshotName = scenario.getName().replaceAll(" ", "_");
-            world.error(screenshotName + " screenshot saved : " +  world.takeScreenshot(screenshotName));
+            error(screenshotName + " screenshot saved : " +  screenshotExecutor.takeScreenshot(screenshotName));
         }
     }
 

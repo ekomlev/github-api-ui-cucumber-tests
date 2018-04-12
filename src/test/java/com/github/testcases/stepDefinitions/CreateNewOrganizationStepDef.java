@@ -1,5 +1,8 @@
 package com.github.testcases.stepDefinitions;
 
+import com.github.base.driver.DriverManager;
+import com.github.entities.User;
+import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
@@ -10,66 +13,75 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewOrganization.feature")
-public class CreateNewOrganizationStepDef {
-    private World world;
+public class CreateNewOrganizationStepDef extends BaseStepDef{
+    private GithubSite github;
+    private String currentDriverUrl;
+    private String organizationName;
+    private String organizationBillingEmail;
+    private boolean organizationFreePlan;
+
 
     @Inject
-    public CreateNewOrganizationStepDef (World world) {
-        this.world = world;
+    public CreateNewOrganizationStepDef (User user, GithubSite github, DriverManager driverManager) {
+        this.github = github;
+        this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
+        this.organizationName = user.getUserOrganization().getOrganizationName();
+        this.organizationBillingEmail = user.getUserOrganization().getOrganizationBillingEmail();
+        this.organizationFreePlan = user.getUserOrganization().getOrganizationFreePlan();
     }
 
     @Given("^organization with required name is not created$")
     public void checkNewOrganizationIsNotCreated() {
-        world.step(1, "Open organization menu");
-        world.github.homePage().expandAccountSwitcher();
-        world.github.homePage().waitForExpandedAccountSwitcher();
+        step(1, "Open organization menu");
+        github.homePage().expandAccountSwitcher();
+        github.homePage().waitForExpandedAccountSwitcher();
 
-        world.step(2, "Open organizations manage page");
-        world.github.homePage().openOrganizations();
-        world.github.organizationsPage().waitForOrganizationsList();
+        step(2, "Open organizations manage page");
+        github.homePage().openOrganizations();
+        github.organizationsPage().waitForOrganizationsList();
 
-        world.step(3, "Check if organization is exist with required name");
-        WebElement checkOrganization = world.github.organizationsPage().createdOrganizationAlreadyExists(world.organizationName);
+        step(3, "Check if organization is exist with required name");
+        WebElement checkOrganization = github.organizationsPage().createdOrganizationAlreadyExists(organizationName);
         if (checkOrganization != null) {
-            world.subStep("3.1", "Enter existing organization");
-            world.github.organizationsPage().enterExistingOrganization(checkOrganization);
-            world.github.organizationsPage().waitForOrganizationNavigationMenu();
-            world.github.organizationsPage().openOrganizationSettings();
-            world.github.organizationsPage().waitForOrganizationSettings();
-            world.subStep("3.2", "Delete existing organization");
-            world.github.organizationsPage().deleteExistingOrganization(world.organizationName);
+            subStep("3.1", "Enter existing organization");
+            github.organizationsPage().enterExistingOrganization(checkOrganization);
+            github.organizationsPage().waitForOrganizationNavigationMenu();
+            github.organizationsPage().openOrganizationSettings();
+            github.organizationsPage().waitForOrganizationSettings();
+            subStep("3.2", "Delete existing organization");
+            github.organizationsPage().deleteExistingOrganization(organizationName);
         }
-        Assert.assertTrue(world.github.homePage().createdRepositoryAlreadyExists(world.organizationName) == null);
+        Assert.assertTrue(github.homePage().createdRepositoryAlreadyExists(organizationName) == null);
     }
 
     @When("^user create new organization via menu \"Create new\"$")
     public void createNewOrganization() {
-        world.step(4, "Open menu for creation new entity");
-        world.github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
-        world.github.creationNewEntityMenu().openCreationNewEntityMenu();
+        step(4, "Open menu for creation new entity");
+        github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        github.creationNewEntityMenu().openCreationNewEntityMenu();
 
-        world.step(5, "Open new organization page");
-        world.github.creationNewEntityMenu().waitForCreationNewEntityMenu();
-        world.github.creationNewEntityMenu().openNewOrganizationPage();
+        step(5, "Open new organization page");
+        github.creationNewEntityMenu().waitForCreationNewEntityMenu();
+        github.creationNewEntityMenu().openNewOrganizationPage();
 
-        world.step(6, "Save new organization");
-        world.github.newOrganizationPage().waitForNewOrganizationForm();
-        world.github.newOrganizationPage().saveNewOrganization(world.organizationName, world.organizationBillingEmail, world.organizationFreePlan);
+        step(6, "Save new organization");
+        github.newOrganizationPage().waitForNewOrganizationForm();
+        github.newOrganizationPage().saveNewOrganization(organizationName, organizationBillingEmail, organizationFreePlan);
 
-        world.github.newOrganizationPage().waitForFinishButton();
-        world.github.newOrganizationPage().clickFinishButton();
+        github.newOrganizationPage().waitForFinishButton();
+        github.newOrganizationPage().clickFinishButton();
     }
 
     @Then("^user can see opened page of created organization$")
     public void checkCreatedNewOrganizationPage() {
-        world.check("Check if  page of new created organization is opened");
-        world.github.organizationsPage().waitForOrganizationContent();
+        check("Check if  page of new created organization is opened");
+        github.organizationsPage().waitForOrganizationContent();
 
     }
 
     @And("^url contains the name of created organization$")
     public void checkRepositoryPageUrl() {
-        world.check("Check if url contains the name of created organization");
-        Assert.assertTrue(world.driverManager.getDriver().getCurrentUrl().contains(world.organizationName));
+        check("Check if url contains the name of created organization");
+        Assert.assertTrue(currentDriverUrl.contains(organizationName));
     }
 }

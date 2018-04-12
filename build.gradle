@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 repositories {
     mavenCentral()
-    maven { setUrl ("http://dl.bintray.com/epam/reportportal") }
+    maven { setUrl("http://dl.bintray.com/epam/reportportal") }
 
 }
 
@@ -29,8 +29,8 @@ jar {
 defaultTasks 'clean', 'test'
 
 dependencies {
-            // TestNG
-            compile "org.testng:testng:${testngVersion}",
+    // TestNG
+    compile "org.testng:testng:${testngVersion}",
 
             // Drivers
             "org.seleniumhq.selenium:selenium-chrome-driver:${seleniumVersion}",
@@ -71,8 +71,8 @@ test {
         options.suites 'src/test/resources/testng.xml'
     }
 
-    systemProperty 'tst.pr', System.getProperty("tst.pr")?:"test.properties"
-    systemProperty 'wdr.pr', System.getProperty("wdr.pr")?:"./webdrivers/chromedriver.exe"
+    systemProperty 'tst.pr', System.getProperty("tst.pr") ?: "test.properties"
+    systemProperty 'wdr.pr', System.getProperty("wdr.pr") ?: "./webdrivers/chromedriver.exe"
 }
 
 

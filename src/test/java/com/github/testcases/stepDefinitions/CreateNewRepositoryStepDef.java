@@ -1,5 +1,8 @@
 package com.github.testcases.stepDefinitions;
 
+import com.github.base.driver.DriverManager;
+import com.github.entities.User;
+import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.And;
@@ -10,56 +13,64 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewRepository.feature")
-public class CreateNewRepositoryStepDef {
-    private World world;
+public class CreateNewRepositoryStepDef extends BaseStepDef{
+    private GithubSite github;
+    private String currentDriverUrl;
+    private String repositoryName;
+    private String repositoryDescription;
+    private boolean repositoryPublicAccess;
 
     @Inject
-    public CreateNewRepositoryStepDef (World world) {
-        this.world = world;
+    public CreateNewRepositoryStepDef (User user, GithubSite github, DriverManager driverManager) {
+        this.github = github;
+        this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
+        this.repositoryName = user.getUserRepository().getRepositoryName();
+        this.repositoryDescription = user.getUserRepository().getRepositoryName();
+        this.repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
     }
 
 
     @Given("^repository with required name is not created$")
     public void checkNewRepositoryIsNotCreated() {
-        world.step(1, "Check if repository is exist with required name");
-        WebElement checkRepository = world.github.homePage().createdRepositoryAlreadyExists(world.repositoryName);
+        step(1, "Check if repository is exist with required name");
+        WebElement checkRepository = github.homePage().createdRepositoryAlreadyExists(repositoryName);
         if (checkRepository != null) {
-            world.subStep("1.1", "Enter existing repository");
-            world.github.homePage().enterExistingRepository(checkRepository);
-            world.github.repositoryPage().openRepositorySettings();
-            world.github.repositoryPage().waitForRepositorySettings();
-            world.subStep("1.2", "Delete existing repository");
-            world.github.repositoryPage().deleteExistingRepository(world.repositoryName);
+            subStep("1.1", "Enter existing repository");
+            github.homePage().enterExistingRepository(checkRepository);
+            github.repositoryPage().openRepositorySettings();
+            github.repositoryPage().waitForRepositorySettings();
+            subStep("1.2", "Delete existing repository");
+            github.repositoryPage().deleteExistingRepository(repositoryName);
         }
-        Assert.assertTrue(world.github.homePage().createdRepositoryAlreadyExists(world.repositoryName) == null);
+        Assert.assertNull(github.homePage().createdRepositoryAlreadyExists(repositoryName));
     }
 
     @When("^user create new repository via menu \"Create new\"$")
     public void createNewRepository() {
-        world.step(2, "Open menu for creation new entity");
-        world.github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
-        world.github.creationNewEntityMenu().openCreationNewEntityMenu();
+        step(2, "Open menu for creation new entity");
+        github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        github.creationNewEntityMenu().openCreationNewEntityMenu();
 
-        world.step(3, "Open new repository page");
-        world.github.creationNewEntityMenu().waitForCreationNewEntityMenu();
-        world.github.creationNewEntityMenu().openNewRepositoryPage();
+        step(3, "Open new repository page");
+        github.creationNewEntityMenu().waitForCreationNewEntityMenu();
+        github.creationNewEntityMenu().openNewRepositoryPage();
 
-        world.github.newRepositoryPage().waitForNewRepositoryForm();
+        github.newRepositoryPage().waitForNewRepositoryForm();
 
-        world.step(4, "Save new repository");
-        world.github.newRepositoryPage().saveNewRepository(world.repositoryName, world.repositoryDescription, world.repositoryPublicAccess);
+        step(4, "Save new repository");
+        github.newRepositoryPage().saveNewRepository(repositoryName, repositoryDescription, repositoryPublicAccess);
     }
 
     @Then("^user can see the opened page of created repository$")
     public void checkCreatedNewRepositoryPage() {
-        world.check("Check if page of new created repository is opened");
-        world.github.repositoryPage().waitForRepositoryContent();
+        check("Check if page of new created repository is opened");
+        github.repositoryPage().waitForRepositoryContent();
 
     }
 
     @And("^url contains the name of created repository$")
     public void checkRepositoryPageUrl() {
-        world.check("Check if url contains the name of created repository");
-        Assert.assertTrue(world.driverManager.getDriver().getCurrentUrl().contains(world.repositoryName));
+        check("Check if url contains the name of created repository");
+        Assert.assertTrue(currentDriverUrl.contains(repositoryName));
     }
 }

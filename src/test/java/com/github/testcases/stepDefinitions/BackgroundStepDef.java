@@ -1,28 +1,31 @@
 package com.github.testcases.stepDefinitions;
 
+import com.github.entities.User;
+import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
 
 @CucumberOptions(features = "features")
-public class BackgroundStepDef {
-    private World world;
+public class BackgroundStepDef extends BaseStepDef{
+    private GithubSite github;
+    private String userName;
+    private String userPassword;
 
     @Inject
-    public BackgroundStepDef(World world) {
-        this.world = world;
+    public BackgroundStepDef(User user, GithubSite github) {
+        this.github = github;
+        this.userName = user.getUserName();
+        this.userPassword = user.getUserPassword();
     }
 
     @Given("^user is signed into github home page$")
     public void sign_in() {
-        world.github.initialPage().clickSignInLink();
-        world.github.loginPage().waitForAuthorizationForm();
+        github.initialPage().clickSignInLink();
+        github.loginPage().waitForAuthorizationForm();
 
-        String userName = world.user.getUserName();
-        String userPassword = world.user.getUserPassword();
+        github.loginPage().fillInAuthorizationForm(userName, userPassword);
 
-        world.github.loginPage().fillInAuthorizationForm(userName, userPassword);
-
-        world.github.loginPage().clickSignInButton();
+        github.loginPage().clickSignInButton();
     }
 }

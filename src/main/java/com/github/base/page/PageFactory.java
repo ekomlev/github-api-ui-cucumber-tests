@@ -7,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 
 public class PageFactory {
     @Inject
-    DriverManager driverManager;
+    private DriverManager driverManager;
 
     public <P extends BasePage> P initPage(Class<P> classElement) {
         P page = null;
