@@ -10,15 +10,16 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 ext {
-    testngVersion = '6.14.2'
-    seleniumVersion = '3.11.0'
+    testngVersion       = '6.14.2'
+    seleniumVersion     = '3.11.0'
+    gsonVersion         = '2.8.2'
     reportPortalVersion = '4.0.1'
-    lo4jVersion = '2.8.1'
-    slf4jVersion = '1.8.0-beta1'
-    apachVersion = '1.3.2'
-    jodatimeVersion = '2.9.9'
-    cucumberVersion = '2.4.0'
-    guiceVersion = '4.2.0'
+    lo4jVersion         = '2.8.1'
+    slf4jVersion        = '1.8.0-beta1'
+    apachVersion        = '1.3.2'
+    jodatimeVersion     = '2.9.9'
+    cucumberVersion     = '2.4.0'
+    guiceVersion        = '4.2.0'
 }
 
 jar {
@@ -39,6 +40,9 @@ dependencies {
 
             // Selenium support
             "org.seleniumhq.selenium:selenium-support:${seleniumVersion}",
+
+            //Gson
+            "com.google.code.gson:gson:${gsonVersion}",
 
             // Report Portal
             "com.epam.reportportal:agent-java-testng:${reportPortalVersion}",
