@@ -6,7 +6,7 @@ import com.github.utils.PropertyProvider;
 import com.github.utils.UserProvider;
 import com.github.utils.WebProvider;
 import com.github.website.GithubSite;
-import com.github.base.page.PageFactory;
+import com.github.website.base.PageFactory;
 import com.google.inject.*;
 import com.google.inject.name.Names;
 import cucumber.api.guice.CucumberModules;

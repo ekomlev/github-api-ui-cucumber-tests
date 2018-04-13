@@ -1,6 +1,6 @@
 package com.github.website.pages;
 
-import com.github.base.page.BasePage;
+import com.github.website.base.BasePage;
 import com.github.base.driver.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
@@ -76,5 +76,4 @@ public class ProfileSettingsPage extends BasePage {
     public void openProfilePage() {
         viewProfileLink.click();
     }
-
 }

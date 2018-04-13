@@ -2,7 +2,7 @@ package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
-import com.github.testcases.reporter.TestReporter;
+import com.github.testcases.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewRepository.feature")
-public class CreateNewRepositoryStepDef extends TestReporter {
+public class CreateNewRepositoryStepDef extends BaseStep {
     private GithubSite github;
     private String currentDriverUrl;
     private String repositoryName;
@@ -52,7 +52,7 @@ public class CreateNewRepositoryStepDef extends TestReporter {
         github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
         github.creationNewEntityMenu().openCreationNewEntityMenu();
 
-        step(3, "Open new repository page");
+        step(3, "Open new repository base");
         github.creationNewEntityMenu().waitForCreationNewEntityMenu();
         github.creationNewEntityMenu().openNewRepositoryPage();
 
@@ -64,7 +64,7 @@ public class CreateNewRepositoryStepDef extends TestReporter {
 
     @Then("^user can see the opened page of created repository$")
     public void checkCreatedNewRepositoryPage() {
-        check("Check if page of new created repository is opened");
+        check("Check if base of new created repository is opened");
         github.repositoryPage().waitForRepositoryContent();
 
     }

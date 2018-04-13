@@ -1,5 +1,7 @@
 package com.github.utils;
 
+import com.github.logging.BaseLogger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.util.Properties;
 
 public class PropertyProvider {
     private Properties properties = new Properties();
+    private BaseLogger baseLogger = new BaseLogger();
 
     public PropertyProvider(final String resourceName) {
         properties = appendFromResource(properties, resourceName);
@@ -23,7 +26,7 @@ public class PropertyProvider {
                 objProperties.load(inStream);
                 inStream.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException();
             }
         } else
             try {
@@ -31,8 +34,9 @@ public class PropertyProvider {
                 objProperties.load(fileInStream);
                 fileInStream.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new RuntimeException();
             }
+        baseLogger.info("Properties are initiated");
         return objProperties;
     }
 

@@ -1,14 +1,14 @@
 package com.github.testcases.stepDefinitions;
 
 import com.github.entities.User;
-import com.github.testcases.reporter.TestReporter;
+import com.github.testcases.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
 import cucumber.api.java.en.Given;
 
 @CucumberOptions(features = "features")
-public class BackgroundStepDef extends TestReporter {
+public class BackgroundStepDef extends BaseStep {
     private GithubSite github;
     private String userName;
     private String userPassword;

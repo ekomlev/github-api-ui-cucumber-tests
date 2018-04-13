@@ -2,14 +2,14 @@
 package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
-import com.github.testcases.reporter.TestReporter;
+import com.github.testcases.base.BaseStep;
 import com.github.utils.ScreenshotExecutor;
 import com.google.inject.Inject;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
-public class Hooks extends TestReporter {
+public class Hooks extends BaseStep {
     private DriverManager driverManager;
     private ScreenshotExecutor screenshotExecutor;
 

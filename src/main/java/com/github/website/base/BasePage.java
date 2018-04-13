@@ -1,4 +1,4 @@
-package com.github.base.page;
+package com.github.website.base;
 
 import com.github.base.driver.DriverManager;
 import com.github.logging.LoggerInstanceProvider;

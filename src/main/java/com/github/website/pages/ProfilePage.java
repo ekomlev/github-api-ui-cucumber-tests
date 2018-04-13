@@ -1,6 +1,6 @@
 package com.github.website.pages;
 
-import com.github.base.page.BasePage;
+import com.github.website.base.BasePage;
 import com.github.base.driver.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
@@ -34,7 +34,6 @@ public class ProfilePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='h-card col-3 float-left pr-3']")));
     }
 
-
     public String readActualPublicProfileNameField() {
         return actualPublicProfileNameField.getText();
     }
@@ -54,5 +53,4 @@ public class ProfilePage extends BasePage {
     public String readActualPublicProfileLocationField() {
         return actualPublicProfileLocationField.getText();
     }
-
 }

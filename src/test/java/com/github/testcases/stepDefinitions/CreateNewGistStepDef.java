@@ -1,7 +1,7 @@
 package com.github.testcases.stepDefinitions;
 
 import com.github.entities.User;
-import com.github.testcases.reporter.TestReporter;
+import com.github.testcases.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -11,7 +11,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewGist.feature")
-public class CreateNewGistStepDef extends TestReporter {
+public class CreateNewGistStepDef extends BaseStep {
     private GithubSite github;
     private String gistFile;
     private String gistDescription;
@@ -45,7 +45,7 @@ public class CreateNewGistStepDef extends TestReporter {
 
     @Then("^user can see opened page of created gist$")
     public void checkCreatedNewGist() {
-        check("Check if  page of new created gist is opened");
+        check("Check if  base of new created gist is opened");
         github.gistPage().waitForGistContent();
 
     }

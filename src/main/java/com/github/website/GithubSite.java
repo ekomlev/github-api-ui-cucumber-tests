@@ -1,6 +1,7 @@
 package com.github.website;
 
-import com.github.base.page.PageFactory;
+import com.github.logging.BaseLogger;
+import com.github.website.base.PageFactory;
 import com.github.website.components.CreationNewEntityMenu;
 import com.github.website.components.UserProfileMenu;
 import com.github.website.pages.*;
@@ -10,6 +11,11 @@ import com.google.inject.Inject;
 public class GithubSite {
     @Inject
     private PageFactory pageFactory;
+    private BaseLogger logger = new BaseLogger();
+
+    GithubSite() {
+        logger.info("GithubSite instance is initiated");
+    }
 
     public InitialPage initialPage() {
         return pageFactory.initPage(InitialPage.class);

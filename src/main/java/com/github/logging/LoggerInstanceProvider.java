@@ -9,6 +9,6 @@ public class LoggerInstanceProvider {
     }
 
     public static Logger getLogger(final Class<?> clazz) {
-        return LogManager.getLogger();
+        return LogManager.getLogger(clazz); //logger id ()
     }
 }

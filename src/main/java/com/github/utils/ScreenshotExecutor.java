@@ -14,9 +14,9 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.io.IOException;
 
-public class ScreenshotExecutor extends BaseLogger {
+public class ScreenshotExecutor {
     private WebDriver webDriver;
-//    private Logger logger = LoggerInstanceProvider.getLogger(ScreenshotExecutor.class);
+    private BaseLogger logger = new BaseLogger();
 
     @Inject
     public ScreenshotExecutor(DriverManager driverManager) {
@@ -29,7 +29,7 @@ public class ScreenshotExecutor extends BaseLogger {
             File source = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
             path = "./output/screenshots/" + screenshotName + "_" + getTimeMark() + ".png";
             FileUtils.copyFile(source, new File(path));
-            info("RP_MESSAGE#FILE#{}#{}", path, "screenshot on error");
+            logger.info("RP_MESSAGE#FILE#{}#{}", path, "screenshot on error");
         } catch (IOException e) {
             path = "Failed to capture screenshot" + e.getMessage();
         }

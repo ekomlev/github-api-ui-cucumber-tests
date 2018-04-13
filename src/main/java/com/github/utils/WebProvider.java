@@ -1,6 +1,7 @@
 package com.github.utils;
 
 import com.github.base.driver.BrowserType;
+import com.github.logging.BaseLogger;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class WebProvider implements Provider<WebDriver> {
     private final String KEY_BROWSER_TYPE = "environment.variables.browser";
     private final String KEY_PAGE_LOAD_TIMEOUT = "test.variables.default.pageLoadTimeout";
     private final String KEY_IMPLICITLY_WAIT_TIME = "test.variables.default.implicitlyWaitTime";
+    private BaseLogger logger = new BaseLogger();
 
     @Inject
     WebProvider(Properties props) {
@@ -41,6 +43,7 @@ public class WebProvider implements Provider<WebDriver> {
             default:
                 return createChromeDriver();
         }
+
     }
 
     private WebDriver createChromeDriver() {
@@ -60,6 +63,7 @@ public class WebProvider implements Provider<WebDriver> {
         System.setProperty(CHROMEDRIVER, KEY_DRIVER_PATH);
         WebDriver webDriver = new ChromeDriver(options);
         setTimeProperties(webDriver);
+        logger.info("ChromeDriver is initiated");
         return webDriver;
     }
 
@@ -73,6 +77,7 @@ public class WebProvider implements Provider<WebDriver> {
         System.setProperty(GECKODRIVER, KEY_DRIVER_PATH);
         WebDriver webDriver = new FirefoxDriver(ffOptions);
         setTimeProperties(webDriver);
+        logger.info("FirefoxDriver is initiated");
         return webDriver;
     }
 
@@ -81,7 +86,6 @@ public class WebProvider implements Provider<WebDriver> {
         webDriver.manage().timeouts().pageLoadTimeout(Long.parseLong(pageLoadTimeout), TimeUnit.SECONDS);
     }
 
-
     /*private void highlightElement (By locator) {
         ((JavascriptExecutor) DRIVER).executeScript("arguments[0].style.border='5px solid green'", DRIVER.get().findElement(locator));
     }
@@ -89,6 +93,5 @@ public class WebProvider implements Provider<WebDriver> {
     private void unHighlightElement (By locator) {
         ((JavascriptExecutor) DRIVER).executeScript("arguments[0].style.border='0px'", DRIVER.get().findElement(locator));
     }*/
-
 }
 

@@ -1,4 +1,4 @@
-package com.github.base.page;
+package com.github.website.base;
 
 import com.github.base.driver.DriverManager;
 import com.google.inject.Inject;
@@ -15,10 +15,8 @@ public class PageFactory {
             page = classElement
                     .getConstructor(DriverManager.class)
                     .newInstance(driverManager);
-        } catch (IllegalAccessException | NoSuchMethodException | InstantiationException e) {
+        } catch (IllegalAccessException | NoSuchMethodException | InstantiationException | InvocationTargetException e) {
             throw new RuntimeException();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         }
         return page;
     }

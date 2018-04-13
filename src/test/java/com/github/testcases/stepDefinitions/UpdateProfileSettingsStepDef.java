@@ -2,7 +2,7 @@ package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
-import com.github.testcases.reporter.TestReporter;
+import com.github.testcases.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -13,7 +13,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/UpdateProfileSettings.feature")
-public class UpdateProfileSettingsStepDef extends TestReporter {
+public class UpdateProfileSettingsStepDef extends BaseStep {
     private GithubSite github;
     private String expectedPublicProfileName;
     private String expectedGithubUrl;
@@ -43,7 +43,7 @@ public class UpdateProfileSettingsStepDef extends TestReporter {
         github.userProfileMenu().openUserProfileMenu();
         github.userProfileMenu().waitForUserProfileMenu();
 
-        step(2, "Open settings page");
+        step(2, "Open settings base");
         github.userProfileMenu().openProfileSettingsPage();
         github.profileSettingsPage().waitForPublicProfileForm();
     }
@@ -94,7 +94,7 @@ public class UpdateProfileSettingsStepDef extends TestReporter {
 
         String actualPublicProfileName = github.profilePage().readActualPublicProfileNameField();
 
-        check("Check new User Name on the Profile page");
+        check("Check new User Name on the Profile base");
         Assert.assertEquals(actualPublicProfileName, expectedPublicProfileName);
     }
 
@@ -107,7 +107,7 @@ public class UpdateProfileSettingsStepDef extends TestReporter {
 
         String actualPublicProfileBio = github.profilePage().readActualPublicProfileBioField();
 
-        check("Check new User Bio on the Profile page");
+        check("Check new User Bio on the Profile base");
         Assert.assertEquals(actualPublicProfileBio, expectedPublicProfileBio);
     }
 
@@ -120,7 +120,7 @@ public class UpdateProfileSettingsStepDef extends TestReporter {
 
         String actualPublicProfileUrl = github.profilePage().readActualPublicProfileUrlField();
 
-        check("Check new User Url on the Profile page");
+        check("Check new User Url on the Profile base");
         Assert.assertEquals(actualPublicProfileUrl, expectedPublicProfileUrl);
     }
 
@@ -133,7 +133,7 @@ public class UpdateProfileSettingsStepDef extends TestReporter {
 
         String actualPublicProfileCompany = github.profilePage().readActualPublicProfileCompanyField();
 
-        check("Check new User Company on the Profile page");
+        check("Check new User Company on the Profile base");
         Assert.assertEquals(actualPublicProfileCompany, expectedPublicProfileCompany);
     }
 
@@ -146,7 +146,7 @@ public class UpdateProfileSettingsStepDef extends TestReporter {
 
         String actualPublicProfileLocation = github.profilePage().readActualPublicProfileLocationField();
 
-        check("Check new User Location on the Profile page");
+        check("Check new User Location on the Profile base");
         Assert.assertEquals(actualPublicProfileLocation, expectedPublicProfileLocation);
     }
 }

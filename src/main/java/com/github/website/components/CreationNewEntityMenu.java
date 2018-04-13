@@ -1,6 +1,6 @@
 package com.github.website.components;
 
-import com.github.base.page.BasePage;
+import com.github.website.base.BasePage;
 import com.github.base.driver.DriverManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
@@ -11,16 +11,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class CreationNewEntityMenu extends BasePage {
 
     @FindBy(css = "summary[aria-label~='Create']")
-    WebElement creationNewEntityMenu;
+    private WebElement creationNewEntityMenu;
 
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New repository')]")
-    WebElement newRepositoryMenuItemLink;
+    private WebElement newRepositoryMenuItemLink;
 
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New organization')]")
-    WebElement newOrganizationMenuItemLink;
+    private WebElement newOrganizationMenuItemLink;
 
     @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New gist')]")
-    WebElement newGistMenuItemLink;
+    private WebElement newGistMenuItemLink;
 
     @Inject
     public CreationNewEntityMenu(DriverManager driverManager) {

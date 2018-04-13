@@ -2,7 +2,7 @@ package com.github.testcases.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
-import com.github.testcases.reporter.TestReporter;
+import com.github.testcases.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewOrganization.feature")
-public class CreateNewOrganizationStepDef extends TestReporter {
+public class CreateNewOrganizationStepDef extends BaseStep {
     private GithubSite github;
     private String currentDriverUrl;
     private String organizationName;
@@ -37,7 +37,7 @@ public class CreateNewOrganizationStepDef extends TestReporter {
         github.homePage().expandAccountSwitcher();
         github.homePage().waitForExpandedAccountSwitcher();
 
-        step(2, "Open organizations manage page");
+        step(2, "Open organizations manage base");
         github.homePage().openOrganizations();
         github.organizationsPage().waitForOrganizationsList();
 
@@ -61,7 +61,7 @@ public class CreateNewOrganizationStepDef extends TestReporter {
         github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
         github.creationNewEntityMenu().openCreationNewEntityMenu();
 
-        step(5, "Open new organization page");
+        step(5, "Open new organization base");
         github.creationNewEntityMenu().waitForCreationNewEntityMenu();
         github.creationNewEntityMenu().openNewOrganizationPage();
 
@@ -75,7 +75,7 @@ public class CreateNewOrganizationStepDef extends TestReporter {
 
     @Then("^user can see opened page of created organization$")
     public void checkCreatedNewOrganizationPage() {
-        check("Check if  page of new created organization is opened");
+        check("Check if  base of new created organization is opened");
         github.organizationsPage().waitForOrganizationContent();
 
     }
