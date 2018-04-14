@@ -4,9 +4,6 @@ out
 *.bat
 *.exe
 
-chromedriver
-
-
 # Gradle template
 gradle
 .gradle
