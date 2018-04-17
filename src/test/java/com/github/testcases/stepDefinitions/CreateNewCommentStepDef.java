@@ -32,7 +32,7 @@ public class CreateNewCommentStepDef extends BaseStep {
         github.userProfileMenu().openUserProfileMenu();
         github.userProfileMenu().waitForUserProfileMenu();
 
-        step(2, "Open gist base");
+        step(2, "Open gist page");
         github.userProfileMenu().openYourGistPage();
         github.newGistPage().waitForGistHeadOfNewGistPage();
 

@@ -21,7 +21,6 @@ public class CreateNewOrganizationStepDef extends BaseStep {
     private String organizationBillingEmail;
     private boolean organizationFreePlan;
 
-
     @Inject
     public CreateNewOrganizationStepDef(User user, GithubSite github, DriverManager driverManager) {
         this.github = github;
@@ -52,7 +51,7 @@ public class CreateNewOrganizationStepDef extends BaseStep {
             subStep("3.2", "Delete existing organization");
             github.organizationsPage().deleteExistingOrganization(organizationName);
         }
-        Assert.assertTrue(github.homePage().createdRepositoryAlreadyExists(organizationName) == null);
+        Assert.assertNull(github.homePage().createdRepositoryAlreadyExists(organizationName));
     }
 
     @When("^user create new organization via menu \"Create new\"$")

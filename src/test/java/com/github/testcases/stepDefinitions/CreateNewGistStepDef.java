@@ -34,7 +34,7 @@ public class CreateNewGistStepDef extends BaseStep {
         github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
         github.creationNewEntityMenu().openCreationNewEntityMenu();
 
-        step(2, "Create new gist");
+        step(2, "Open new gist page");
         github.creationNewEntityMenu().waitForCreationNewEntityMenu();
         github.creationNewEntityMenu().openNewGistPage();
 
