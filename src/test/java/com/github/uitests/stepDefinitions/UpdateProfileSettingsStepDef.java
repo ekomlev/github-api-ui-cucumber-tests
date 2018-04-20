@@ -1,8 +1,8 @@
-package com.github.testcases.stepDefinitions;
+package com.github.uitests.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
-import com.github.testcases.base.BaseStep;
+import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -30,7 +30,7 @@ public class UpdateProfileSettingsStepDef extends BaseStep {
         this.expectedGithubUrl = driverManager.getGithubUrl() + "/" + user.getUserName();
         this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
         this.expectedPublicProfileBio = user.getUserPublicProfile().getPublicProfileBio();
-        this.expectedPublicProfileUrl = "http://" + user.getUserPublicProfile().getPublicProfileUrl();
+        this.expectedPublicProfileUrl = user.getUserPublicProfile().getPublicProfileBlogUrl();
         this.expectedPublicProfileCompany = user.getUserPublicProfile().getPublicProfileCompany();
         this.expectedPublicProfileLocation = user.getUserPublicProfile().getPublicProfileLocation();
 

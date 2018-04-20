@@ -1,8 +1,8 @@
-package com.github.testcases.stepDefinitions;
+package com.github.uitests.stepDefinitions;
 
 import com.github.base.driver.DriverManager;
 import com.github.entities.User;
-import com.github.testcases.base.BaseStep;
+import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -27,7 +27,7 @@ public class CreateNewRepositoryStepDef extends BaseStep {
         this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
         this.repositoryName = user.getUserRepository().getRepositoryName();
         this.repositoryDescription = user.getUserRepository().getRepositoryName();
-        this.repositoryPublicAccess = user.getUserRepository().getRepositoryPublicAccess();
+        this.repositoryPublicAccess = user.getUserRepository().isRepositoryPrivateAccess();
     }
 
 

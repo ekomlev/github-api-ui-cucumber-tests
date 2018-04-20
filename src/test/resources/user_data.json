@@ -1,31 +1,40 @@
 {
-   "userName":"Eduard-test",
-   "userEmail":"uplink.qq@gmail.com",
-   "userPassword":"5v6b%V^B",
-   "userPublicProfile": {
-		"publicProfileName": "Eduard-profile-name",
-		"publicProfileBio": "Some necessary information about user",
-		"publicProfileUrl": "profileurl.com",
-		"publicProfileCompany": "Company 1",
-		"publicProfileLocation": "Belarus"
-		},
-	"userRepository": {
-		"repositoryName": "test_repository",
-		"repositoryDescription": "Some necessary information about repository",
-		"repositoryPublicAccess": "true"
-		},
-	"userOrganization": {
-		"organizationName": "Organization-xq",
-		"organizationBillingEmail": "organization-xq@mail.org",
-		"organizationFreePlan": "true"
-		},
-	"userGist": {
-		"gistFile": "filegist.txt",
-		"gistDescription": "Some description about this file",
-		"gistContent": "some text in this gist",
-		"gistPublicAccess": "true"
-		},
-	"userComment": {
-		"commentText": "test comment"
-		}
+  "userName": "Eduard-test",
+  "userEmail": "uplink.qq@gmail.com",
+  "userPassword": "5v6b%V^B",
+  "userPublicProfile": {
+    "name": "Eduard profileName",
+    "email": "uplink.qq@gmail.com",
+    "blog": "https://blog-url.com",
+    "company": "Company Test",
+    "location": "Belarus",
+    "hireable": true,
+    "bio": "Some necessary information about user"
+  },
+  "userRepository": {
+    "name": "test_repository",
+    "description": "Some necessary information about repository",
+    "homepage": "https://github.com",
+    "private": false,
+    "has_issues": true,
+    "has_projects": true,
+    "has_wiki": true
+  },
+  "userOrganization": {
+    "organizationName": "Organization-xq",
+    "organizationBillingEmail": "organization-xq@mail.org",
+    "organizationFreePlan": "true"
+  },
+  "userGist": {
+    "description": "Some description about this file",
+    "public": "true",
+    "files": {
+      "filegist.txt": {
+        "content": "some text in this gist"
+      }
+    }
+  },
+  "userComment": {
+    "body": "test comment text"
+  }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Smoke Api test suite" verbose="1">
+<test name="Get availability of api server">
+    <classes>
+        <class name="com.github.apitests.CheckServiceAvailabilityApiTest"/>
+    </classes>
+</test>
+<test name="Create new gist">
+    <classes>
+        <class name="com.github.apitests.CreateNewGistApiTest"/>
+    </classes>
+</test>
+<test name="Create new comment">
+    <classes>
+        <class name="com.github.apitests.CreateNewCommentApiTest"/>
+    </classes>
+</test>
+<test name="Check organization is exist">
+    <classes>
+        <class name="com.github.apitests.CheckOrganizationExistenceApiTest"/>
+    </classes>
+</test>
+<test name="Create new repository">
+    <classes>
+        <class name="com.github.apitests.CreateNewRepositoryApiTest"/>
+    </classes>
+</test>
+<test name="Update profile settings">
+    <classes>
+        <class name="com.github.apitests.UpdateProfileSettingsApiTest"/>
+    </classes>
+</test>
+</suite>

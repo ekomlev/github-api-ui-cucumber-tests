@@ -1,7 +1,7 @@
-package com.github.testcases.stepDefinitions;
+package com.github.uitests.stepDefinitions;
 
 import com.github.entities.User;
-import com.github.testcases.base.BaseStep;
+import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -15,13 +15,13 @@ import org.testng.Assert;
 @CucumberOptions(features = "features/CreateNewComment.feature")
 public class CreateNewCommentStepDef extends BaseStep {
     private GithubSite github;
-    private String gistFile;
+    private String gistFileName;
     private String commentText;
 
     @Inject
     public CreateNewCommentStepDef(User user, GithubSite github) {
         this.github = github;
-        this.gistFile = user.getUserGist().getGistFile();
+        this.gistFileName = user.getUserGist().getGistFile().entrySet().iterator().next().getKey();
         this.commentText = user.getUserComment().getCommentText();
     }
 
@@ -44,7 +44,7 @@ public class CreateNewCommentStepDef extends BaseStep {
     @When("^user enters to existing gist$")
     public void createNewComment() {
         step(4, "Enter to gist if it exists");
-        WebElement checkGist = github.allYourGistsPage().gistIsExist(gistFile);
+        WebElement checkGist = github.allYourGistsPage().gistIsExist(gistFileName);
         if (checkGist != null) {
             github.allYourGistsPage().openGist(checkGist);
         }

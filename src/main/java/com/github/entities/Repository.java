@@ -1,14 +1,35 @@
 package com.github.entities;
 
-public class Repository {
-    private String repositoryName;
-    private String repositoryDescription;
-    private boolean repositoryPublicAccess;
+import com.google.gson.annotations.SerializedName;
 
-    public Repository(String repositoryName, String repositoryDescription, boolean repositoryPublicAccess) {
+public class Repository {
+    @SerializedName("name")
+    private String repositoryName;
+
+    @SerializedName("description")
+    private String repositoryDescription;
+
+    @SerializedName("private")
+    private boolean repositoryPrivateAccess;
+
+    @SerializedName("has_issues")
+    private boolean repositoryIssuesExistence;
+
+    @SerializedName("has_projects")
+    private boolean repositoryProjectsExistence;
+
+    @SerializedName("has_wiki")
+    private boolean repositoryWikiExistence;
+
+    public Repository(String repositoryName, String repositoryDescription, boolean repositoryPrivateAccess,
+                      boolean repositoryIssuesExistence, boolean repositoryProjectsExistence,
+                      boolean repositoryWikiExistence) {
         this.repositoryName = repositoryName;
         this.repositoryDescription = repositoryDescription;
-        this.repositoryPublicAccess = repositoryPublicAccess;
+        this.repositoryPrivateAccess = repositoryPrivateAccess;
+        this.repositoryIssuesExistence = repositoryIssuesExistence;
+        this.repositoryProjectsExistence = repositoryProjectsExistence;
+        this.repositoryWikiExistence = repositoryWikiExistence;
     }
 
     public String getRepositoryName() {
@@ -27,12 +48,36 @@ public class Repository {
         this.repositoryDescription = repositoryDescription;
     }
 
-    public boolean getRepositoryPublicAccess() {
-        return repositoryPublicAccess;
+    public boolean isRepositoryPrivateAccess() {
+        return repositoryPrivateAccess;
     }
 
-    public void setRepositoryPublicAccess(boolean repositoryPublicAccess) {
-        this.repositoryPublicAccess = repositoryPublicAccess;
+    public void setRepositoryPrivateAccess(boolean repositoryPrivateAccess) {
+        this.repositoryPrivateAccess = repositoryPrivateAccess;
+    }
+
+    public boolean isRepositoryIssuesExistence() {
+        return repositoryIssuesExistence;
+    }
+
+    public void setRepositoryIssuesExistence(boolean repositoryIssuesExistence) {
+        this.repositoryIssuesExistence = repositoryIssuesExistence;
+    }
+
+    public boolean isRepositoryProjectsExistence() {
+        return repositoryProjectsExistence;
+    }
+
+    public void setRepositoryProjectsExistence(boolean repositoryProjectsExistence) {
+        this.repositoryProjectsExistence = repositoryProjectsExistence;
+    }
+
+    public boolean isRepositoryWikiExistence() {
+        return repositoryWikiExistence;
+    }
+
+    public void setRepositoryWikiExistence(boolean repositoryWikiExistence) {
+        this.repositoryWikiExistence = repositoryWikiExistence;
     }
 
     @Override
@@ -40,7 +85,10 @@ public class Repository {
         return "Repository{" +
                 "repositoryName='" + repositoryName + '\'' +
                 ", repositoryDescription='" + repositoryDescription + '\'' +
-                ", repositoryPublicAccess=" + repositoryPublicAccess +
+                ", repositoryPrivateAccess=" + repositoryPrivateAccess +
+                ", repositoryIssuesExistence=" + repositoryIssuesExistence +
+                ", repositoryProjectsExistence=" + repositoryProjectsExistence +
+                ", repositoryWikiExistence=" + repositoryWikiExistence +
                 '}';
     }
 }

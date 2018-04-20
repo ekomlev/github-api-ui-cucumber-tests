@@ -10,16 +10,20 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 ext {
-    testngVersion       = '6.14.2'
-    seleniumVersion     = '3.11.0'
-    gsonVersion         = '2.8.2'
-    reportPortalVersion = '4.0.1'
-    lo4jVersion         = '2.8.1'
-    slf4jVersion        = '1.8.0-beta1'
-    apachVersion        = '1.3.2'
-    jodatimeVersion     = '2.9.9'
-    cucumberVersion     = '2.4.0'
-    guiceVersion        = '4.2.0'
+    testngVersion        = '6.14.2'
+    seleniumVersion      = '3.11.0'
+    gsonVersion          = '2.8.2'
+    reportPortalVersion  = '4.0.1'
+    lo4jVersion          = '2.8.1'
+    slf4jVersion         = '1.8.0-beta1'
+    apachVersion         = '1.3.2'
+    jodatimeVersion      = '2.9.9'
+    cucumberVersion      = '2.4.0'
+    guiceVersion         = '4.2.0'
+    cucumberGuiceVersion = '2.4.0'
+    jsonVersion         = '20180130'
+    harmCrestVersion    = '1.3'
+    apacheVersion       = '4.5.5'
 }
 
 jar {
@@ -63,16 +67,25 @@ dependencies {
             "io.cucumber:cucumber-testng:${cucumberVersion}",
             "io.cucumber:cucumber-java8:${cucumberVersion}",
             "io.cucumber:cucumber-jvm:${cucumberVersion}",
-            "io.cucumber:cucumber-guice:2.4.0",
+            "io.cucumber:cucumber-guice:${cucumberGuiceVersion}",
 
             // Guice
-            "com.google.inject:guice:${guiceVersion}"
+            "com.google.inject:guice:${guiceVersion}",
+
+            "org.json:json:${jsonVersion}",
+
+            //Hamcrest - declarative 'match' rules
+            "org.hamcrest:hamcrest-all:${harmCrestVersion}",
+
+            //Apache
+            "org.apache.httpcomponents:httpclient:${apacheVersion}"
 
 }
 
 test {
     useTestNG {
-        options.suites 'src/test/resources/testng.xml'
+        options.suites 'src/test/resources/ui-testng.xml'
+        options.suites 'src/test/resources/api-testng.xml'
     }
 
     systemProperty 'tst.pr', System.getProperty("tst.pr") ?: "test.properties"

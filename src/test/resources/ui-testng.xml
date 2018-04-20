@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Smoke test suite" verbose="1">
+<suite name="Smoke UI test suite" verbose="1">
     <listeners>
         <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
     </listeners>
     <test name="Smoke test scenarios runner">
         <classes>
-            <class name="com.github.testcases.runners.SmokeRunnerTest"/>
+            <class name="com.github.uitests.runners.SmokeRunnerTest"/>
         </classes>
     </test>
 </suite>

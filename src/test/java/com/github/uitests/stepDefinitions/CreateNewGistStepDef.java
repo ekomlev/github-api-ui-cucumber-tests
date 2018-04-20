@@ -1,7 +1,7 @@
-package com.github.testcases.stepDefinitions;
+package com.github.uitests.stepDefinitions;
 
 import com.github.entities.User;
-import com.github.testcases.base.BaseStep;
+import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import cucumber.api.CucumberOptions;
@@ -13,7 +13,7 @@ import org.testng.Assert;
 @CucumberOptions(features = "features/CreateNewGist.feature")
 public class CreateNewGistStepDef extends BaseStep {
     private GithubSite github;
-    private String gistFile;
+    private String gistFileName;
     private String gistDescription;
     private String gistContent;
     private boolean gistPublicAccess;
@@ -22,9 +22,9 @@ public class CreateNewGistStepDef extends BaseStep {
     @Inject
     public CreateNewGistStepDef(User user, GithubSite github) {
         this.github = github;
-        this.gistFile = user.getUserGist().getGistFile();
+        this.gistFileName = user.getUserGist().getGistFile().entrySet().iterator().next().getKey();
         this.gistDescription = user.getUserGist().getGistDescription();
-        this.gistContent = user.getUserGist().getGistContent();
+        this.gistContent = user.getUserGist().getGistFile().entrySet().iterator().next().getValue().entrySet().iterator().next().getValue();
         this.gistPublicAccess = user.getUserGist().getGistPublicAccess();
     }
 
@@ -40,7 +40,7 @@ public class CreateNewGistStepDef extends BaseStep {
 
         step(3, "Save new gist");
         github.newGistPage().waitForNewGistForm();
-        github.newGistPage().saveNewGist(gistFile, gistDescription, gistContent, gistPublicAccess);
+        github.newGistPage().saveNewGist(gistFileName, gistDescription, gistContent, gistPublicAccess);
     }
 
     @Then("^user can see opened page of created gist$")
@@ -54,6 +54,6 @@ public class CreateNewGistStepDef extends BaseStep {
     public void checkGistHeaderPath() {
         check("Check if header path contains the name of created gist");
         github.gistPage().waitForGistHeadOfGistPage();
-        Assert.assertTrue(github.gistPage().getNameOfOpenedGist().contains(gistFile));
+        Assert.assertTrue(github.gistPage().getNameOfOpenedGist().contains(gistFileName));
     }
 }

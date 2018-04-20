@@ -1,4 +1,4 @@
-package com.github.testcases.base;
+package com.github.uitests.base;
 
         import com.github.logging.LoggerInstanceProvider;
         import org.apache.logging.log4j.Logger;

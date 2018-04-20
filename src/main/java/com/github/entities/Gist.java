@@ -1,23 +1,28 @@
 package com.github.entities;
 
-public class Gist {
-    private String gistFile;
-    private String gistDescription;
-    private String gistContent;
-    private boolean gistPublicAccess;
+import com.google.gson.annotations.SerializedName;
 
-    public Gist(String gistFile, String gistDescription, String gistContent, boolean gistPublicAccess) {
-        this.gistFile = gistFile;
+import java.util.Map;
+
+public class Gist {
+    @SerializedName("description")
+    private String gistDescription;
+    @SerializedName("public")
+    private boolean gistPublicAccess;
+    @SerializedName("files")
+    private Map<String, Map<String, String>> gistFile;
+
+    public Gist(String gistDescription, boolean gistPublicAccess, Map<String, Map<String, String>> gistFile) {
         this.gistDescription = gistDescription;
-        this.gistContent = gistContent;
         this.gistPublicAccess = gistPublicAccess;
+        this.gistFile = gistFile;
     }
 
-    public String getGistFile() {
+    public Map<String, Map<String, String>> getGistFile() {
         return gistFile;
     }
 
-    public void setGistFile(String gistFile) {
+    public void setGistFile(Map<String, Map<String, String>> gistFile) {
         this.gistFile = gistFile;
     }
 
@@ -29,13 +34,6 @@ public class Gist {
         this.gistDescription = gistDescription;
     }
 
-    public String getGistContent() {
-        return gistContent;
-    }
-
-    public void setGistContent(String gistContent) {
-        this.gistContent = gistContent;
-    }
 
     public boolean getGistPublicAccess() {
         return gistPublicAccess;
@@ -48,10 +46,9 @@ public class Gist {
     @Override
     public String toString() {
         return "Gist{" +
-                "gistFile='" + gistFile + '\'' +
-                ", gistContent='" + gistContent + '\'' +
-                ", gistDescription='" + gistDescription + '\'' +
-                ", gistPublicAccess=" + gistPublicAccess +
+                "description='" + gistDescription + '\'' +
+                ", publik=" + gistPublicAccess +
+                ", files=" + gistFile +
                 '}';
     }
 }

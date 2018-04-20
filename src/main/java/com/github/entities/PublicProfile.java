@@ -1,18 +1,39 @@
 package com.github.entities;
 
+import com.google.gson.annotations.SerializedName;
+
 public class PublicProfile {
+    @SerializedName("name")
     private String publicProfileName;
-    private String publicProfileBio;
+
+    @SerializedName("email")
+    private String publicProfileEmail;
+
+    @SerializedName("blog")
+    private String publicProfileBlogUrl;
+
+    @SerializedName("company")
     private String publicProfileCompany;
-    private String publicProfileUrl;
+
+    @SerializedName("location")
     private String publicProfileLocation;
 
-    public PublicProfile(String publicProfileName, String publicProfileBio, String publicProfileCompany, String publicProfileUrl, String publicProfileLocation) {
+    @SerializedName("hireable")
+    private boolean publicProfileHireableStatus;
+
+    @SerializedName("bio")
+    private String publicProfileBio;
+
+    public PublicProfile(String publicProfileName, String publicProfileEmail, String publicProfileBlogUrl,
+                         String publicProfileCompany, String publicProfileLocation, boolean publicProfileHireableStatus,
+                         String publicProfileBio) {
         this.publicProfileName = publicProfileName;
-        this.publicProfileBio = publicProfileBio;
+        this.publicProfileEmail = publicProfileEmail;
+        this.publicProfileBlogUrl = publicProfileBlogUrl;
         this.publicProfileCompany = publicProfileCompany;
-        this.publicProfileUrl = publicProfileUrl;
         this.publicProfileLocation = publicProfileLocation;
+        this.publicProfileHireableStatus = publicProfileHireableStatus;
+        this.publicProfileBio = publicProfileBio;
     }
 
     public String getPublicProfileName() {
@@ -23,12 +44,20 @@ public class PublicProfile {
         this.publicProfileName = publicProfileName;
     }
 
-    public String getPublicProfileBio() {
-        return publicProfileBio;
+    public String isPublicProfileEmail() {
+        return publicProfileEmail;
     }
 
-    public void setPublicProfileBio(String publicProfileBio) {
-        this.publicProfileBio = publicProfileBio;
+    public void setPublicProfileEmail(String publicProfileEmail) {
+        this.publicProfileEmail = publicProfileEmail;
+    }
+
+    public String getPublicProfileBlogUrl() {
+        return publicProfileBlogUrl;
+    }
+
+    public void setPublicProfileBlogUrl(String publicProfileBlogUrl) {
+        this.publicProfileBlogUrl = publicProfileBlogUrl;
     }
 
     public String getPublicProfileCompany() {
@@ -39,19 +68,40 @@ public class PublicProfile {
         this.publicProfileCompany = publicProfileCompany;
     }
 
-    public String getPublicProfileUrl() {
-        return publicProfileUrl;
-    }
-
-    public void setPublicProfileUrl(String publicProfileUrl) {
-        this.publicProfileUrl = publicProfileUrl;
-    }
-
     public String getPublicProfileLocation() {
         return publicProfileLocation;
     }
 
     public void setPublicProfileLocation(String publicProfileLocation) {
         this.publicProfileLocation = publicProfileLocation;
+    }
+
+    public boolean isPublicProfileHireableStatus() {
+        return publicProfileHireableStatus;
+    }
+
+    public void setPublicProfileHireableStatus(boolean publicProfileHireableStatus) {
+        this.publicProfileHireableStatus = publicProfileHireableStatus;
+    }
+
+    public String getPublicProfileBio() {
+        return publicProfileBio;
+    }
+
+    public void setPublicProfileBio(String publicProfileBio) {
+        this.publicProfileBio = publicProfileBio;
+    }
+
+    @Override
+    public String toString() {
+        return "PublicProfile{" +
+                "publicProfileName='" + publicProfileName + '\'' +
+                ", publicProfileEmail='" + publicProfileEmail + '\'' +
+                ", publicProfileBlogUrl='" + publicProfileBlogUrl + '\'' +
+                ", publicProfileCompany='" + publicProfileCompany + '\'' +
+                ", publicProfileLocation='" + publicProfileLocation + '\'' +
+                ", publicProfileHireableStatus=" + publicProfileHireableStatus +
+                ", publicProfileBio='" + publicProfileBio + '\'' +
+                '}';
     }
 }
