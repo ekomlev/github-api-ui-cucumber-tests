@@ -79,7 +79,6 @@ dependencies {
 
             //Apache
             "org.apache.httpcomponents:httpclient:${apacheVersion}"
-
 }
 
 test {

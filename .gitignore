@@ -13,8 +13,11 @@ build
 settings.gradle
 !gradle-wrapper.jar
 
+/webdrivers
+/target
+
 # Screenshots
-/output/screenshots
+/output
 
 
 
