@@ -26,7 +26,7 @@ Test case execution results are stored at [reportportal.io][reportportal_io]
 * There is ability to check service availability using `GET https://api.github.com` request
 * There is ability to change public profile settings using `PATCH /user` request
 * There is ability to create new repository using `POST /user/repos` request
-* There is ability to check existance of organization using 'GET /orgs/:org' request
+* There is ability to check existance of organization using `GET /orgs/:org` request
 * There is ability to create new gist using `POST /gists` request
 * There is ability to the gist using `POST /gists/:gist_id/comments` request
 
