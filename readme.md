@@ -45,11 +45,22 @@ All test properties are stored at `test.properties` file in `github_test/src/mai
 `Test.properties` is already exist by default. File has the following structure:
 
 ```java
- environment.variables.base_url=https://www.github.com
- environment.variables.browser=chrome
- test.variables.default.pageLoadTimeout=30
- test.variables.default.elementNotDisplayedTimeout=2
- test.variables.default.conditionTimeout=5
+environment.variables.base_url=https://github.com
+environment.variables.browser=chrome
+
+test.variables.default.pageLoadTimeout=30
+test.variables.default.implicitlyWaitTime=40
+test.variables.default.elementNotDisplayedTimeout=2
+test.variables.default.conditionTimeout=5
+
+Url = https://api.github.com
+gistsApiUrl = /gists
+commentApiUrl = /comments
+organizationApiUrl = /orgs
+repositoryApiUrl = /repos
+userApiUrl = /user
+apiToken = ****
+gistId = ****
 ```
 
 You can put your **custom** property file to the appropriate directory with another settings.
