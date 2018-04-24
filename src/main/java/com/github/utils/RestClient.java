@@ -1,4 +1,4 @@
-package com.github.client;
+package com.github.utils;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
