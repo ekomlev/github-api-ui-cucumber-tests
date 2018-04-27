@@ -10,16 +10,7 @@ public class User {
     private Gist userGist;
     private Comment userComment;
 
-    private User(String userName, String userEmail, String userPassword, PublicProfile userPublicProfile,
-                 Repository userRepository, Organization userOrganization, Gist userGist, Comment userComment) {
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-        this.userPublicProfile = userPublicProfile;
-        this.userRepository = userRepository;
-        this.userOrganization = userOrganization;
-        this.userGist = userGist;
-        this.userComment = userComment;
+    private User() {
     }
 
     public String getUserName() {
@@ -87,8 +78,35 @@ public class User {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof User))
+            return false;
+        User u = (User) obj;
+        return (this.userName != null && this.userName.equals(u.userName) &&
+                this.userEmail != null && this.userEmail.equals(u.userEmail) &&
+                this.userPassword != null && this.userPassword.equals(u.userPassword) &&
+                this.userPublicProfile != null && this.userPublicProfile == u.userPublicProfile &&
+                this.userRepository != null && this.userRepository == u.userRepository &&
+                this.userOrganization != null && this.userOrganization == u.userOrganization &&
+                this.userGist != null && this.userGist == u.userGist &&
+                this.userComment != null && this.userComment == u.userComment);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 * this.userName.hashCode() +
+                16 * this.userEmail.hashCode() +
+                15 * this.userPassword.hashCode() +
+                14 * this.userPublicProfile.hashCode() +
+                13 * this.userRepository.hashCode() +
+                12 * this.userOrganization.hashCode() +
+                11 * this.userGist.hashCode() +
+                9 * this.userComment.hashCode();
+    }
+
+    @Override
     public String toString() {
-        return "User{" +
+        return "User {" +
                 "userName='" + userName + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", userPassword='" + userPassword + '\'' +

@@ -1,6 +1,6 @@
 package com.github.apitests;
 
-import com.github.client.RestClient;
+import com.github.utils.RestClient;
 import com.github.entities.Repository;
 import com.github.entities.User;
 import com.google.gson.Gson;

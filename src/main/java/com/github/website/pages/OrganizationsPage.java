@@ -1,7 +1,7 @@
 package com.github.website.pages;
 
 import com.github.website.base.BasePage;
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -29,7 +29,7 @@ public class OrganizationsPage extends BasePage {
     private WebElement confirmationOfDeletingButton;
 
     @Inject
-    public OrganizationsPage(DriverManager driverManager) {
+    public OrganizationsPage(TestContextManager driverManager) {
         super(driverManager);
     }
 

@@ -7,11 +7,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.util.Properties;
 
-public class FirefoxDriverCreator extends WebDriverCreator {
+public class FirefoxDriverFactory extends WebDriverFactory {
     private final String GECKODRIVER = "webdriver.gecko.DRIVER";
 
     @Inject
-    FirefoxDriverCreator(Properties props) {
+    FirefoxDriverFactory(Properties props) {
         super(props);
     }
 

@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-public abstract class WebDriverCreator {
+public abstract class WebDriverFactory {
     private String pageLoadTimeout;
     private String implicitlyWaitTime;
     private final String KEY_PAGE_LOAD_TIMEOUT = "test.variables.default.pageLoadTimeout";
@@ -16,7 +16,7 @@ public abstract class WebDriverCreator {
     BaseLogger logger = new BaseLogger();
 
     @Inject
-    WebDriverCreator(Properties props) {
+    WebDriverFactory(Properties props) {
         this.pageLoadTimeout = props.getProperty(KEY_PAGE_LOAD_TIMEOUT);
         this.implicitlyWaitTime = props.getProperty(KEY_IMPLICITLY_WAIT_TIME);
     }

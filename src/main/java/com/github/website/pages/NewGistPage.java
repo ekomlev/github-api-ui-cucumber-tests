@@ -1,6 +1,6 @@
 package com.github.website.pages;
 
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.github.website.base.BasePage;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
@@ -30,7 +30,7 @@ public class NewGistPage extends BasePage {
     private WebElement allYourGistsPageLink;
 
     @Inject
-    public NewGistPage(DriverManager driverManager) {
+    public NewGistPage(TestContextManager driverManager) {
         super(driverManager);
     }
 

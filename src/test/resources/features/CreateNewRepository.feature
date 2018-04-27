@@ -1,4 +1,4 @@
-@smokeTest
+@smokeTest @thread-second
 Feature: Create new repository
 
   As user signed into github site

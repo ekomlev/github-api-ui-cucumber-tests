@@ -1,7 +1,7 @@
 package com.github.website.pages;
 
 import com.github.website.base.BasePage;
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,8 +24,8 @@ public class RepositoryPage extends BasePage {
     private WebElement confirmationOfDeletingButton;
 
     @Inject
-    public RepositoryPage(DriverManager driverManager) {
-        super(driverManager);
+    public RepositoryPage(TestContextManager testContextManager) {
+        super(testContextManager);
     }
 
     public void openRepositorySettings() {

@@ -1,6 +1,6 @@
 package com.github.uitests.stepDefinitions;
 
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
@@ -24,7 +24,7 @@ public class UpdateProfileSettingsStepDef extends BaseStep {
     private String expectedPublicProfileLocation;
 
     @Inject
-    public UpdateProfileSettingsStepDef(User user, GithubSite github, DriverManager driverManager) {
+    public UpdateProfileSettingsStepDef(User user, GithubSite github, TestContextManager driverManager) {
         this.github = github;
         this.expectedPublicProfileName = user.getUserPublicProfile().getPublicProfileName();
         this.expectedGithubUrl = driverManager.getGithubUrl() + "/" + user.getUserName();

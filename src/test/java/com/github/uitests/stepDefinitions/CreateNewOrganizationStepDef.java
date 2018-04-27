@@ -1,6 +1,6 @@
 package com.github.uitests.stepDefinitions;
 
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
@@ -22,7 +22,7 @@ public class CreateNewOrganizationStepDef extends BaseStep {
     private boolean organizationFreePlan;
 
     @Inject
-    public CreateNewOrganizationStepDef(User user, GithubSite github, DriverManager driverManager) {
+    public CreateNewOrganizationStepDef(User user, GithubSite github, TestContextManager driverManager) {
         this.github = github;
         this.currentDriverUrl = driverManager.getDriver().getCurrentUrl();
         this.organizationName = user.getUserOrganization().getOrganizationName();

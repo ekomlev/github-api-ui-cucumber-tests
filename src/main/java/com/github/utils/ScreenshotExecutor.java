@@ -1,6 +1,6 @@
 package com.github.utils;
 
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.github.logging.BaseLogger;
 import com.google.inject.Inject;
 import org.apache.commons.io.FileUtils;
@@ -19,7 +19,7 @@ public class ScreenshotExecutor {
     private BaseLogger logger = new BaseLogger();
 
     @Inject
-    public ScreenshotExecutor(DriverManager driverManager) {
+    public ScreenshotExecutor(TestContextManager driverManager) {
         this.webDriver = driverManager.getDriver();
     }
 

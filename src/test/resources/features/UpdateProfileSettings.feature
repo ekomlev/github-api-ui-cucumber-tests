@@ -1,4 +1,4 @@
-@smokeTest
+@smokeTest @thread-second
 Feature: Update profile settings
 
   As user signed into github site

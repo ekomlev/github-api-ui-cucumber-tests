@@ -1,4 +1,4 @@
-@smokeTest
+@smokeTest @thread-first
 Feature: Create new comment
 
   As user signed into github site

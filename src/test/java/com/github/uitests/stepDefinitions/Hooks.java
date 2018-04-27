@@ -1,7 +1,7 @@
 
 package com.github.uitests.stepDefinitions;
 
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.github.uitests.base.BaseStep;
 import com.github.utils.ScreenshotExecutor;
 import com.google.inject.Inject;
@@ -10,11 +10,11 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public class Hooks extends BaseStep {
-    private DriverManager driverManager;
+    private TestContextManager driverManager;
     private ScreenshotExecutor screenshotExecutor;
 
     @Inject
-    public Hooks(DriverManager driverManager, ScreenshotExecutor screenshotExecutor) {
+    public Hooks(TestContextManager driverManager, ScreenshotExecutor screenshotExecutor) {
         this.driverManager = driverManager;
         this.screenshotExecutor = screenshotExecutor;
     }

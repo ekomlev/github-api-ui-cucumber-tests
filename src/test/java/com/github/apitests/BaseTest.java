@@ -1,15 +1,15 @@
 package com.github.apitests;
 
-import com.github.base.ManagerModule;
-import com.github.client.RestClient;
+import com.github.base.injector.ManagerModule;
 import com.github.logging.LoggerInstanceProvider;
+import com.github.utils.RestClient;
 import com.google.inject.Inject;
 import org.apache.http.Header;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
-import org.testng.annotations.*;
+import org.testng.annotations.Guice;
 
 import java.io.IOException;
 

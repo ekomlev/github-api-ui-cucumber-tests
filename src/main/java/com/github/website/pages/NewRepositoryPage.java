@@ -1,7 +1,7 @@
 package com.github.website.pages;
 
 import com.github.website.base.BasePage;
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,7 +23,7 @@ public class NewRepositoryPage extends BasePage {
     private WebElement submitCreatingNewRepositoryButton;
 
     @Inject
-    public NewRepositoryPage(DriverManager driverManager) {
+    public NewRepositoryPage(TestContextManager driverManager) {
         super(driverManager);
     }
 

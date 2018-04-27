@@ -1,4 +1,4 @@
-package com.github.utils;
+package com.github.base.injector;
 
 import com.github.entities.User;
 import com.github.logging.BaseLogger;

@@ -1,15 +1,15 @@
 package com.github.base.driver;
 
-import com.github.utils.WebProvider;
+import com.github.base.injector.WebDriverProvider;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.google.inject.name.Named;
 import org.openqa.selenium.WebDriver;
 
-public class DriverManager {
+public class TestContextManager {
     private WebDriver webDriver;
-    private WebProvider webProvider;
+    private WebDriverProvider webDriverProvider;
     private GithubSite github;
     private String githubUrl;
 
@@ -17,16 +17,16 @@ public class DriverManager {
     private Provider<GithubSite> githubSiteProvider;
 
     @Inject
-    public DriverManager(WebDriver webDriver, WebProvider webProvider, GithubSite github, @Named("environment.variables.base_url") String githubUrl) {
+    public TestContextManager(WebDriver webDriver, WebDriverProvider webDriverProvider, GithubSite github, @Named("environment.variables.base_url") String githubUrl) {
         this.webDriver = webDriver;
-        this.webProvider = webProvider;
+        this.webDriverProvider = webDriverProvider;
         this.github = github;
         this.githubUrl = githubUrl;
     }
 
     public WebDriver getDriver() {
         if (webDriver == null) {
-            this.webDriver = webProvider.get();
+            this.webDriver = webDriverProvider.get();
         }
         return webDriver;
     }

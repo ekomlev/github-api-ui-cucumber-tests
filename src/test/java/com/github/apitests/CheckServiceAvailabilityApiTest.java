@@ -1,6 +1,6 @@
 package com.github.apitests;
 
-import com.github.client.RestClient;
+import com.github.utils.RestClient;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.apache.http.client.methods.CloseableHttpResponse;

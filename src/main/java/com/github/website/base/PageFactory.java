@@ -1,20 +1,20 @@
 package com.github.website.base;
 
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.google.inject.Inject;
 
 import java.lang.reflect.InvocationTargetException;
 
 public class PageFactory {
     @Inject
-    private DriverManager driverManager;
+    private TestContextManager testContextManager;
 
     public <P extends BasePage> P initPage(Class<P> classElement) {
         P page = null;
         try {
             page = classElement
-                    .getConstructor(DriverManager.class)
-                    .newInstance(driverManager);
+                    .getConstructor(TestContextManager.class)
+                    .newInstance(testContextManager);
         } catch (IllegalAccessException | NoSuchMethodException | InstantiationException | InvocationTargetException e) {
             throw new RuntimeException();
         }

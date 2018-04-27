@@ -8,11 +8,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.HashMap;
 import java.util.Properties;
 
-public class ChromeDriverCreator extends WebDriverCreator {
+public class ChromeDriverFactory extends WebDriverFactory {
     private final String CHROMEDRIVER = "webdriver.chrome.DRIVER";
 
     @Inject
-    ChromeDriverCreator(Properties props) {
+    ChromeDriverFactory(Properties props) {
         super(props);
     }
 

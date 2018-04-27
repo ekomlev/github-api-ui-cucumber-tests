@@ -1,7 +1,7 @@
 package com.github.website.components;
 
 import com.github.website.base.BasePage;
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -23,7 +23,7 @@ public class CreationNewEntityMenu extends BasePage {
     private WebElement newGistMenuItemLink;
 
     @Inject
-    public CreationNewEntityMenu(DriverManager driverManager) {
+    public CreationNewEntityMenu(TestContextManager driverManager) {
         super(driverManager);
     }
 

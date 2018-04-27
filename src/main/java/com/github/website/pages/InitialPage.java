@@ -1,7 +1,7 @@
 package com.github.website.pages;
 
 import com.github.website.base.BasePage;
-import com.github.base.driver.DriverManager;
+import com.github.base.driver.TestContextManager;
 import com.google.inject.Inject;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +12,7 @@ public class InitialPage extends BasePage {
     private WebElement signInLink;
 
     @Inject
-    public InitialPage(DriverManager driverManager) {
+    public InitialPage(TestContextManager driverManager) {
         super(driverManager);
     }
 
