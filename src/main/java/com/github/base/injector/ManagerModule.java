@@ -1,13 +1,13 @@
 package com.github.base.injector;
 
 import com.github.base.driver.*;
+import com.github.base.injector.parallelCucumberScope.ParallelCucumberModules;
 import com.github.entities.User;
 import com.github.website.GithubSite;
 import com.github.website.base.PageFactory;
 import com.google.inject.*;
 import com.google.inject.multibindings.MapBinder;
 import com.google.inject.name.Names;
-import cucumber.api.guice.CucumberModules;
 import cucumber.runtime.java.guice.InjectorSource;
 import org.openqa.selenium.WebDriver;
 
@@ -38,6 +38,6 @@ public class ManagerModule extends AbstractModule implements InjectorSource {
 
     @Override
     public Injector getInjector() {
-        return Guice.createInjector(Stage.PRODUCTION, CucumberModules.SCENARIO, new ManagerModule());
+        return Guice.createInjector(Stage.PRODUCTION, ParallelCucumberModules.SCENARIO, new ManagerModule());
     }
 }

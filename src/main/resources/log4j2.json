@@ -24,9 +24,9 @@
       "root": {
         "level": "all",
         "AppenderRef": [
-          {
+          /*{
             "ref": "ReportPortalAppender"
-          },
+          },*/
           {
           "ref": "STDOUT"
         }]
