@@ -3,17 +3,16 @@
 <!--parallel="tests" thread-count="2"-->
 <suite name="Smoke UI test suite" verbose="1" parallel="tests" thread-count="2">
     <listeners>
-        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
+        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>
     </listeners>
     <test name="Smoke test scenarios runner - first thread">
         <classes>
             <class name="com.github.uitests.runners.Smoke1RunnerTest"/>
-           <!-- <class name="com.github.uitests.runners.Smoke2RunnerTest"/>-->
         </classes>
     </test>
     <test name="Smoke test scenarios runner - second thread">
         <classes>
-                <class name="com.github.uitests.runners.Smoke2RunnerTest"/>
+            <class name="com.github.uitests.runners.Smoke2RunnerTest"/>
         </classes>
     </test>
 </suite>
