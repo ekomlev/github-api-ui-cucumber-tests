@@ -1,10 +1,10 @@
 {
-  "userName": "*",
-  "userEmail": "*",
-  "userPassword": "*",
+  "userName": "Eduard-test",
+  "userEmail": "*****",
+  "userPassword": "*****",
   "userPublicProfile": {
     "name": "Eduard profileName",
-    "email": "uplink.qq@gmail.com",
+    "email": "*****",
     "blog": "https://blog-url.com",
     "company": "Company Test",
     "location": "Belarus",
