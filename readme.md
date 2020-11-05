@@ -32,9 +32,8 @@ Test case execution results are stored at [reportportal.io][reportportal_io]
 
 ## Getting started
 * Git clone the project
-* Install browser driver: e.g. **[ChromeDriver]** or **[FirefoxDriver]** and put execute file to the folder `/github_test_testng_cuc/webdrivers/`.
-
-*NOTE*: framework expects `.exe` file. If you are using *MacOs* than you should edit `wdr.pr` systemProperty at **`build.gradle`**.
+* Install browser driver: e.g. **[ChromeDriver]** or **[FirefoxDriver]** and put execution file to the root of project`./`.
+*NOTE*: framework expects `chromedriver` file (MacOs). To change it, edit `wdr.pr` systemProperty at **`build.gradle`**.
 * Install **[Gradle]**
 * Edit `test.properties` and `reportportal.properties` files (see below).
 * Edit personal data in `user_data.json` in `./src/test/resources` to make tests authorize
