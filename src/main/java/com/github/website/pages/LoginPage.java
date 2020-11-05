@@ -33,7 +33,7 @@ public class LoginPage extends BasePage {
         inputLoginField.sendKeys(userName);
         inputPasswordField.clear();
         inputPasswordField.sendKeys(userPassword);
-        pageInfo("Authorization form was filled in. " + "User name: " + userName + ", password: " + userPassword);
+        pageInfo("Authorization form with username and password was filled in.");
     }
 
     public void clickSignInButton() {

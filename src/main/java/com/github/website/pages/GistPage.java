@@ -10,17 +10,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class GistPage extends BasePage {
 
-    @FindBy(xpath = "//h1[@class='public css-truncate']/strong[@itemprop='name']/a")
+    @FindBy(xpath = "//h1/strong[@itemprop='name']/a")
     private WebElement gistNameLink;
 
+    @FindBy(xpath = "//form[@class='js-new-comment-form js-needs-timeline-marker-header']")
+    private WebElement gistCommentForm;
+
     @FindBy(xpath = "//textarea[@id='new_comment_field']")
-    private WebElement gistCommentInputfield;
+    private WebElement gistCommentInputField;
 
     @FindBy(xpath = "//button[@type='submit' and contains(text(), 'Comment')]")
-    private WebElement gistCommentButton;
+    private WebElement gistCommentBtn;
 
-    @FindBy(xpath = "//div[@class='timeline-comment-wrapper js-comment-container' and position()=last()-2]")
+    @FindBy(xpath = "//div[contains(@class, 'TimelineItem js-comment-container') and position()=last()-1]")
     private WebElement lastGistComment;
+
+    @FindBy(xpath = "//div[contains(@class, 'new-discussion-timeline')]/div[contains(@class, 'gist-content')]")
+    private WebElement gistContent;
 
     @Inject
     public GistPage(TestContextManager driverManager) {
@@ -28,19 +34,19 @@ public class GistPage extends BasePage {
     }
 
     public void waitForGistHeadOfGistPage() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h1[@class='public css-truncate']")));
+        wait.until(ExpectedConditions.visibilityOf(gistNameLink));
     }
 
     public void waitForGistCommentForm() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//form[@class='js-new-comment-form js-needs-timeline-marker-header']")));
+        wait.until(ExpectedConditions.visibilityOf(gistCommentForm));
     }
 
     public void waitForGistComment() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='timeline-comment-wrapper js-comment-container' and position()=last()-2]")));
+        wait.until(ExpectedConditions.visibilityOf(lastGistComment));
     }
 
     public void waitForGistContent() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='container new-discussion-timeline experiment-repo-nav']")));
+        wait.until(ExpectedConditions.visibilityOf(gistContent));
     }
 
     public String getNameOfOpenedGist() {
@@ -48,8 +54,8 @@ public class GistPage extends BasePage {
     }
 
     public void saveNewGistComment(String commentText) {
-        gistCommentInputfield.sendKeys(commentText);
-        gistCommentButton.click();
+        gistCommentInputField.sendKeys(commentText);
+        gistCommentBtn.click();
     }
 
     public String getLastCommentText() {

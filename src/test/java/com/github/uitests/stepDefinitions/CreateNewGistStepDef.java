@@ -4,10 +4,10 @@ import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/CreateNewGist.feature")
@@ -17,7 +17,6 @@ public class CreateNewGistStepDef extends BaseStep {
     private String gistDescription;
     private String gistContent;
     private boolean gistPublicAccess;
-
 
     @Inject
     public CreateNewGistStepDef(User user, GithubSite github) {
@@ -31,7 +30,7 @@ public class CreateNewGistStepDef extends BaseStep {
     @When("^user create new gist via menu \"Create new\"$")
     public void createNewGist() {
         step(1, "Open menu for creation new entity");
-        github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        github.creationNewEntityMenu().waitForCreationNewEntityMenuBtn();
         github.creationNewEntityMenu().openCreationNewEntityMenu();
 
         step(2, "Open new gist page");
@@ -45,9 +44,8 @@ public class CreateNewGistStepDef extends BaseStep {
 
     @Then("^user can see opened page of created gist$")
     public void checkCreatedNewGist() {
-        check("Check if  base of new created gist is opened");
+        check("Check if base of new created gist is opened");
         github.gistPage().waitForGistContent();
-
     }
 
     @And("^header path contains the name of created gist$")

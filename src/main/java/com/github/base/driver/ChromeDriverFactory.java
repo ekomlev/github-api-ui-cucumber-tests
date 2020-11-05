@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class ChromeDriverFactory extends WebDriverFactory {
-    private final String CHROMEDRIVER = "webdriver.chrome.DRIVER";
+    private final String CHROMEDRIVER = "webdriver.chrome.driver";
 
     @Inject
     ChromeDriverFactory(Properties props) {

@@ -36,15 +36,16 @@ Test case execution results are stored at [reportportal.io][reportportal_io]
 
 *NOTE*: framework expects `.exe` file. If you are using *MacOs* than you should edit `wdr.pr` systemProperty at **`build.gradle`**.
 * Install **[Gradle]**
-* If it necessary put your custom `.properties` file (see below).
+* Edit `test.properties` and `reportportal.properties` files (see below).
+* Edit personal data in `user_data.json` in `./src/test/resources` to make tests authorize
 * Run tests
 
 ### Framework properties
-All test properties are stored at `test.properties` file in `github_test/src/main/resources/` directory.
+All test properties are stored at `test.properties` file in `./src/main/resources/` directory.
 
-`Test.properties` is already exist by default. File has the following structure:
+`Test.properties` is already exists by default. File has the following structure:
 
-```java
+```text
 environment.variables.base_url=https://github.com
 environment.variables.browser=chrome
 
@@ -63,7 +64,16 @@ apiToken = ****
 gistId = ****
 ```
 
-You can put your **custom** property file to the appropriate directory with another settings.
+`reportportal.properties` is also exists:
+```text
+#REQUIRED
+rp.endpoint = https://web.demo.reportportal.io
+rp.uuid = [uui]
+rp.launch = [launch]
+rp.project = [project]
+```
+
+Use can put your **custom** property file to the appropriate directory with another settings.
 Set `environment.variables.browser=firefox` to use **FirefoxDriver** while executing tests.
 
 
@@ -73,7 +83,7 @@ Set `environment.variables.browser=firefox` to use **FirefoxDriver** while execu
  gradle test
  ```
 
-* To run tests from the command line using **custom** `.property` file type and specifying your own path to exec file of web driver:
+* To run tests from the command line using **custom** `.properties` file type and specifying your own path to exec file of web driver:
  ```
  gradle test -Dtst.pr=your_file.properties -Dwdr.pr=./your_path
  ```

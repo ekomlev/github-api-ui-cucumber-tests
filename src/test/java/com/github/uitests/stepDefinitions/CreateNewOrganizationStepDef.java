@@ -5,11 +5,11 @@ import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -34,10 +34,10 @@ public class CreateNewOrganizationStepDef extends BaseStep {
     public void checkNewOrganizationIsNotCreated() {
         step(1, "Open organization menu");
         github.homePage().expandAccountSwitcher();
-        github.homePage().waitForExpandedAccountSwitcher();
+        github.homePage().waitForAccountSwitcherMenu();
 
-        step(2, "Open organizations manage base");
-        github.homePage().openOrganizations();
+        step(2, "Open organizations management page");
+        github.homePage().openManageOrganizationsMenuItem();
         github.organizationsPage().waitForOrganizationsList();
 
         step(3, "Check if organization is exist with required name");
@@ -57,7 +57,7 @@ public class CreateNewOrganizationStepDef extends BaseStep {
     @When("^user create new organization via menu \"Create new\"$")
     public void createNewOrganization() {
         step(4, "Open menu for creation new entity");
-        github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        github.creationNewEntityMenu().waitForCreationNewEntityMenuBtn();
         github.creationNewEntityMenu().openCreationNewEntityMenu();
 
         step(5, "Open new organization base");

@@ -31,7 +31,7 @@ public class ParallelScenarioScope implements ScenarioScope {
         };
     }
 
-    private  <T> Map<Key<?>, Object> getScopedObjectMap(Key<T> key) {
+    private <T> Map<Key<?>, Object> getScopedObjectMap(Key<T> key) {
         Map<Key<?>, Object> map = threadLocalMap.get();
         if (map == null) {
             throw new OutOfScopeException("Cannot access " + key + " outside of a scoping block");

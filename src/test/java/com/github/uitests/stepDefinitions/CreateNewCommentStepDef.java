@@ -4,11 +4,11 @@ import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -28,22 +28,19 @@ public class CreateNewCommentStepDef extends BaseStep {
     @Given("^\"All your gists\" page is opened$")
     public void openAllYourGistsPage() {
         step(1, "Open user profile menu");
-        github.userProfileMenu().waitForUserProfileMenuLink();
+        github.userProfileMenu().waitForUserProfileMenuBtn();
         github.userProfileMenu().openUserProfileMenu();
         github.userProfileMenu().waitForUserProfileMenu();
 
         step(2, "Open gist page");
         github.userProfileMenu().openYourGistPage();
-        github.newGistPage().waitForGistHeadOfNewGistPage();
-
-        step(3, "Open all gists");
-        github.newGistPage().openAllYourGistsPage();
+        github.newGistPage().waitForGistPageBody();
         github.allYourGistsPage().waitForAllYourGistsList();
     }
 
     @When("^user enters to existing gist$")
     public void createNewComment() {
-        step(4, "Enter to gist if it exists");
+        step(3, "Enter to gist if it exists");
         WebElement checkGist = github.allYourGistsPage().gistIsExist(gistFileName);
         if (checkGist != null) {
             github.allYourGistsPage().openGist(checkGist);
@@ -52,7 +49,7 @@ public class CreateNewCommentStepDef extends BaseStep {
 
     @And("^user creates new comment$")
     public void checkCreatedNewComment() {
-        step(5, "Create new comment if gist file is exist");
+        step(4, "Create new comment if gist file is exist");
         github.gistPage().waitForGistCommentForm();
         github.gistPage().saveNewGistComment(commentText);
         github.gistPage().waitForGistComment();

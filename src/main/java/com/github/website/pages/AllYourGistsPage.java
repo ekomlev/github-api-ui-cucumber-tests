@@ -12,8 +12,10 @@ import java.util.List;
 
 public class AllYourGistsPage extends BasePage {
 
-    @FindBy(css = "span.creator > a > strong.css-truncate-target")
+    @FindBy(xpath = "//div[contains(@class, 'gist-snippet')]//a/strong[contains(@class, 'css-truncate-target')]")
     private List<WebElement> gistItem;
+    @FindBy(xpath = "//*[@aria-label='All gists']/ancestor::div[contains(@class, 'col-9 col-md-9')]")
+    private WebElement allGistColumn;
 
     @Inject
     public AllYourGistsPage(TestContextManager driverManager) {
@@ -21,7 +23,7 @@ public class AllYourGistsPage extends BasePage {
     }
 
     public void waitForAllYourGistsList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='repository-content gist-content']")));
+        wait.until(ExpectedConditions.visibilityOf(allGistColumn));
     }
 
     public WebElement gistIsExist(String gistFile) {

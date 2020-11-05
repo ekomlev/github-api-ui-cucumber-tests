@@ -1,10 +1,10 @@
 {
-  "userName": "Eduard-test",
-  "userEmail": "*****",
-  "userPassword": "*****",
+  "userName": "*******",
+  "userEmail": "*******",
+  "userPassword": "*******",
   "userPublicProfile": {
-    "name": "Eduard profileName",
-    "email": "*****",
+    "name": "ProfileName",
+    "email": "*******",
     "blog": "https://blog-url.com",
     "company": "Company Test",
     "location": "Belarus",

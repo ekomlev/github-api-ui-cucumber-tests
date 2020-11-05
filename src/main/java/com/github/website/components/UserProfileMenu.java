@@ -10,7 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class UserProfileMenu extends BasePage {
 
-    @FindBy(css = "summary[aria-label='View profile and more']")
+    @FindBy(css = ".Header-link[aria-label^='View profile'][role='button']")
+    private WebElement userProfileMenuBtn;
+
+    @FindBy(xpath = "//details[@open]/summary[contains(@aria-label, 'View profile')]/following-sibling::details-menu")
     private WebElement userProfileMenu;
 
     @FindBy(linkText = "Settings")
@@ -24,16 +27,16 @@ public class UserProfileMenu extends BasePage {
         super(driverManager);
     }
 
-    public void waitForUserProfileMenuLink() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='user-links']/li[3]/details")));
+    public void waitForUserProfileMenuBtn() {
+        wait.until(ExpectedConditions.visibilityOf(userProfileMenuBtn));
     }
 
     public void openUserProfileMenu() {
-        userProfileMenu.click();
+        userProfileMenuBtn.click();
     }
 
     public void waitForUserProfileMenu() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='user-links']/li[3]/details/ul")));
+        wait.until(ExpectedConditions.visibilityOf(userProfileMenu));
     }
 
     public void openProfileSettingsPage() {
@@ -43,5 +46,4 @@ public class UserProfileMenu extends BasePage {
     public void openYourGistPage() {
         yourGistsMenuItemLink.click();
     }
-
 }

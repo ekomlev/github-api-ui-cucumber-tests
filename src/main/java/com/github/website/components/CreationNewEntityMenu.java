@@ -10,16 +10,19 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CreationNewEntityMenu extends BasePage {
 
-    @FindBy(css = "summary[aria-label~='Create']")
+    @FindBy(css = ".Header-link[aria-label^='Create new'][role='button']")
+    private WebElement creationNewEntityMenuBtn;
+
+    @FindBy(xpath = "//details[@open]/summary[contains(@aria-label, 'Create new')]/following-sibling::details-menu")
     private WebElement creationNewEntityMenu;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New repository')]")
+    @FindBy(linkText = "New repository")
     private WebElement newRepositoryMenuItemLink;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New organization')]")
+    @FindBy(linkText = "New organization")
     private WebElement newOrganizationMenuItemLink;
 
-    @FindBy(xpath = "//ul[@class='dropdown-menu dropdown-menu-sw']/a[contains(text(), 'New gist')]")
+    @FindBy(linkText = "New gist")
     private WebElement newGistMenuItemLink;
 
     @Inject
@@ -27,16 +30,16 @@ public class CreationNewEntityMenu extends BasePage {
         super(driverManager);
     }
 
-    public void waitForCreationNewEntityMenuLink() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='user-links']/li[2]/details")));
+    public void waitForCreationNewEntityMenuBtn() {
+        wait.until(ExpectedConditions.visibilityOf(creationNewEntityMenuBtn));
     }
 
     public void openCreationNewEntityMenu() {
-        creationNewEntityMenu.click();
+        creationNewEntityMenuBtn.click();
     }
 
     public void waitForCreationNewEntityMenu() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='user-links']/li[2]/details/ul")));
+        wait.until(ExpectedConditions.visibilityOf(creationNewEntityMenu));
     }
 
     public void openNewRepositoryPage() {

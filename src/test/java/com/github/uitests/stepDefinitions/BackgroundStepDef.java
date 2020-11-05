@@ -4,8 +4,8 @@ import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.Given;
+import io.cucumber.java.en.Given;
+import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(features = "features")
 public class BackgroundStepDef extends BaseStep {

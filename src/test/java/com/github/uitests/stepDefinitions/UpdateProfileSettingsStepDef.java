@@ -5,11 +5,11 @@ import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 @CucumberOptions(features = "features/UpdateProfileSettings.feature")
@@ -39,7 +39,7 @@ public class UpdateProfileSettingsStepDef extends BaseStep {
     @Given("^profile settings page is opened$")
     public void openUserProfileMenu() {
         step(1, "Open user profile menu");
-        github.userProfileMenu().waitForUserProfileMenuLink();
+        github.userProfileMenu().waitForUserProfileMenuBtn();
         github.userProfileMenu().openUserProfileMenu();
         github.userProfileMenu().waitForUserProfileMenu();
 

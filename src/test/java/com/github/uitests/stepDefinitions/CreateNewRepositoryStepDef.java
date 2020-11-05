@@ -5,11 +5,11 @@ import com.github.entities.User;
 import com.github.uitests.base.BaseStep;
 import com.github.website.GithubSite;
 import com.google.inject.Inject;
-import cucumber.api.CucumberOptions;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -30,7 +30,6 @@ public class CreateNewRepositoryStepDef extends BaseStep {
         this.repositoryPublicAccess = user.getUserRepository().isRepositoryPrivateAccess();
     }
 
-
     @Given("^repository with required name is not created$")
     public void checkNewRepositoryIsNotCreated() {
         step(1, "Check if repository is exist with required name");
@@ -49,7 +48,7 @@ public class CreateNewRepositoryStepDef extends BaseStep {
     @When("^user create new repository via menu \"Create new\"$")
     public void createNewRepository() {
         step(2, "Open menu for creation new entity");
-        github.creationNewEntityMenu().waitForCreationNewEntityMenuLink();
+        github.creationNewEntityMenu().waitForCreationNewEntityMenuBtn();
         github.creationNewEntityMenu().openCreationNewEntityMenu();
 
         step(3, "Open new repository base");

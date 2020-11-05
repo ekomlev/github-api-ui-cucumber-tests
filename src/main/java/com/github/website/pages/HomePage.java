@@ -12,13 +12,16 @@ import java.util.List;
 
 public class HomePage extends BasePage {
 
-    @FindBy(css = "ul.mini-repo-list li > a > span > span.repo")
+    @FindBy(xpath = "//div[@id='repos-container']//a[@data-hovercard-type='repository']")
     private List<WebElement> repositoryItem;
 
-    @FindBy(xpath = "//summary[@class='btn select-menu-button with-gravatar ' and @aria-label='Switch account context']")
+    @FindBy(xpath = "//div[contains(@class, 'dashboard-sidebar')]//summary[@title='Switch account context' and @role='button']")
     private WebElement expandAccountSwitcherButton;
 
-    @FindBy(xpath = "//div[@class='select-menu-list']/a[@href='/account/organizations' and contains(., 'Manage organizations')]")
+    @FindBy(xpath = "//details[contains(@id, 'details-') and @open]//div[@class='SelectMenu-modal']")
+    private WebElement accountSwitcherMenu;
+
+    @FindBy(xpath = "//details[contains(@id, 'details-') and @open]//a[@href='/account/organizations' and @role='menuitem']")
     private WebElement manageOrganizationsMenuItemLink;
 
     @Inject
@@ -35,8 +38,8 @@ public class HomePage extends BasePage {
         return null;
     }
 
-    public void waitForExpandedAccountSwitcher() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@aria-labelledby='context-switch-title']")));
+    public void waitForAccountSwitcherMenu() {
+        wait.until(ExpectedConditions.visibilityOf(accountSwitcherMenu));
     }
 
     public void enterExistingRepository(WebElement repositoryItem) {
@@ -47,7 +50,7 @@ public class HomePage extends BasePage {
         expandAccountSwitcherButton.click();
     }
 
-    public void openOrganizations() {
+    public void openManageOrganizationsMenuItem() {
         manageOrganizationsMenuItemLink.click();
     }
 }

@@ -13,20 +13,29 @@ import java.util.List;
 
 public class OrganizationsPage extends BasePage {
 
+    @FindBy(xpath = "//div[contains(text(), 'Organizations')]/ancestor::div[contains(@class, 'col-9')]/div[@class='Box']")
+    private WebElement organizationsList;
+
     @FindBy(xpath = "//div[@class='Box']/div[@class='Box-row d-flex flex-items-center']//a")
     private List<WebElement> organisationItem;
 
-    @FindBy(xpath = "//a[@class='pagehead-tabs-item ' and position()='5']")
+    @FindBy(css = "nav[aria-label='Organization']")
+    private WebElement organisationMenu;
+
+    @FindBy(xpath = "nav[aria-label='Organization'] a[href='/organizations/Organization-xq/settings/profile']")
     private WebElement settingsMenuItemLink;
 
-    @FindBy(xpath = "//a[contains(text(), 'Delete this organization')]")
-    private WebElement deleteThisOrganizationButton;
+    @FindBy(xpath = "//h2[contains(text(), 'Organization profile')]/ancestor::div[contains(@class, 'container-lg')]")
+    private WebElement organizationsSettingsPage;
 
-    @FindBy(xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/p/label/input")
+    @FindBy(xpath = "//summary[contains(text(), 'Delete this organization')]")
+    private WebElement deleteThisOrganizationBtn;
+
+    @FindBy(xpath = "form#cancel_plan input[type='text']")
     private WebElement deleteConfirmationOrganizationInputField;
 
-    @FindBy(xpath = "//div[@class='facebox-content dangerzone']/form[@id='cancel_plan']/button[@type='submit']")
-    private WebElement confirmationOfDeletingButton;
+    @FindBy(xpath = "form#cancel_plan button[type='submit']")
+    private WebElement submitDeletionBtn;
 
     @Inject
     public OrganizationsPage(TestContextManager driverManager) {
@@ -34,15 +43,15 @@ public class OrganizationsPage extends BasePage {
     }
 
     public void waitForOrganizationsList() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("Box")));
+        wait.until(ExpectedConditions.visibilityOf(organizationsList));
     }
 
     public void waitForOrganizationSettings() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='col-9 float-left']")));
+        wait.until(ExpectedConditions.visibilityOf(organizationsSettingsPage));
     }
 
     public void waitForOrganizationNavigationMenu() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("orgnav")));
+        wait.until(ExpectedConditions.visibilityOf(organisationMenu));
     }
 
     public void waitForOrganizationContent() {
@@ -69,8 +78,8 @@ public class OrganizationsPage extends BasePage {
     public void deleteExistingOrganization(String organizationName) {
         JavascriptExecutor jse = (JavascriptExecutor) driverManager.getDriver();
         jse.executeScript("window.scrollBy(0,250)", "");
-        deleteThisOrganizationButton.click();
+        deleteThisOrganizationBtn.click();
         deleteConfirmationOrganizationInputField.sendKeys(organizationName);
-        confirmationOfDeletingButton.click();
+        submitDeletionBtn.click();
     }
 }
